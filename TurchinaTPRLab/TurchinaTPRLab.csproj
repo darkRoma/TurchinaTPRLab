@@ -102,6 +102,9 @@
     <EmbeddedResource Include="MiniMaxCriterionInfoForm.resx">
       <DependentUpon>MiniMaxCriterionInfoForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NeymanPearsonCriterionInfoForm.resx">
+      <DependentUpon>NeymanPearsonCriterionInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NonRandomizedSolutionsForm.resx">
       <DependentUpon>NonRandomizedSolutionsForm.cs</DependentUpon>
     </EmbeddedResource>
