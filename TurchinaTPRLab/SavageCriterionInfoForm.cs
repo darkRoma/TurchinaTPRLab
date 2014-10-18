@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace TurchinaTPRLab
 {
-    public partial class Form1 : Form
+    public partial class SavageCriterionInfoForm : Form
     {
-        public Form1()
+        public SavageCriterionInfoForm()
         {
             InitializeComponent();
         }
