@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.randomizedSolutionsButton = new System.Windows.Forms.Button();
             this.nonRandomizedSolutionsButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -67,11 +68,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(54, 91);
+            this.label2.Location = new System.Drawing.Point(10, 60);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(361, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Здесь может быть текст с определением \"Критерия оптимальности\"";
+            this.label2.Size = new System.Drawing.Size(463, 104);
+            this.label2.TabIndex = 4;
+            this.label2.Text = resources.GetString("label2.Text");
             // 
             // MainForm
             // 
