@@ -46,66 +46,92 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BayesianCriterionInfoForm.cs">
+    <Compile Include="Core\DesignPatterns\AbstractFactory.cs" />
+    <Compile Include="Core\Error\ConvertException.cs" />
+    <Compile Include="Core\Error\CriterionException.cs" />
+    <Compile Include="Core\Error\DataException.cs" />
+    <Compile Include="Core\Error\ScannerException.cs" />
+    <Compile Include="Core\Error\SystemException.cs" />
+    <Compile Include="Core\Error\ViewException.cs" />
+    <Compile Include="Core\MVCController\Controller.cs" />
+    <Compile Include="Core\MVCModel\Model.cs" />
+    <Compile Include="Core\MVCModel\Solution.cs" />
+    <Compile Include="Core\MVCView\Table\DataMatrixView.cs" />
+    <Compile Include="Core\MVCView\Table\LossesMatrixView.cs" />
+    <Compile Include="Core\MVCView\Table\RegretMatrixView.cs" />
+    <Compile Include="Core\MVCView\Table\SolutionView.cs" />
+    <Compile Include="Core\MVCView\Table\TableView.cs" />
+    <Compile Include="Core\MVCView\View.cs" />
+    <Compile Include="Core\Service\Criterions\BayesCriterion.cs" />
+    <Compile Include="Core\Service\Criterions\Criterion.cs" />
+    <Compile Include="Core\Service\Criterions\CriterionFactory.cs" />
+    <Compile Include="Core\Service\Criterions\GurvitsCriterion.cs" />
+    <Compile Include="Core\Service\Criterions\MinMaxCriterion.cs" />
+    <Compile Include="Core\Service\Criterions\NeymanPearsonCriterion.cs" />
+    <Compile Include="Core\Service\Criterions\SavageCriterion.cs" />
+    <Compile Include="Core\Service\ModelConverter.cs" />
+    <Compile Include="Core\Service\Saver.cs" />
+    <Compile Include="Core\Service\Scanner.cs" />
+    <Compile Include="UI\BayesianCriterionInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BayesianCriterionInfoForm.Designer.cs">
+    <Compile Include="UI\BayesianCriterionInfoForm.Designer.cs">
       <DependentUpon>BayesianCriterionInfoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="HurwitzCriterionInfoForm.cs">
+    <Compile Include="UI\HurwitzCriterionInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HurwitzCriterionInfoForm.Designer.cs">
+    <Compile Include="UI\HurwitzCriterionInfoForm.Designer.cs">
       <DependentUpon>HurwitzCriterionInfoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="UI\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="UI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiniMaxCriterionInfoForm.cs">
+    <Compile Include="UI\MiniMaxCriterionInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MiniMaxCriterionInfoForm.Designer.cs">
+    <Compile Include="UI\MiniMaxCriterionInfoForm.Designer.cs">
       <DependentUpon>MiniMaxCriterionInfoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="NeymanPearsonCriterionInfoForm.cs">
+    <Compile Include="UI\NeymanPearsonCriterionInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NeymanPearsonCriterionInfoForm.Designer.cs">
+    <Compile Include="UI\NeymanPearsonCriterionInfoForm.Designer.cs">
       <DependentUpon>NeymanPearsonCriterionInfoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="NonRandomizedSolutionsForm.cs">
+    <Compile Include="UI\NonRandomizedSolutionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NonRandomizedSolutionsForm.Designer.cs">
+    <Compile Include="UI\NonRandomizedSolutionsForm.Designer.cs">
       <DependentUpon>NonRandomizedSolutionsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RandomizedSolutionsForm.cs">
+    <Compile Include="UI\RandomizedSolutionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RandomizedSolutionsForm.Designer.cs">
+    <Compile Include="UI\RandomizedSolutionsForm.Designer.cs">
       <DependentUpon>RandomizedSolutionsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SavageCriterionInfoForm.cs">
+    <Compile Include="UI\SavageCriterionInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SavageCriterionInfoForm.Designer.cs">
+    <Compile Include="UI\SavageCriterionInfoForm.Designer.cs">
       <DependentUpon>SavageCriterionInfoForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="UI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiniMaxCriterionInfoForm.resx">
+    <EmbeddedResource Include="UI\MiniMaxCriterionInfoForm.resx">
       <DependentUpon>MiniMaxCriterionInfoForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NeymanPearsonCriterionInfoForm.resx">
+    <EmbeddedResource Include="UI\NeymanPearsonCriterionInfoForm.resx">
       <DependentUpon>NeymanPearsonCriterionInfoForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NonRandomizedSolutionsForm.resx">
+    <EmbeddedResource Include="UI\NonRandomizedSolutionsForm.resx">
       <DependentUpon>NonRandomizedSolutionsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -117,7 +143,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="RandomizedSolutionsForm.resx">
+    <EmbeddedResource Include="UI\RandomizedSolutionsForm.resx">
       <DependentUpon>RandomizedSolutionsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

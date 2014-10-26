@@ -41,6 +41,9 @@
             this.savageCriterionRadioButton = new System.Windows.Forms.RadioButton();
             this.miniMaxCriterionRadioButton = new System.Windows.Forms.RadioButton();
             this.solveWithCreterionButton = new System.Windows.Forms.Button();
+            this.save = new System.Windows.Forms.SaveFileDialog();
+            this.open = new System.Windows.Forms.OpenFileDialog();
+            this.layout1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.neymanPearsonCriterionPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hurwitzCriterionPictureBox)).BeginInit();
@@ -62,7 +65,7 @@
             this.groupBox1.Controls.Add(this.savageCriterionRadioButton);
             this.groupBox1.Controls.Add(this.miniMaxCriterionRadioButton);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 74);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(324, 203);
             this.groupBox1.TabIndex = 1;
@@ -191,18 +194,41 @@
             // 
             // solveWithCreterionButton
             // 
-            this.solveWithCreterionButton.Location = new System.Drawing.Point(86, 283);
+            this.solveWithCreterionButton.Location = new System.Drawing.Point(76, 221);
             this.solveWithCreterionButton.Name = "solveWithCreterionButton";
             this.solveWithCreterionButton.Size = new System.Drawing.Size(75, 23);
             this.solveWithCreterionButton.TabIndex = 2;
             this.solveWithCreterionButton.Text = "Решить";
             this.solveWithCreterionButton.UseVisualStyleBackColor = true;
+            this.solveWithCreterionButton.Click += new System.EventHandler(this.solveWithCreterionButton_Click);
+            // 
+            // save
+            // 
+            this.save.Filter = "текстовый файл|*.txt;";
+            // 
+            // open
+            // 
+            this.open.Filter = "текстовый файл|*.txt;";
+            // 
+            // layout1
+            // 
+            this.layout1.ColumnCount = 3;
+            this.layout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.layout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.layout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.layout1.Location = new System.Drawing.Point(381, 12);
+            this.layout1.Name = "layout1";
+            this.layout1.RowCount = 1;
+            this.layout1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.layout1.Size = new System.Drawing.Size(555, 255);
+            this.layout1.TabIndex = 3;
             // 
             // NonRandomizedSolutionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 462);
+            this.ClientSize = new System.Drawing.Size(1257, 462);
+            this.Controls.Add(this.layout1);
             this.Controls.Add(this.solveWithCreterionButton);
             this.Controls.Add(this.groupBox1);
             this.Name = "NonRandomizedSolutionsForm";
@@ -233,6 +259,9 @@
         private System.Windows.Forms.RadioButton savageCriterionRadioButton;
         private System.Windows.Forms.RadioButton miniMaxCriterionRadioButton;
         private System.Windows.Forms.Button solveWithCreterionButton;
+        private System.Windows.Forms.SaveFileDialog save;
+        private System.Windows.Forms.OpenFileDialog open;
+        private System.Windows.Forms.TableLayoutPanel layout1;
 
 
     }
