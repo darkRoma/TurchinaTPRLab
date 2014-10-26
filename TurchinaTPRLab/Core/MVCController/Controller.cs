@@ -64,5 +64,12 @@ namespace DecisionTheory.Core.MVCController
             if(model != null)
                 model.save(fileName);
         }
+
+        public Model getModel()
+        {
+            if (model != null)
+                return model;
+            return null;
+        }
     }
 }

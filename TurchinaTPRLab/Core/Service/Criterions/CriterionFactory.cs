@@ -34,8 +34,8 @@ namespace DecisionTheory.Core.Service.Criterions
         {
             getInstance<MinMaxCriterion>();
             getInstance<SavageCriterion>();
-            getInstance<GurvitsCriterion>();
             getInstance<BayesCriterion>();
+            getInstance<GurvitsCriterion>();
             getInstance<NeymanPearsonCriterion>();
         }
     }

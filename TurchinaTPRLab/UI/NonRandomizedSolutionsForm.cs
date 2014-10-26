@@ -8,12 +8,15 @@ using System.Text;
 using System.Windows.Forms;
 using DecisionTheory.Core.MVCController;
 using DecisionTheory.Core.MVCView.Table;
+using DecisionTheory.Core.MVCModel;
+using DecisionTheory.Core.Service.Criterions;
 
 namespace TurchinaTPRLab
 {
     public partial class NonRandomizedSolutionsForm : Form
     {
         private Controller controller = new Controller();
+        private Solution solution;
 
         /// <summary>
         /// Constructor, that initializes this form component
@@ -90,7 +93,33 @@ namespace TurchinaTPRLab
 
         private void solveWithCreterionButton_Click(object sender, EventArgs e)
         {
-
+            var factory = CriterionFactory.getFactory();
+            int factoriesCount = factory.Count();
+            Model model = controller.getModel();
+            var criterion = factory.ElementAt(0);
+            if (miniMaxCriterionRadioButton.Checked)
+            {
+                criterion = factory.ElementAt(0);
+            }
+            if (savageCriterionRadioButton.Checked)
+            {
+                criterion = factory.ElementAt(1);
+            }
+            if (bayesianCriterionRadioButton.Checked)
+            {
+                criterion = factory.ElementAt(2);
+            }
+            if (hurwitzCriterionRadioButton.Checked)
+            {
+                criterion = factory.ElementAt(3);
+            }
+            if (neymanPearsonCriterionRadioButton.Checked)
+            {
+                criterion = factory.ElementAt(4);
+            }
+            solution = criterion.makeDecision(model);
+            MessageBox.Show("Лучшее решение: " + (solution.getBestId() + 1).ToString());
         }
+
     }
 }

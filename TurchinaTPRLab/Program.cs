@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using DecisionTheory.Project;
 
 namespace TurchinaTPRLab
 {
@@ -15,6 +16,8 @@ namespace TurchinaTPRLab
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            Application.ThreadException += ApplicationExceptionHandler.Handler;
             Application.Run(new MainForm());
         }
     }

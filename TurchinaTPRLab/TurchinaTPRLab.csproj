@@ -72,6 +72,7 @@
     <Compile Include="Core\Service\ModelConverter.cs" />
     <Compile Include="Core\Service\Saver.cs" />
     <Compile Include="Core\Service\Scanner.cs" />
+    <Compile Include="ApplicationExceptionHandler.cs" />
     <Compile Include="UI\BayesianCriterionInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
