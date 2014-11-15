@@ -220,7 +220,7 @@
             this.layout1.Name = "layout1";
             this.layout1.RowCount = 1;
             this.layout1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.layout1.Size = new System.Drawing.Size(555, 255);
+            this.layout1.Size = new System.Drawing.Size(864, 255);
             this.layout1.TabIndex = 3;
             // 
             // NonRandomizedSolutionsForm
