@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace TurchinaTPRLab
 {
@@ -14,6 +15,14 @@ namespace TurchinaTPRLab
         public MainForm()
         {
             InitializeComponent();
+            LoadDocument();
+        }
+
+        public void LoadDocument()
+        {
+            string myPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Theory");
+            string fileName = myPath + @"/MainForm.htm";
+            webBrowser1.Navigate(fileName);
         }
 
         private void randomizedSolutionsButton_Click(object sender, EventArgs e)

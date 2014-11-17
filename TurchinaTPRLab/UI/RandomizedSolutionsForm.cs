@@ -28,31 +28,31 @@ namespace TurchinaTPRLab
 
         private void miniMaxCriterionPictureBox_Click(object sender, EventArgs e)
         {
-            MiniMaxCriterionInfoForm miniMaxCriterionInfoForm = new MiniMaxCriterionInfoForm();
+            MiniMaxCriterionInfoForm miniMaxCriterionInfoForm = new MiniMaxCriterionInfoForm(true);
             miniMaxCriterionInfoForm.Show();
         }
 
         private void savageCriterionPictureBox_Click(object sender, EventArgs e)
         {
-            SavageCriterionInfoForm savageCriterionInfoForm = new SavageCriterionInfoForm();
+            SavageCriterionInfoForm savageCriterionInfoForm = new SavageCriterionInfoForm(true);
             savageCriterionInfoForm.Show();
         }
 
         private void bayesianCriterionPictureBox_Click(object sender, EventArgs e)
         {
-            BayesianCriterionInfoForm bayesianCriterionInfoForm = new BayesianCriterionInfoForm();
+            BayesianCriterionInfoForm bayesianCriterionInfoForm = new BayesianCriterionInfoForm(true);
             bayesianCriterionInfoForm.Show();
         }
 
         private void hurwitzCriterionPictureBox_Click(object sender, EventArgs e)
         {
-            HurwitzCriterionInfoForm hurwitzCriterionInfoForm = new HurwitzCriterionInfoForm();
+            HurwitzCriterionInfoForm hurwitzCriterionInfoForm = new HurwitzCriterionInfoForm(true);
             hurwitzCriterionInfoForm.Show();
         }
 
         private void neymanPearsonCriterionPictureBox_Click(object sender, EventArgs e)
         {
-            NeymanPearsonCriterionInfoForm neymanPearsonCriterionInfoForm = new NeymanPearsonCriterionInfoForm();
+            NeymanPearsonCriterionInfoForm neymanPearsonCriterionInfoForm = new NeymanPearsonCriterionInfoForm(true);
             neymanPearsonCriterionInfoForm.Show();
         }
     }

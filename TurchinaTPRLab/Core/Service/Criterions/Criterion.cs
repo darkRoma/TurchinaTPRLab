@@ -10,7 +10,7 @@ namespace DecisionTheory.Core.Service.Criterions
     public abstract class Criterion
     {
         private string name;
-
+        public double rate;
         /// <summary>
         /// Constructor that sets name field
         /// </summary>

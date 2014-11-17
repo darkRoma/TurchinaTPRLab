@@ -44,6 +44,7 @@
             this.save = new System.Windows.Forms.SaveFileDialog();
             this.open = new System.Windows.Forms.OpenFileDialog();
             this.layout1 = new System.Windows.Forms.TableLayoutPanel();
+            this.lyambdaTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.neymanPearsonCriterionPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hurwitzCriterionPictureBox)).BeginInit();
@@ -155,6 +156,7 @@
             this.hurwitzCriterionRadioButton.TabStop = true;
             this.hurwitzCriterionRadioButton.Text = "Критерий Гурвица";
             this.hurwitzCriterionRadioButton.UseVisualStyleBackColor = true;
+            this.hurwitzCriterionRadioButton.CheckedChanged += new System.EventHandler(this.hurwitzCriterionRadioButton_CheckedChanged);
             // 
             // bayesianCriterionRadioButton
             // 
@@ -216,18 +218,27 @@
             this.layout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.layout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.layout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.layout1.Location = new System.Drawing.Point(381, 12);
+            this.layout1.Location = new System.Drawing.Point(12, 261);
             this.layout1.Name = "layout1";
             this.layout1.RowCount = 1;
             this.layout1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.layout1.Size = new System.Drawing.Size(864, 255);
             this.layout1.TabIndex = 3;
             // 
+            // lyambdaTextBox
+            // 
+            this.lyambdaTextBox.Location = new System.Drawing.Point(342, 149);
+            this.lyambdaTextBox.Name = "lyambdaTextBox";
+            this.lyambdaTextBox.Size = new System.Drawing.Size(100, 20);
+            this.lyambdaTextBox.TabIndex = 4;
+            this.lyambdaTextBox.Visible = false;
+            // 
             // NonRandomizedSolutionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1257, 462);
+            this.ClientSize = new System.Drawing.Size(893, 568);
+            this.Controls.Add(this.lyambdaTextBox);
             this.Controls.Add(this.layout1);
             this.Controls.Add(this.solveWithCreterionButton);
             this.Controls.Add(this.groupBox1);
@@ -242,6 +253,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.savageCriterionPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.miniMaxCriterionPictureBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -262,6 +274,7 @@
         private System.Windows.Forms.SaveFileDialog save;
         private System.Windows.Forms.OpenFileDialog open;
         private System.Windows.Forms.TableLayoutPanel layout1;
+        private System.Windows.Forms.TextBox lyambdaTextBox;
 
 
     }

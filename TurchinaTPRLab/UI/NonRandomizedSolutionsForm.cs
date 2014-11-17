@@ -63,31 +63,31 @@ namespace TurchinaTPRLab
 
         private void miniMaxCriterionPictureBox_Click(object sender, EventArgs e)
         {
-            MiniMaxCriterionInfoForm miniMaxCriterionInfoForm = new MiniMaxCriterionInfoForm();
+            MiniMaxCriterionInfoForm miniMaxCriterionInfoForm = new MiniMaxCriterionInfoForm(false);
             miniMaxCriterionInfoForm.Show();
         }
 
         private void savageCriterionPictureBox_Click(object sender, EventArgs e)
         {
-            SavageCriterionInfoForm savageCriterionInfoForm = new SavageCriterionInfoForm();
+            SavageCriterionInfoForm savageCriterionInfoForm = new SavageCriterionInfoForm(false);
             savageCriterionInfoForm.Show();
         }
 
         private void bayesianCriterionPictureBox_Click(object sender, EventArgs e)
         {
-            BayesianCriterionInfoForm bayesianCriterionInfoForm = new BayesianCriterionInfoForm();
+            BayesianCriterionInfoForm bayesianCriterionInfoForm = new BayesianCriterionInfoForm(false);
             bayesianCriterionInfoForm.Show();
         }
 
         private void hurwitzCriterionPictureBox_Click(object sender, EventArgs e)
         {
-            HurwitzCriterionInfoForm hurwitzCriterionInfoForm = new HurwitzCriterionInfoForm();
+            HurwitzCriterionInfoForm hurwitzCriterionInfoForm = new HurwitzCriterionInfoForm(false);
             hurwitzCriterionInfoForm.Show();
         }
 
         private void neymanPearsonCriterionPictureBox_Click(object sender, EventArgs e)
         {
-            NeymanPearsonCriterionInfoForm neymanPearsonCriterionInfoForm = new NeymanPearsonCriterionInfoForm();
+            NeymanPearsonCriterionInfoForm neymanPearsonCriterionInfoForm = new NeymanPearsonCriterionInfoForm(false);
             neymanPearsonCriterionInfoForm.Show();
         }
 
@@ -112,6 +112,7 @@ namespace TurchinaTPRLab
             if (hurwitzCriterionRadioButton.Checked)
             {
                 criterion = factory.ElementAt(3);
+                criterion.rate = Convert.ToDouble(lyambdaTextBox.Text);
             }
             if (neymanPearsonCriterionRadioButton.Checked)
             {
@@ -119,6 +120,11 @@ namespace TurchinaTPRLab
             }
             solution = criterion.makeDecision(model);
             MessageBox.Show("Лучшее решение: " + (solution.getBestId() + 1).ToString());
+        }
+
+        private void hurwitzCriterionRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            lyambdaTextBox.Visible = !lyambdaTextBox.Visible;
         }
 
     }

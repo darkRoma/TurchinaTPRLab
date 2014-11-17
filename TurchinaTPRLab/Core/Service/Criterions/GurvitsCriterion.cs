@@ -10,7 +10,7 @@ namespace DecisionTheory.Core.Service.Criterions
         private const string TOKEN = "критерий Гурвица";
 
         //TODO ???
-        private double rate = 0.75;
+        //public double rate;
 
         /// <summary>
         /// Constructor that sets default name of the criterion and optimism rate
