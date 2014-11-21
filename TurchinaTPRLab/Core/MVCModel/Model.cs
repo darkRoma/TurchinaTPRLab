@@ -160,5 +160,15 @@ namespace DecisionTheory.Core.MVCModel
                     model.setData(i, j, getData(i, j));
             return model;
         }
+
+        /// <summary>
+        /// Для Насти
+        /// </summary>
+        /// <returns>возвращает матрицу потерь из модели.</returns>
+        public double[,] getLossesArray()
+        {
+            var clone = (Model)Clone();
+            return clone.data;
+        }
     }
 }

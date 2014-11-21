@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DecisionTheory.Core.DesignPatterns;
+using TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions;
 
 namespace DecisionTheory.Core.Service.Criterions
 {
@@ -37,6 +38,7 @@ namespace DecisionTheory.Core.Service.Criterions
             getInstance<BayesCriterion>();
             getInstance<GurvitsCriterion>();
             getInstance<NeymanPearsonCriterion>();
+            getInstance<RandMinMaxCriterion>();
         }
     }
 }
