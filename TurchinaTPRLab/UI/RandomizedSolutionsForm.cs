@@ -105,11 +105,23 @@ namespace TurchinaTPRLab
             int factoriesCount = factory.Count();
             Model model = controller.getModel();
             var criterion = factory.ElementAt(5);
+            bool IsShowLosses = true;
             if (miniMaxCriterionRadioButton.Checked)
             {
                 criterion = factory.ElementAt(5);
             }
-
+            if (hurwitzCriterionRadioButton.Checked)
+            {
+                criterion = factory.ElementAt(6);
+                
+            }
+            if (neymanPearsonCriterionRadioButton.Checked)
+            {
+                model.ControledStateNumber = Convert.ToInt32(textBoxNumControlState.Text);
+                model.LossestRate = Convert.ToDouble(textBoxLossesRate.Text);
+                criterion = factory.ElementAt(7);
+                IsShowLosses = false;
+            }
             solution = criterion.makeDecision(model);
 
             string solutionToDisplay = "";
@@ -118,7 +130,28 @@ namespace TurchinaTPRLab
             {
                 solutionToDisplay += x.ToString() +" " ;
             }
-            MessageBox.Show("Решение: " + solutionToDisplay + " Потери: " + solution.getLoss().ToString());
+            if (IsShowLosses)
+            {
+                MessageBox.Show("Решение: " + solutionToDisplay + " Потери: " + solution.getLoss().ToString());
+            }
+            else
+            {
+                MessageBox.Show("Решение: " + solutionToDisplay);
+            }
+        }
+
+        private void hurwitzCriterionRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            labelOptimismFactor.Visible = !labelOptimismFactor.Visible;
+            textBoxOptimismFactor.Visible = !textBoxOptimismFactor.Visible;
+        }
+
+        private void neymanPearsonCriterionRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            labelLossesRate.Visible = !labelLossesRate.Visible;
+            labelNumControlState.Visible = !labelNumControlState.Visible;
+            textBoxLossesRate.Visible = !textBoxLossesRate.Visible;
+            textBoxNumControlState.Visible = !textBoxNumControlState.Visible;
         }
     }
 }

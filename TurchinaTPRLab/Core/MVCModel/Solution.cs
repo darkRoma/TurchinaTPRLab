@@ -79,6 +79,17 @@ namespace DecisionTheory.Core.MVCModel
             this.loss = loss;
         }
 
+        public Solution(double[] randSolution)
+        {
+            try
+            {
+                this.randSolution = (double[])randSolution.Clone();
+            }
+            catch (Exception cause)
+            {
+                throw new DataException(cause);
+            }
+        }
         /// <summary>
         /// Getter for best id field
         /// </summary>

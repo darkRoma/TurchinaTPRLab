@@ -44,6 +44,12 @@
             this.layout1 = new System.Windows.Forms.TableLayoutPanel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.labelOptimismFactor = new System.Windows.Forms.Label();
+            this.textBoxOptimismFactor = new System.Windows.Forms.TextBox();
+            this.labelNumControlState = new System.Windows.Forms.Label();
+            this.textBoxNumControlState = new System.Windows.Forms.TextBox();
+            this.textBoxLossesRate = new System.Windows.Forms.TextBox();
+            this.labelLossesRate = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.neymanPearsonCriterionPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hurwitzCriterionPictureBox)).BeginInit();
@@ -66,9 +72,9 @@
             this.groupBox1.Controls.Add(this.miniMaxCriterionRadioButton);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(16, 84);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(432, 250);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
@@ -80,7 +86,7 @@
             this.neymanPearsonCriterionPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("neymanPearsonCriterionPictureBox.Image")));
             this.neymanPearsonCriterionPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("neymanPearsonCriterionPictureBox.InitialImage")));
             this.neymanPearsonCriterionPictureBox.Location = new System.Drawing.Point(373, 199);
-            this.neymanPearsonCriterionPictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.neymanPearsonCriterionPictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.neymanPearsonCriterionPictureBox.Name = "neymanPearsonCriterionPictureBox";
             this.neymanPearsonCriterionPictureBox.Size = new System.Drawing.Size(44, 37);
             this.neymanPearsonCriterionPictureBox.TabIndex = 9;
@@ -93,7 +99,7 @@
             this.hurwitzCriterionPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("hurwitzCriterionPictureBox.Image")));
             this.hurwitzCriterionPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("hurwitzCriterionPictureBox.InitialImage")));
             this.hurwitzCriterionPictureBox.Location = new System.Drawing.Point(373, 155);
-            this.hurwitzCriterionPictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.hurwitzCriterionPictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.hurwitzCriterionPictureBox.Name = "hurwitzCriterionPictureBox";
             this.hurwitzCriterionPictureBox.Size = new System.Drawing.Size(44, 37);
             this.hurwitzCriterionPictureBox.TabIndex = 8;
@@ -106,7 +112,7 @@
             this.bayesianCriterionPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("bayesianCriterionPictureBox.Image")));
             this.bayesianCriterionPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("bayesianCriterionPictureBox.InitialImage")));
             this.bayesianCriterionPictureBox.Location = new System.Drawing.Point(373, 111);
-            this.bayesianCriterionPictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bayesianCriterionPictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.bayesianCriterionPictureBox.Name = "bayesianCriterionPictureBox";
             this.bayesianCriterionPictureBox.Size = new System.Drawing.Size(44, 37);
             this.bayesianCriterionPictureBox.TabIndex = 7;
@@ -119,7 +125,7 @@
             this.savageCriterionPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("savageCriterionPictureBox.Image")));
             this.savageCriterionPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("savageCriterionPictureBox.InitialImage")));
             this.savageCriterionPictureBox.Location = new System.Drawing.Point(373, 68);
-            this.savageCriterionPictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.savageCriterionPictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.savageCriterionPictureBox.Name = "savageCriterionPictureBox";
             this.savageCriterionPictureBox.Size = new System.Drawing.Size(44, 37);
             this.savageCriterionPictureBox.TabIndex = 6;
@@ -132,7 +138,7 @@
             this.miniMaxCriterionPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("miniMaxCriterionPictureBox.Image")));
             this.miniMaxCriterionPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("miniMaxCriterionPictureBox.InitialImage")));
             this.miniMaxCriterionPictureBox.Location = new System.Drawing.Point(373, 23);
-            this.miniMaxCriterionPictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.miniMaxCriterionPictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.miniMaxCriterionPictureBox.Name = "miniMaxCriterionPictureBox";
             this.miniMaxCriterionPictureBox.Size = new System.Drawing.Size(44, 37);
             this.miniMaxCriterionPictureBox.TabIndex = 5;
@@ -144,33 +150,35 @@
             this.neymanPearsonCriterionRadioButton.AutoSize = true;
             this.neymanPearsonCriterionRadioButton.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.neymanPearsonCriterionRadioButton.Location = new System.Drawing.Point(8, 209);
-            this.neymanPearsonCriterionRadioButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.neymanPearsonCriterionRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.neymanPearsonCriterionRadioButton.Name = "neymanPearsonCriterionRadioButton";
             this.neymanPearsonCriterionRadioButton.Size = new System.Drawing.Size(249, 26);
             this.neymanPearsonCriterionRadioButton.TabIndex = 4;
             this.neymanPearsonCriterionRadioButton.TabStop = true;
             this.neymanPearsonCriterionRadioButton.Text = "Критерий Неймана-Пирсона";
             this.neymanPearsonCriterionRadioButton.UseVisualStyleBackColor = true;
+            this.neymanPearsonCriterionRadioButton.CheckedChanged += new System.EventHandler(this.neymanPearsonCriterionRadioButton_CheckedChanged);
             // 
             // hurwitzCriterionRadioButton
             // 
             this.hurwitzCriterionRadioButton.AutoSize = true;
             this.hurwitzCriterionRadioButton.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hurwitzCriterionRadioButton.Location = new System.Drawing.Point(8, 165);
-            this.hurwitzCriterionRadioButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.hurwitzCriterionRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.hurwitzCriterionRadioButton.Name = "hurwitzCriterionRadioButton";
             this.hurwitzCriterionRadioButton.Size = new System.Drawing.Size(170, 26);
             this.hurwitzCriterionRadioButton.TabIndex = 3;
             this.hurwitzCriterionRadioButton.TabStop = true;
             this.hurwitzCriterionRadioButton.Text = "Критерий Гурвица";
             this.hurwitzCriterionRadioButton.UseVisualStyleBackColor = true;
+            this.hurwitzCriterionRadioButton.CheckedChanged += new System.EventHandler(this.hurwitzCriterionRadioButton_CheckedChanged);
             // 
             // bayesianCriterionRadioButton
             // 
             this.bayesianCriterionRadioButton.AutoSize = true;
             this.bayesianCriterionRadioButton.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bayesianCriterionRadioButton.Location = new System.Drawing.Point(8, 121);
-            this.bayesianCriterionRadioButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bayesianCriterionRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.bayesianCriterionRadioButton.Name = "bayesianCriterionRadioButton";
             this.bayesianCriterionRadioButton.Size = new System.Drawing.Size(164, 26);
             this.bayesianCriterionRadioButton.TabIndex = 2;
@@ -183,7 +191,7 @@
             this.savageCriterionRadioButton.AutoSize = true;
             this.savageCriterionRadioButton.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.savageCriterionRadioButton.Location = new System.Drawing.Point(8, 78);
-            this.savageCriterionRadioButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.savageCriterionRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.savageCriterionRadioButton.Name = "savageCriterionRadioButton";
             this.savageCriterionRadioButton.Size = new System.Drawing.Size(178, 26);
             this.savageCriterionRadioButton.TabIndex = 1;
@@ -196,7 +204,7 @@
             this.miniMaxCriterionRadioButton.AutoSize = true;
             this.miniMaxCriterionRadioButton.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.miniMaxCriterionRadioButton.Location = new System.Drawing.Point(8, 33);
-            this.miniMaxCriterionRadioButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.miniMaxCriterionRadioButton.Margin = new System.Windows.Forms.Padding(4);
             this.miniMaxCriterionRadioButton.Name = "miniMaxCriterionRadioButton";
             this.miniMaxCriterionRadioButton.Size = new System.Drawing.Size(216, 26);
             this.miniMaxCriterionRadioButton.TabIndex = 0;
@@ -207,7 +215,7 @@
             // solveWithCreterionButton
             // 
             this.solveWithCreterionButton.Location = new System.Drawing.Point(139, 341);
-            this.solveWithCreterionButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.solveWithCreterionButton.Margin = new System.Windows.Forms.Padding(4);
             this.solveWithCreterionButton.Name = "solveWithCreterionButton";
             this.solveWithCreterionButton.Size = new System.Drawing.Size(100, 28);
             this.solveWithCreterionButton.TabIndex = 3;
@@ -233,15 +241,75 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // labelOptimismFactor
+            // 
+            this.labelOptimismFactor.AutoSize = true;
+            this.labelOptimismFactor.Location = new System.Drawing.Point(471, 249);
+            this.labelOptimismFactor.Name = "labelOptimismFactor";
+            this.labelOptimismFactor.Size = new System.Drawing.Size(177, 17);
+            this.labelOptimismFactor.TabIndex = 10;
+            this.labelOptimismFactor.Text = "Коэффициент оптимизма";
+            this.labelOptimismFactor.Visible = false;
+            // 
+            // textBoxOptimismFactor
+            // 
+            this.textBoxOptimismFactor.Location = new System.Drawing.Point(667, 250);
+            this.textBoxOptimismFactor.Name = "textBoxOptimismFactor";
+            this.textBoxOptimismFactor.Size = new System.Drawing.Size(100, 22);
+            this.textBoxOptimismFactor.TabIndex = 11;
+            this.textBoxOptimismFactor.Visible = false;
+            // 
+            // labelNumControlState
+            // 
+            this.labelNumControlState.AutoSize = true;
+            this.labelNumControlState.Location = new System.Drawing.Point(471, 293);
+            this.labelNumControlState.Name = "labelNumControlState";
+            this.labelNumControlState.Size = new System.Drawing.Size(214, 17);
+            this.labelNumControlState.TabIndex = 12;
+            this.labelNumControlState.Text = "№ контролируемого состояния";
+            this.labelNumControlState.Visible = false;
+            // 
+            // textBoxNumControlState
+            // 
+            this.textBoxNumControlState.Location = new System.Drawing.Point(691, 290);
+            this.textBoxNumControlState.Name = "textBoxNumControlState";
+            this.textBoxNumControlState.Size = new System.Drawing.Size(100, 22);
+            this.textBoxNumControlState.TabIndex = 13;
+            this.textBoxNumControlState.Visible = false;
+            // 
+            // textBoxLossesRate
+            // 
+            this.textBoxLossesRate.Location = new System.Drawing.Point(691, 321);
+            this.textBoxLossesRate.Name = "textBoxLossesRate";
+            this.textBoxLossesRate.Size = new System.Drawing.Size(100, 22);
+            this.textBoxLossesRate.TabIndex = 14;
+            this.textBoxLossesRate.Visible = false;
+            // 
+            // labelLossesRate
+            // 
+            this.labelLossesRate.AutoSize = true;
+            this.labelLossesRate.Location = new System.Drawing.Point(471, 321);
+            this.labelLossesRate.Name = "labelLossesRate";
+            this.labelLossesRate.Size = new System.Drawing.Size(195, 17);
+            this.labelLossesRate.TabIndex = 15;
+            this.labelLossesRate.Text = "Пороговое значение потерь";
+            this.labelLossesRate.Visible = false;
+            // 
             // RandomizedSolutionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1124, 634);
+            this.Controls.Add(this.labelLossesRate);
+            this.Controls.Add(this.textBoxLossesRate);
+            this.Controls.Add(this.textBoxNumControlState);
+            this.Controls.Add(this.labelNumControlState);
+            this.Controls.Add(this.textBoxOptimismFactor);
+            this.Controls.Add(this.labelOptimismFactor);
             this.Controls.Add(this.layout1);
             this.Controls.Add(this.solveWithCreterionButton);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "RandomizedSolutionsForm";
             this.Text = "Рандомизированные решения";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RandomizedSolutionsForm_FormClosed);
@@ -254,6 +322,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.savageCriterionPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.miniMaxCriterionPictureBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -274,5 +343,11 @@
         private System.Windows.Forms.TableLayoutPanel layout1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Label labelOptimismFactor;
+        private System.Windows.Forms.TextBox textBoxOptimismFactor;
+        private System.Windows.Forms.Label labelNumControlState;
+        private System.Windows.Forms.TextBox textBoxNumControlState;
+        private System.Windows.Forms.TextBox textBoxLossesRate;
+        private System.Windows.Forms.Label labelLossesRate;
     }
 }

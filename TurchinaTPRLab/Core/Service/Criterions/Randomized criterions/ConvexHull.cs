@@ -86,6 +86,24 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
         }
 
 
+       public static int[] IndexEquivalentBetweenHullAndLossArray(double[,] hull, double[,] lossArray)
+        {
+            int sizeHull = hull.Length / 2;
+            int sizeLossArray = lossArray.Length / 2;
+            int[] result = new int[sizeHull];
+            for (int i = 0; i < sizeHull; i++)
+            {
+                for (int j = 0; j < sizeLossArray; j++)
+                {
+                    if (hull[i, 0] == lossArray[j, 0] && hull[i, 1] == lossArray[j, 1])
+                    {
+                        result[i] = j;
+                    }
+                }
+            }
+            return result;
+        }
+
         static double OrientTriangl(int cur, int next, int i, double[,] lossArray)
         {
             return lossArray[cur, 0] * (lossArray[next, 1] - lossArray[i, 1]) + lossArray[next, 0] * (lossArray[i, 1] - lossArray[cur, 1]) +                          lossArray[i, 0] * (lossArray[cur, 1] - lossArray[next, 1]);

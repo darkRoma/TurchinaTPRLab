@@ -12,6 +12,8 @@ namespace DecisionTheory.Core.MVCModel
     public class Model : ICloneable
     {
         private double[,] data;
+        private double lossesRate;
+        private int controledStateNumber;
 
         /// <summary>
         /// Constructor that sets decisions count and states count fields and creating a data matrix
@@ -21,8 +23,41 @@ namespace DecisionTheory.Core.MVCModel
         public Model(int decisionsCount, int statesCount)
         {
             data = new double[decisionsCount, statesCount];
+            lossesRate = 0;
+            controledStateNumber = 0;
         }
 
+        public double LossestRate
+        {
+            get { return lossesRate; }
+
+            set
+            {
+                if (value >= 0)
+                { lossesRate = value; }
+                else
+                {
+                    {
+                        throw new DataException();
+                    }
+                }
+            }
+        }
+
+        public int ControledStateNumber
+        {
+            get { return controledStateNumber; }
+
+            set
+            {
+                if (value > 0)
+                { controledStateNumber = value; }
+                else
+                { 
+                 throw new DataException() ;
+                }
+            }
+        }
         /// <summary>
         /// This method is getter for data matrix
         /// </summary>
