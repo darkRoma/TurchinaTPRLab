@@ -46,6 +46,7 @@
             this.layout1 = new System.Windows.Forms.TableLayoutPanel();
             this.lyambdaTextBox = new System.Windows.Forms.TextBox();
             this.backButtonPictureBox = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.neymanPearsonCriterionPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hurwitzCriterionPictureBox)).BeginInit();
@@ -171,6 +172,7 @@
             this.bayesianCriterionRadioButton.TabStop = true;
             this.bayesianCriterionRadioButton.Text = "Критерий Байеса";
             this.bayesianCriterionRadioButton.UseVisualStyleBackColor = true;
+            this.bayesianCriterionRadioButton.CheckedChanged += new System.EventHandler(this.bayesianCriterionRadioButton_CheckedChanged);
             // 
             // savageCriterionRadioButton
             // 
@@ -229,7 +231,7 @@
             // 
             // lyambdaTextBox
             // 
-            this.lyambdaTextBox.Location = new System.Drawing.Point(342, 210);
+            this.lyambdaTextBox.Location = new System.Drawing.Point(440, 202);
             this.lyambdaTextBox.Name = "lyambdaTextBox";
             this.lyambdaTextBox.Size = new System.Drawing.Size(100, 20);
             this.lyambdaTextBox.TabIndex = 4;
@@ -246,11 +248,22 @@
             this.backButtonPictureBox.TabStop = false;
             this.backButtonPictureBox.Click += new System.EventHandler(this.backButtonPictureBox_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(342, 205);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 13);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Введите Лямбда";
+            this.label1.Visible = false;
+            // 
             // NonRandomizedSolutionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1079, 594);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.backButtonPictureBox);
             this.Controls.Add(this.lyambdaTextBox);
             this.Controls.Add(this.layout1);
@@ -291,6 +304,7 @@
         private System.Windows.Forms.TableLayoutPanel layout1;
         private System.Windows.Forms.TextBox lyambdaTextBox;
         private System.Windows.Forms.PictureBox backButtonPictureBox;
+        private System.Windows.Forms.Label label1;
 
 
     }

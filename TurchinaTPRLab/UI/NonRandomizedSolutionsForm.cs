@@ -135,6 +135,7 @@ namespace TurchinaTPRLab
         private void hurwitzCriterionRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             lyambdaTextBox.Visible = !lyambdaTextBox.Visible;
+            label1.Visible = !label1.Visible;
         }
 
         private void backButtonPictureBox_Click(object sender, EventArgs e)
@@ -142,6 +143,11 @@ namespace TurchinaTPRLab
             MainForm mainForm = new MainForm();
             this.Hide();
             mainForm.Show();
+        }
+
+        private void bayesianCriterionRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
     }

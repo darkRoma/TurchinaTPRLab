@@ -11,7 +11,7 @@ namespace DecisionTheory.Core.Service.Criterions
     {
         private const string TOKEN = "критерий Байеса";
         //TODO ???
-        private double[] probability;
+        public double[] probability;
 
         /// <summary>
         /// Constructor that sets default name of the criterion
