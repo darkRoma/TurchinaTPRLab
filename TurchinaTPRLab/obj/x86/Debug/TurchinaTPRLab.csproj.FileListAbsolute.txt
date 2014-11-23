@@ -13,3 +13,17 @@ D:\Program Files\Теория принятия решений\TurchinaTPRLab\Tur
 D:\Program Files\Теория принятия решений\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.HurwitzCriterionInfoForm.resources
 D:\Program Files\Теория принятия решений\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.SavageCriterionInfoForm.resources
 D:\Program Files\Теория принятия решений\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.csprojResolveAssemblyReference.cache
+C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.exe
+C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\bin\Debug\TurchinaTPRLab.exe
+C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\bin\Debug\TurchinaTPRLab.pdb
+C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.BayesianCriterionInfoForm.resources
+C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.HurwitzCriterionInfoForm.resources
+C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.MainForm.resources
+C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.MiniMaxCriterionInfoForm.resources
+C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.NeymanPearsonCriterionInfoForm.resources
+C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.NonRandomizedSolutionsForm.resources
+C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.Properties.Resources.resources
+C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.RandomizedSolutionsForm.resources
+C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.SavageCriterionInfoForm.resources
+C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.csproj.GenerateResource.Cache
+C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.pdb

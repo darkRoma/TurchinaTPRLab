@@ -270,7 +270,7 @@
             this.Controls.Add(this.solveWithCreterionButton);
             this.Controls.Add(this.groupBox1);
             this.Name = "NonRandomizedSolutionsForm";
-            this.Text = "Не рандомизированные решения";
+            this.Text = "Нерандомизированные решения";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.NonRandomizedSolutionsForm_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
