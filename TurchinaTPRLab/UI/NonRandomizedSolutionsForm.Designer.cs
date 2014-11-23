@@ -68,6 +68,7 @@
             this.groupBox1.Controls.Add(this.bayesianCriterionRadioButton);
             this.groupBox1.Controls.Add(this.savageCriterionRadioButton);
             this.groupBox1.Controls.Add(this.miniMaxCriterionRadioButton);
+            this.groupBox1.Enabled = false;
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(12, 68);
             this.groupBox1.Name = "groupBox1";

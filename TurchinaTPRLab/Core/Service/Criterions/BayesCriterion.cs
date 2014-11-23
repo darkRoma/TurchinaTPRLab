@@ -11,7 +11,6 @@ namespace DecisionTheory.Core.Service.Criterions
     {
         private const string TOKEN = "критерий Байеса";
         //TODO ???
-        public double[] probability;
 
         /// <summary>
         /// Constructor that sets default name of the criterion
@@ -37,9 +36,9 @@ namespace DecisionTheory.Core.Service.Criterions
             var rows = model.getDecisionsCount();
             var cols = model.getStatesCount();
 
-            probability = new double[cols];
-            for(int i=0;i<cols;++i)
-              probability[i] = 1.0;
+            //probability = new double[cols];
+            //for(int i=0;i<cols;++i)
+            //  probability[i] = 1.0;
 
             if (!checkProbability())
                 throw new SystemException("Propability is not correct");

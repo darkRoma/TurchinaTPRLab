@@ -16,6 +16,7 @@ namespace DecisionTheory.Core.MVCModel
         private int controledStateNumber;
         private double gradientX;
         private double gradientY;
+        public int colums;
 
         /// <summary>
         /// Constructor that sets decisions count and states count fields and creating a data matrix
@@ -27,6 +28,7 @@ namespace DecisionTheory.Core.MVCModel
             data = new double[decisionsCount, statesCount];
             lossesRate = 0;
             controledStateNumber = 0;
+            colums = statesCount;
         }
 
         public double GradientX

@@ -20,6 +20,10 @@ namespace TurchinaTPRLab
         private SolutionView solutionView;
         private LossesMatrixView lossesMatrixView;
         private RegretMatrixView regretMatrixView;
+        TextBox[] propabilityArrayTextBoxes;
+        Model model;
+
+        int statesCount;
 
 
         /// <summary>
@@ -43,6 +47,8 @@ namespace TurchinaTPRLab
                 {
                     string file = open.FileName;
                     controller.loadModel(file);
+                    groupBox1.Enabled = true;
+                    model = controller.getModel();
                 }
             });
 
@@ -102,7 +108,7 @@ namespace TurchinaTPRLab
         {
             var factory = CriterionFactory.getFactory();
             int factoriesCount = factory.Count();
-            Model model = controller.getModel();
+
             var criterion = factory.ElementAt(0);
             if (miniMaxCriterionRadioButton.Checked)
             {
@@ -115,6 +121,13 @@ namespace TurchinaTPRLab
             if (bayesianCriterionRadioButton.Checked)
             {
                 criterion = factory.ElementAt(2);
+                criterion.probability = new double[statesCount];
+                for (var i = 0; i < statesCount; i++)
+                {
+
+                    criterion.probability[i] = Convert.ToDouble( propabilityArrayTextBoxes[i].Text);
+                }
+                
             }
             if (hurwitzCriterionRadioButton.Checked)
             {
@@ -147,6 +160,26 @@ namespace TurchinaTPRLab
 
         private void bayesianCriterionRadioButton_CheckedChanged(object sender, EventArgs e)
         {
+            statesCount = model.colums;
+            if (bayesianCriterionRadioButton.Checked)
+            {
+                propabilityArrayTextBoxes = new TextBox[statesCount];
+                for (var i = 0; i < statesCount; i++)
+                {
+                    var tbox = new TextBox();
+                    tbox.Location = new System.Drawing.Point((i % 6 * 100) + 344, 160 + 40 * (i / 6));
+                    tbox.Text = "Propability " + Convert.ToString(i + 1);
+                    this.Controls.Add(tbox);
+                    propabilityArrayTextBoxes[i] = tbox;
+                }
+            }
+            else
+            {
+                for (var i = 0; i < statesCount; i++)
+                {
+                    this.Controls.Remove(propabilityArrayTextBoxes[i]);
+                }
+            }
 
         }
 

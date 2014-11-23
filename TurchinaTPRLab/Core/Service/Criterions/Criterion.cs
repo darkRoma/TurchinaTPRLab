@@ -11,6 +11,7 @@ namespace DecisionTheory.Core.Service.Criterions
     {
         private string name;
         public double rate;
+        public double[] probability;
         /// <summary>
         /// Constructor that sets name field
         /// </summary>
