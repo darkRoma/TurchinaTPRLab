@@ -150,6 +150,10 @@ namespace TurchinaTPRLab
                     model.GradientY = Convert.ToDouble(textBoxGradientY.Text);
                 }
             }
+            if (savageCriterionRadioButton.Checked)
+            {
+                criterion = factory.ElementAt(9);
+            }
             solution = criterion.makeDecision(model);
 
             string solutionToDisplay = "";

@@ -15,7 +15,6 @@ namespace DecisionTheory.Core.MVCModel
         private bool[] active;
         private int bestId;
         private double loss;
-        private double[] randSolution;
 
         /// <summary>
         /// Constructor the clones solution vector array and sets it as own field.
@@ -69,7 +68,7 @@ namespace DecisionTheory.Core.MVCModel
         {
             try
             {
-                this.randSolution = (double[])randSolution.Clone();
+                this.vector = (double[])randSolution.Clone();
             }
             catch (Exception cause)
             {
@@ -83,7 +82,7 @@ namespace DecisionTheory.Core.MVCModel
         {
             try
             {
-                this.randSolution = (double[])randSolution.Clone();
+                this.vector = (double[])randSolution.Clone();
             }
             catch (Exception cause)
             {
@@ -101,7 +100,7 @@ namespace DecisionTheory.Core.MVCModel
 
         public double[] getSolution()
         {
-            return randSolution;
+            return (double[])vector;
         }
 
         public double getLoss()

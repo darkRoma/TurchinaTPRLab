@@ -78,6 +78,7 @@
     <Compile Include="Core\Service\Criterions\Randomized criterions\RandGurvitsCriterion.cs" />
     <Compile Include="Core\Service\Criterions\Randomized criterions\RandMinMaxCriterion.cs" />
     <Compile Include="Core\Service\Criterions\Randomized criterions\RandNeymanPearsonCriterion.cs" />
+    <Compile Include="Core\Service\Criterions\Randomized criterions\RandSavageCriterion.cs" />
     <Compile Include="Core\Service\Criterions\SavageCriterion.cs" />
     <Compile Include="Core\Service\ModelConverter.cs" />
     <Compile Include="Core\Service\Saver.cs" />
