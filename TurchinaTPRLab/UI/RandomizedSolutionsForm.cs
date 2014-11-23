@@ -332,7 +332,10 @@ namespace TurchinaTPRLab
             pictureBox1.Refresh();
             DrawingGraphic();
             DrawingSet();
-            DrawingGradient();
+            if (bayesianCriterionRadioButton.Checked)
+            {
+                DrawingGradient();
+            }
         }
 
 
