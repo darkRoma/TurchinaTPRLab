@@ -18,6 +18,10 @@ namespace TurchinaTPRLab
         private Controller controller = new Controller();
         private Solution solution;
         private Graphics graphics;
+        private SolutionView solutionView;
+        private LossesMatrixView lossesMatrixView;
+        private RegretMatrixView regretMatrixView;
+
         private double scaleX = 10;
         private double scaleY = 10;
         private double[,] linearMembrane;
@@ -30,9 +34,13 @@ namespace TurchinaTPRLab
         {
             InitializeComponent();
 
-            controller.addView(new LossesMatrixView(layout1, controller),
-                new RegretMatrixView(layout1),
-                new SolutionView(layout1));
+            lossesMatrixView = new LossesMatrixView(layout1, controller);
+            regretMatrixView = new RegretMatrixView(layout1);
+            solutionView = new SolutionView(layout1);
+
+            controller.addView(lossesMatrixView,
+                regretMatrixView,
+                solutionView);
 
            // OpenFileDialog open; 
 
@@ -170,6 +178,10 @@ namespace TurchinaTPRLab
             {
                 MessageBox.Show("Решение: " + solutionToDisplay);
             }
+
+            solutionView.setModel(model);
+            solutionView.setSolution(solution);
+            solutionView.update();
         }
 
         private void hurwitzCriterionRadioButton_CheckedChanged(object sender, EventArgs e)
