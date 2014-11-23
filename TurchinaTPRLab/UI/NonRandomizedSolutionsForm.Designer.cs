@@ -45,26 +45,16 @@
             this.open = new System.Windows.Forms.OpenFileDialog();
             this.layout1 = new System.Windows.Forms.TableLayoutPanel();
             this.lyambdaTextBox = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.drawGradient = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.neymanPearsonCriterionPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hurwitzCriterionPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bayesianCriterionPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.savageCriterionPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.miniMaxCriterionPictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.lyambdaTextBox);
-            this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.neymanPearsonCriterionPictureBox);
             this.groupBox1.Controls.Add(this.hurwitzCriterionPictureBox);
             this.groupBox1.Controls.Add(this.bayesianCriterionPictureBox);
@@ -228,7 +218,7 @@
             this.layout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.layout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.layout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.layout1.Location = new System.Drawing.Point(18, 357);
+            this.layout1.Location = new System.Drawing.Point(12, 261);
             this.layout1.Name = "layout1";
             this.layout1.RowCount = 1;
             this.layout1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -237,70 +227,18 @@
             // 
             // lyambdaTextBox
             // 
-            this.lyambdaTextBox.Location = new System.Drawing.Point(166, 126);
+            this.lyambdaTextBox.Location = new System.Drawing.Point(342, 149);
             this.lyambdaTextBox.Name = "lyambdaTextBox";
-            this.lyambdaTextBox.Size = new System.Drawing.Size(108, 29);
+            this.lyambdaTextBox.Size = new System.Drawing.Size(100, 20);
             this.lyambdaTextBox.TabIndex = 4;
             this.lyambdaTextBox.Visible = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(343, 13);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(538, 327);
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(166, 90);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(45, 29);
-            this.textBox1.TabIndex = 5;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(230, 91);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(44, 29);
-            this.textBox2.TabIndex = 6;
-            // 
-            // drawGradient
-            // 
-            this.drawGradient.Location = new System.Drawing.Point(192, 245);
-            this.drawGradient.Name = "drawGradient";
-            this.drawGradient.Size = new System.Drawing.Size(133, 35);
-            this.drawGradient.TabIndex = 5;
-            this.drawGradient.Text = "Нарисовать градиент";
-            this.drawGradient.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(209, 301);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(50, 39);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "+";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(280, 301);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(45, 39);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "-";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // NonRandomizedSolutionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(893, 647);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.drawGradient);
-            this.Controls.Add(this.pictureBox1);
+            this.ClientSize = new System.Drawing.Size(893, 568);
+            this.Controls.Add(this.lyambdaTextBox);
             this.Controls.Add(this.layout1);
             this.Controls.Add(this.solveWithCreterionButton);
             this.Controls.Add(this.groupBox1);
@@ -314,8 +252,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.bayesianCriterionPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.savageCriterionPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.miniMaxCriterionPictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -337,12 +275,6 @@
         private System.Windows.Forms.OpenFileDialog open;
         private System.Windows.Forms.TableLayoutPanel layout1;
         private System.Windows.Forms.TextBox lyambdaTextBox;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button drawGradient;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
 
 
     }
