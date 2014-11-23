@@ -50,7 +50,7 @@ namespace DecisionTheory.Core.MVCModel
 
             set
             {
-                if (value > 0 && value <=2)
+                if (value > 0)
                 { controledStateNumber = value; }
                 else
                 { 
