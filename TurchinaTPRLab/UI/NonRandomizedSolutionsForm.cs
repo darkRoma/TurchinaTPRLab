@@ -17,6 +17,10 @@ namespace TurchinaTPRLab
     {
         private Controller controller = new Controller();
         private Solution solution;
+        private SolutionView solutionView;
+        private LossesMatrixView lossesMatrixView;
+        private RegretMatrixView regretMatrixView;
+
 
         /// <summary>
         /// Constructor, that initializes this form component
@@ -24,10 +28,13 @@ namespace TurchinaTPRLab
         public NonRandomizedSolutionsForm()
         {
             InitializeComponent();
+            lossesMatrixView = new LossesMatrixView(layout1, controller);
+            regretMatrixView = new RegretMatrixView(layout1);
+            solutionView = new SolutionView(layout1);
 
-            controller.addView(new LossesMatrixView(layout1, controller),
-                new RegretMatrixView(layout1),
-                new SolutionView(layout1));
+            controller.addView(lossesMatrixView,
+                regretMatrixView,
+                solutionView);
 
             var menu = new ContextMenuStrip();
             menu.Items.Add("загрузить матрицу потерь", null, delegate {
@@ -120,11 +127,21 @@ namespace TurchinaTPRLab
             }
             solution = criterion.makeDecision(model);
             MessageBox.Show("Лучшее решение: " + (solution.getBestId() + 1).ToString());
+            solutionView.setModel(model);
+            solutionView.setSolution(solution);
+            solutionView.update();
         }
 
         private void hurwitzCriterionRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             lyambdaTextBox.Visible = !lyambdaTextBox.Visible;
+        }
+
+        private void backButtonPictureBox_Click(object sender, EventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            this.Hide();
+            mainForm.Show();
         }
 
     }

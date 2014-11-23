@@ -338,6 +338,13 @@ namespace TurchinaTPRLab
             }
         }
 
+        private void backButtonPictureBox_Click(object sender, EventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            this.Hide();
+            mainForm.Show();
+        }
+
 
 
     }

@@ -45,12 +45,14 @@
             this.open = new System.Windows.Forms.OpenFileDialog();
             this.layout1 = new System.Windows.Forms.TableLayoutPanel();
             this.lyambdaTextBox = new System.Windows.Forms.TextBox();
+            this.backButtonPictureBox = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.neymanPearsonCriterionPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hurwitzCriterionPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bayesianCriterionPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.savageCriterionPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.miniMaxCriterionPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backButtonPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -66,7 +68,7 @@
             this.groupBox1.Controls.Add(this.savageCriterionRadioButton);
             this.groupBox1.Controls.Add(this.miniMaxCriterionRadioButton);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 68);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(324, 203);
             this.groupBox1.TabIndex = 1;
@@ -196,7 +198,7 @@
             // 
             // solveWithCreterionButton
             // 
-            this.solveWithCreterionButton.Location = new System.Drawing.Point(76, 221);
+            this.solveWithCreterionButton.Location = new System.Drawing.Point(86, 277);
             this.solveWithCreterionButton.Name = "solveWithCreterionButton";
             this.solveWithCreterionButton.Size = new System.Drawing.Size(75, 23);
             this.solveWithCreterionButton.TabIndex = 2;
@@ -218,26 +220,38 @@
             this.layout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.layout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.layout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.layout1.Location = new System.Drawing.Point(12, 261);
+            this.layout1.Location = new System.Drawing.Point(12, 330);
             this.layout1.Name = "layout1";
             this.layout1.RowCount = 1;
             this.layout1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.layout1.Size = new System.Drawing.Size(864, 255);
+            this.layout1.Size = new System.Drawing.Size(864, 199);
             this.layout1.TabIndex = 3;
             // 
             // lyambdaTextBox
             // 
-            this.lyambdaTextBox.Location = new System.Drawing.Point(342, 149);
+            this.lyambdaTextBox.Location = new System.Drawing.Point(342, 210);
             this.lyambdaTextBox.Name = "lyambdaTextBox";
             this.lyambdaTextBox.Size = new System.Drawing.Size(100, 20);
             this.lyambdaTextBox.TabIndex = 4;
             this.lyambdaTextBox.Visible = false;
             // 
+            // backButtonPictureBox
+            // 
+            this.backButtonPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("backButtonPictureBox.Image")));
+            this.backButtonPictureBox.InitialImage = null;
+            this.backButtonPictureBox.Location = new System.Drawing.Point(18, 3);
+            this.backButtonPictureBox.Name = "backButtonPictureBox";
+            this.backButtonPictureBox.Size = new System.Drawing.Size(66, 66);
+            this.backButtonPictureBox.TabIndex = 25;
+            this.backButtonPictureBox.TabStop = false;
+            this.backButtonPictureBox.Click += new System.EventHandler(this.backButtonPictureBox_Click);
+            // 
             // NonRandomizedSolutionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(893, 568);
+            this.ClientSize = new System.Drawing.Size(1079, 594);
+            this.Controls.Add(this.backButtonPictureBox);
             this.Controls.Add(this.lyambdaTextBox);
             this.Controls.Add(this.layout1);
             this.Controls.Add(this.solveWithCreterionButton);
@@ -252,6 +266,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bayesianCriterionPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.savageCriterionPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.miniMaxCriterionPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backButtonPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,6 +290,7 @@
         private System.Windows.Forms.OpenFileDialog open;
         private System.Windows.Forms.TableLayoutPanel layout1;
         private System.Windows.Forms.TextBox lyambdaTextBox;
+        private System.Windows.Forms.PictureBox backButtonPictureBox;
 
 
     }

@@ -58,6 +58,7 @@
             this.drawGradient = new System.Windows.Forms.Button();
             this.buttonScaleUp = new System.Windows.Forms.Button();
             this.buttonScaleDown = new System.Windows.Forms.Button();
+            this.backButtonPictureBox = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.neymanPearsonCriterionPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hurwitzCriterionPictureBox)).BeginInit();
@@ -65,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.savageCriterionPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.miniMaxCriterionPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backButtonPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -373,11 +375,23 @@
             this.buttonScaleDown.UseVisualStyleBackColor = true;
             this.buttonScaleDown.Click += new System.EventHandler(this.buttonScaleDown_Click);
             // 
+            // backButtonPictureBox
+            // 
+            this.backButtonPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("backButtonPictureBox.Image")));
+            this.backButtonPictureBox.InitialImage = null;
+            this.backButtonPictureBox.Location = new System.Drawing.Point(18, 3);
+            this.backButtonPictureBox.Name = "backButtonPictureBox";
+            this.backButtonPictureBox.Size = new System.Drawing.Size(66, 66);
+            this.backButtonPictureBox.TabIndex = 24;
+            this.backButtonPictureBox.TabStop = false;
+            this.backButtonPictureBox.Click += new System.EventHandler(this.backButtonPictureBox_Click);
+            // 
             // RandomizedSolutionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1079, 594);
+            this.Controls.Add(this.backButtonPictureBox);
             this.Controls.Add(this.buttonScaleDown);
             this.Controls.Add(this.buttonScaleUp);
             this.Controls.Add(this.drawGradient);
@@ -407,6 +421,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.savageCriterionPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.miniMaxCriterionPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backButtonPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -443,5 +458,6 @@
         private System.Windows.Forms.Button drawGradient;
         private System.Windows.Forms.Button buttonScaleUp;
         private System.Windows.Forms.Button buttonScaleDown;
+        private System.Windows.Forms.PictureBox backButtonPictureBox;
     }
 }

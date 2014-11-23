@@ -112,5 +112,10 @@ namespace DecisionTheory.Core.MVCView.Table
         {
             get { return "решение@значение".Split('@'); }
         }
+
+        public void setSolution(Solution solution)
+        {
+            this.solution = solution;
+        }
     }
 }
