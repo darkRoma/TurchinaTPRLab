@@ -99,7 +99,7 @@ namespace DecisionTheory.Core.MVCModel
             return bestId;
         }
 
-        public double[] getRandSolution()
+        public double[] getSolution()
         {
             return randSolution;
         }

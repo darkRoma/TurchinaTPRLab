@@ -41,6 +41,7 @@ namespace DecisionTheory.Core.Service.Criterions
             getInstance<RandMinMaxCriterion>();
             getInstance<RandGurvitsCriterion>();
             getInstance<RandNeymanPearsonCriterion>();
+            getInstance<RandBayesCriterion>();
         }
     }
 }
