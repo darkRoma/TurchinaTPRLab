@@ -29,7 +29,7 @@ namespace DecisionTheory.Core.Service
                         imin = i;
 
                 var min = regret.getData(imin, j);
-
+                
                 for (int i = 0; i < rows; ++i)
                 {
                     var value = regret.getData(i, j) - min;
@@ -38,5 +38,7 @@ namespace DecisionTheory.Core.Service
             }
             return regret;
         }
+            
     }
+    
 }

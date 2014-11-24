@@ -22,8 +22,8 @@ namespace TurchinaTPRLab
         private LossesMatrixView lossesMatrixView;
         private RegretMatrixView regretMatrixView;
 
-        private int scaleX = 25;
-        private int scaleY = 25;
+        private int scaleX = 20;
+        private int scaleY = 20;
         private double[,] linearMembrane;
         private double[,] array;
         private bool isGradient = false;
@@ -161,6 +161,7 @@ namespace TurchinaTPRLab
             if (savageCriterionRadioButton.Checked)
             {
                 criterion = factory.ElementAt(9);
+                DrawingAxisForSavage();
             }
             solution = criterion.makeDecision(model);
 
@@ -210,6 +211,33 @@ namespace TurchinaTPRLab
         private PointF convertToScreenPointF(PointF point)
         {
             return new System.Drawing.PointF((float)(point.X * scaleX), (float)(pictureBox1.Height - 1 - point.Y * scaleY));
+        }
+
+        private void DrawingAxisForSavage()
+        {
+            //double minRow = 0, minColumn = 0;
+            //var min = DecisionTheory.Core.Service.ModelConverter.convert
+            Model model = controller.getModel();
+            array = model.getLossesArray();
+            var rows = model.getDecisionsCount();
+            var cols = model.getStatesCount();
+            double min1 = 0, min2 = 0;
+            for (int j = 0; j < cols; ++j)
+            {                
+                int imin = 0;
+                for (int i = 0; i < rows; ++i)
+                    if (array[imin, j] > array[i, j])
+                        imin = i;
+
+                if (j == 0) { min1 = array[imin, j]; }
+                else { min2 = array[imin, j]; }                
+            }
+
+            PointF point = new PointF((float)min1, (float)min2);
+            Pen pen = new Pen(Color.Black, 2);
+            graphics.DrawLine(pen, convertToScreenPointF(point), convertToScreenPointF(new PointF(point.X, pictureBox1.Height)));
+            graphics.DrawLine(pen, convertToScreenPointF(point), convertToScreenPointF(new PointF(pictureBox1.Width, point.Y)));
+           
         }
 
         private void DrawingAxis(PaintEventArgs e)
@@ -314,7 +342,7 @@ namespace TurchinaTPRLab
 
         private Graphics DrawingSet()
         {
-            int arrayRows = linearMembrane.Length / 2;
+            int arrayRows = array.Length / 2;
             PointF[] pointF = new PointF[arrayRows];
 
             for (int i = 0; i < pointF.Length; i++)
