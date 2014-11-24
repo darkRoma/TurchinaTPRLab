@@ -116,8 +116,7 @@ namespace TurchinaTPRLab
         {
             var factory = CriterionFactory.getFactory();
             int factoriesCount = factory.Count();
-            Model model = controller.getModel();
-                        
+            Model model = controller.getModel();                        
             array = model.getLossesArray();
             linearMembrane = Core.Service.Criterions.Randomized_criterions.ConvexHull.JarvisMethod(model.getLossesArray());
             DrawingGraphic();
@@ -127,6 +126,7 @@ namespace TurchinaTPRLab
             if (miniMaxCriterionRadioButton.Checked)
             {
                 criterion = factory.ElementAt(5);
+                DrawingWedge(5);
             }
             if (hurwitzCriterionRadioButton.Checked)
             {
@@ -321,7 +321,7 @@ namespace TurchinaTPRLab
             {
                 pointF[i] = new PointF((float)array[i, 0], (float)array[i, 1]);
                 pointF[i] = convertToScreenPointF(pointF[i]);
-                graphics.DrawString("A" + i, labelGradientX.Font, new SolidBrush(Color.Black), 
+                graphics.DrawString("A" + (i+1), labelGradientX.Font, new SolidBrush(Color.Black), 
                     new PointF(pointF[i].X + 2, pointF[i].Y + 2));
                 graphics.FillEllipse(new SolidBrush(Color.Black), pointF[i].X, pointF[i].Y, 4, 4);
 
@@ -367,7 +367,84 @@ namespace TurchinaTPRLab
             mainForm.Show();
         }
 
+        private void DrawingWedge(int number)
+        {
+            var factory = CriterionFactory.getFactory();
+            var criterion = factory.ElementAt(number);
+            Model model = controller.getModel();
+            solution = criterion.makeDecision(model);
+            double[] solutionVector = solution.getSolution();
+            int countOfPoints = 0;            
+            for (int i = 0; i < solutionVector.Length; i++)
+            {
+                if (solutionVector[i] != 0)
+                {
+                    countOfPoints++;
+                }
+            }
 
+
+            double[,] tempArray = new double[linearMembrane.Length/2, 2];
+            for (int i = 0; i < linearMembrane.Length/2; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    tempArray[i, j] = model.getData(i, j);
+                }
+            }
+
+            if (countOfPoints < 2)
+            {
+                int tempNumber = 0;
+                for (int i = 0; i < solutionVector.Length; i++)
+                {
+                    if (solutionVector[i] != 0)
+                    {
+                        tempNumber = i;
+                        break;
+                    }
+                }
+                PointF point1 = new PointF((float)tempArray[tempNumber, 0], (float)tempArray[tempNumber, 1]);
+                graphics.DrawLine(new Pen(Color.Blue, 2),
+                    convertToScreenPointF(new PointF(0, point1.Y)), convertToScreenPointF(point1));
+                graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenPointF(new PointF(point1.X, 0)),
+                    convertToScreenPointF(point1));
+            }
+            else
+            {
+                int number1 = 0, number2 = 0;
+                for (int i = 0; i < solutionVector.Length; i++)
+                {
+                    if (solutionVector[i] != 0)
+                    {
+                        number1 = i;
+                        break;
+                    }
+                }
+                for (int i = number1 + 1; i < solutionVector.Length; i++)
+                {
+                    if (solutionVector[i] != 0)
+                    {
+                        number2 = i;
+                        break;
+                    }
+                }
+
+
+
+                double k = (tempArray[number1, 1] - tempArray[number2, 1]) /
+                    (tempArray[number1, 0] - tempArray[number2, 0]);
+                double b = tempArray[number2, 1] - tempArray[number2, 0] *
+                    (tempArray[number1, 1] - tempArray[number2, 1]) /
+                    (tempArray[number1, 0] - tempArray[number2, 0]);
+                float tempX = (float)(b / (1 - k));
+                PointF point2 = new PointF(tempX, tempX);
+                graphics.DrawLine(new Pen(Color.Blue, 2),
+                    convertToScreenPointF(new PointF(0, point2.Y)), convertToScreenPointF(point2));
+                graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenPointF(new PointF(point2.X, 0)),
+                    convertToScreenPointF(point2));
+            }
+        }
 
     }
 }

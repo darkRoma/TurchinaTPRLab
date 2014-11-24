@@ -60,7 +60,7 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
                     }
                     else
                     {
-                        tempArray[i] = 1 / countOfMinPoints;
+                        tempArray[i] = (double) 1 / countOfMinPoints;
                     }
                 }
                 return new Solution(tempArray);
