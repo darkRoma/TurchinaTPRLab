@@ -27,3 +27,4 @@ C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.Randomi
 C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.SavageCriterionInfoForm.resources
 C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.csproj.GenerateResource.Cache
 C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.pdb
+C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.csprojResolveAssemblyReference.cache

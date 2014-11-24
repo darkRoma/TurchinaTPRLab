@@ -22,8 +22,8 @@ namespace TurchinaTPRLab
         private LossesMatrixView lossesMatrixView;
         private RegretMatrixView regretMatrixView;
 
-        private double scaleX = 10;
-        private double scaleY = 10;
+        private int scaleX = 25;
+        private int scaleY = 25;
         private double[,] linearMembrane;
         private double[,] array;
         private bool isGradient = false;
@@ -215,18 +215,26 @@ namespace TurchinaTPRLab
         private void DrawingAxis(PaintEventArgs e)
         {
             e.Graphics.DrawLine(System.Drawing.Pens.Black, new System.Drawing.Point(0, pictureBox1.Height - 1), new System.Drawing.Point(pictureBox1.Width, pictureBox1.Height - 1));
-
+            for (int i = 0; i < 10000; i++)
+            {
+                e.Graphics.DrawLine(System.Drawing.Pens.Gray, new System.Drawing.Point(scaleX * i, pictureBox1.Height - 1), new System.Drawing.Point(scaleX * i, 0));
+            }
             e.Graphics.DrawLine(System.Drawing.Pens.Black, new System.Drawing.Point(0, 0), new System.Drawing.Point(0, pictureBox1.Height));
+            for (int i = 0; i < (int)pictureBox1.Height/scaleY + 1; i++)
+            {
+                e.Graphics.DrawLine(System.Drawing.Pens.Gray, new System.Drawing.Point(0, pictureBox1.Height - scaleY*i), new System.Drawing.Point(pictureBox1.Width, pictureBox1.Height - scaleY*i));
+            }
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             DrawingAxis(e);
             graphics = pictureBox1.CreateGraphics();
+            pictureBox1.BackColor = Color.White;
         }
 
         private Graphics DrawingGraphic()
-        {                        
+        {            
             int arrayColumns = 2;
             Pen redPen = new Pen(Color.Red, 3);
             //float start = 0;
@@ -313,6 +321,8 @@ namespace TurchinaTPRLab
             {
                 pointF[i] = new PointF((float)array[i, 0], (float)array[i, 1]);
                 pointF[i] = convertToScreenPointF(pointF[i]);
+                graphics.DrawString("A" + i, labelGradientX.Font, new SolidBrush(Color.Black), 
+                    new PointF(pointF[i].X + 2, pointF[i].Y + 2));
                 graphics.FillEllipse(new SolidBrush(Color.Black), pointF[i].X, pointF[i].Y, 4, 4);
 
             }
@@ -321,8 +331,8 @@ namespace TurchinaTPRLab
 
         private void buttonScaleUp_Click(object sender, EventArgs e)
         {
-            scaleX *= 1.5;
-            scaleY *= 1.5;
+            scaleX *=(int)1.5;
+            scaleY *= (int)1.5;
             pictureBox1.Refresh();
             DrawingGraphic();
             DrawingSet();
@@ -331,8 +341,8 @@ namespace TurchinaTPRLab
 
         private void buttonScaleDown_Click(object sender, EventArgs e)
         {
-            scaleX /= 1.5;
-            scaleY /= 1.5;
+            scaleX /= (int)1.5;
+            scaleY /= (int)1.5;
             pictureBox1.Refresh();
             DrawingGraphic();
             DrawingSet();
