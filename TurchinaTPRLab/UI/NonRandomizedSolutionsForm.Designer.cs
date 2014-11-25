@@ -45,8 +45,9 @@
             this.open = new System.Windows.Forms.OpenFileDialog();
             this.layout1 = new System.Windows.Forms.TableLayoutPanel();
             this.lyambdaTextBox = new System.Windows.Forms.TextBox();
-            this.backButtonPictureBox = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.backButtonPictureBox = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.neymanPearsonCriterionPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hurwitzCriterionPictureBox)).BeginInit();
@@ -201,6 +202,7 @@
             // 
             // solveWithCreterionButton
             // 
+            this.solveWithCreterionButton.Enabled = false;
             this.solveWithCreterionButton.Location = new System.Drawing.Point(86, 277);
             this.solveWithCreterionButton.Name = "solveWithCreterionButton";
             this.solveWithCreterionButton.Size = new System.Drawing.Size(75, 23);
@@ -223,7 +225,7 @@
             this.layout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.layout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.layout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.layout1.Location = new System.Drawing.Point(12, 330);
+            this.layout1.Location = new System.Drawing.Point(62, 327);
             this.layout1.Name = "layout1";
             this.layout1.RowCount = 1;
             this.layout1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -238,6 +240,16 @@
             this.lyambdaTextBox.TabIndex = 4;
             this.lyambdaTextBox.Visible = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(342, 205);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 13);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Введите Лямбда";
+            this.label1.Visible = false;
+            // 
             // backButtonPictureBox
             // 
             this.backButtonPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("backButtonPictureBox.Image")));
@@ -249,21 +261,26 @@
             this.backButtonPictureBox.TabStop = false;
             this.backButtonPictureBox.Click += new System.EventHandler(this.backButtonPictureBox_Click);
             // 
-            // label1
+            // label2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(342, 205);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 13);
-            this.label1.TabIndex = 26;
-            this.label1.Text = "Введите Лямбда";
-            this.label1.Visible = false;
+            this.label2.Font = new System.Drawing.Font("Monotype Corsiva", 21.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.ForeColor = System.Drawing.Color.Coral;
+            this.label2.Location = new System.Drawing.Point(420, 58);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(506, 232);
+            this.label2.TabIndex = 27;
+            this.label2.Text = "Для начала работы загрузите матрицу потерь (нажмите правой кнопкой мыши на таблиц" +
+    "е, вызвав соответствующее контекстное меню)";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label2.UseCompatibleTextRendering = true;
             // 
             // NonRandomizedSolutionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1079, 594);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(967, 538);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.backButtonPictureBox);
             this.Controls.Add(this.lyambdaTextBox);
@@ -304,8 +321,9 @@
         private System.Windows.Forms.OpenFileDialog open;
         private System.Windows.Forms.TableLayoutPanel layout1;
         private System.Windows.Forms.TextBox lyambdaTextBox;
-        private System.Windows.Forms.PictureBox backButtonPictureBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox backButtonPictureBox;
+        private System.Windows.Forms.Label label2;
 
 
     }

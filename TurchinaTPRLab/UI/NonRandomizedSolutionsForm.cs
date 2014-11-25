@@ -32,6 +32,9 @@ namespace TurchinaTPRLab
         public NonRandomizedSolutionsForm()
         {
             InitializeComponent();
+            this.backButtonPictureBox.BackColor = Color.Transparent;
+            label2.BackColor = Color.Transparent;
+
             lossesMatrixView = new LossesMatrixView(layout1, controller);
             regretMatrixView = new RegretMatrixView(layout1);
             solutionView = new SolutionView(layout1);
@@ -48,6 +51,8 @@ namespace TurchinaTPRLab
                     string file = open.FileName;
                     controller.loadModel(file);
                     groupBox1.Enabled = true;
+                    solveWithCreterionButton.Enabled = true;
+                    label2.Visible = false;
                     model = controller.getModel();
                 }
             });

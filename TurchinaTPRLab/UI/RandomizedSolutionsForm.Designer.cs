@@ -56,6 +56,7 @@
             this.labelGradientY = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.backButtonPictureBox = new System.Windows.Forms.PictureBox();
+            this.warningLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.neymanPearsonCriterionPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hurwitzCriterionPictureBox)).BeginInit();
@@ -78,6 +79,7 @@
             this.groupBox1.Controls.Add(this.bayesianCriterionRadioButton);
             this.groupBox1.Controls.Add(this.savageCriterionRadioButton);
             this.groupBox1.Controls.Add(this.miniMaxCriterionRadioButton);
+            this.groupBox1.Enabled = false;
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(12, 68);
             this.groupBox1.Name = "groupBox1";
@@ -211,6 +213,7 @@
             // 
             // solveWithCreterionButton
             // 
+            this.solveWithCreterionButton.Enabled = false;
             this.solveWithCreterionButton.Location = new System.Drawing.Point(104, 277);
             this.solveWithCreterionButton.Name = "solveWithCreterionButton";
             this.solveWithCreterionButton.Size = new System.Drawing.Size(75, 23);
@@ -225,7 +228,7 @@
             this.layout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.layout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.layout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.layout1.Location = new System.Drawing.Point(18, 394);
+            this.layout1.Location = new System.Drawing.Point(155, 378);
             this.layout1.Name = "layout1";
             this.layout1.RowCount = 1;
             this.layout1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -239,7 +242,7 @@
             // labelOptimismFactor
             // 
             this.labelOptimismFactor.AutoSize = true;
-            this.labelOptimismFactor.Location = new System.Drawing.Point(353, 211);
+            this.labelOptimismFactor.Location = new System.Drawing.Point(342, 211);
             this.labelOptimismFactor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelOptimismFactor.Name = "labelOptimismFactor";
             this.labelOptimismFactor.Size = new System.Drawing.Size(137, 13);
@@ -249,7 +252,7 @@
             // 
             // textBoxOptimismFactor
             // 
-            this.textBoxOptimismFactor.Location = new System.Drawing.Point(494, 205);
+            this.textBoxOptimismFactor.Location = new System.Drawing.Point(483, 205);
             this.textBoxOptimismFactor.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxOptimismFactor.Name = "textBoxOptimismFactor";
             this.textBoxOptimismFactor.Size = new System.Drawing.Size(76, 20);
@@ -259,7 +262,7 @@
             // labelNumControlState
             // 
             this.labelNumControlState.AutoSize = true;
-            this.labelNumControlState.Location = new System.Drawing.Point(353, 238);
+            this.labelNumControlState.Location = new System.Drawing.Point(342, 238);
             this.labelNumControlState.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelNumControlState.Name = "labelNumControlState";
             this.labelNumControlState.Size = new System.Drawing.Size(166, 13);
@@ -269,7 +272,7 @@
             // 
             // textBoxNumControlState
             // 
-            this.textBoxNumControlState.Location = new System.Drawing.Point(518, 236);
+            this.textBoxNumControlState.Location = new System.Drawing.Point(507, 236);
             this.textBoxNumControlState.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxNumControlState.Name = "textBoxNumControlState";
             this.textBoxNumControlState.Size = new System.Drawing.Size(76, 20);
@@ -278,7 +281,7 @@
             // 
             // textBoxLossesRate
             // 
-            this.textBoxLossesRate.Location = new System.Drawing.Point(518, 261);
+            this.textBoxLossesRate.Location = new System.Drawing.Point(507, 261);
             this.textBoxLossesRate.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxLossesRate.Name = "textBoxLossesRate";
             this.textBoxLossesRate.Size = new System.Drawing.Size(76, 20);
@@ -288,7 +291,7 @@
             // labelLossesRate
             // 
             this.labelLossesRate.AutoSize = true;
-            this.labelLossesRate.Location = new System.Drawing.Point(353, 261);
+            this.labelLossesRate.Location = new System.Drawing.Point(342, 261);
             this.labelLossesRate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelLossesRate.Name = "labelLossesRate";
             this.labelLossesRate.Size = new System.Drawing.Size(150, 13);
@@ -298,7 +301,7 @@
             // 
             // textBoxGradientX
             // 
-            this.textBoxGradientX.Location = new System.Drawing.Point(386, 171);
+            this.textBoxGradientX.Location = new System.Drawing.Point(375, 171);
             this.textBoxGradientX.Name = "textBoxGradientX";
             this.textBoxGradientX.Size = new System.Drawing.Size(33, 20);
             this.textBoxGradientX.TabIndex = 16;
@@ -306,7 +309,7 @@
             // 
             // textBoxGradientY
             // 
-            this.textBoxGradientY.Location = new System.Drawing.Point(457, 172);
+            this.textBoxGradientY.Location = new System.Drawing.Point(446, 172);
             this.textBoxGradientY.Name = "textBoxGradientY";
             this.textBoxGradientY.Size = new System.Drawing.Size(44, 20);
             this.textBoxGradientY.TabIndex = 17;
@@ -315,7 +318,7 @@
             // labelGradientX
             // 
             this.labelGradientX.AutoSize = true;
-            this.labelGradientX.Location = new System.Drawing.Point(366, 174);
+            this.labelGradientX.Location = new System.Drawing.Point(355, 174);
             this.labelGradientX.Name = "labelGradientX";
             this.labelGradientX.Size = new System.Drawing.Size(20, 13);
             this.labelGradientX.TabIndex = 18;
@@ -325,7 +328,7 @@
             // labelGradientY
             // 
             this.labelGradientY.AutoSize = true;
-            this.labelGradientY.Location = new System.Drawing.Point(437, 175);
+            this.labelGradientY.Location = new System.Drawing.Point(426, 175);
             this.labelGradientY.Name = "labelGradientY";
             this.labelGradientY.Size = new System.Drawing.Size(20, 13);
             this.labelGradientY.TabIndex = 19;
@@ -334,11 +337,12 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(630, 37);
+            this.pictureBox1.Location = new System.Drawing.Point(596, 37);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(422, 335);
             this.pictureBox1.TabIndex = 20;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
             // backButtonPictureBox
@@ -352,11 +356,26 @@
             this.backButtonPictureBox.TabStop = false;
             this.backButtonPictureBox.Click += new System.EventHandler(this.backButtonPictureBox_Click);
             // 
+            // warningLabel
+            // 
+            this.warningLabel.Font = new System.Drawing.Font("Monotype Corsiva", 21.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.warningLabel.ForeColor = System.Drawing.Color.Coral;
+            this.warningLabel.Location = new System.Drawing.Point(414, 68);
+            this.warningLabel.Name = "warningLabel";
+            this.warningLabel.Size = new System.Drawing.Size(506, 232);
+            this.warningLabel.TabIndex = 28;
+            this.warningLabel.Text = "Для начала работы загрузите матрицу потерь (нажмите правой кнопкой мыши на таблиц" +
+    "е, вызвав соответствующее контекстное меню)";
+            this.warningLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.warningLabel.UseCompatibleTextRendering = true;
+            // 
             // RandomizedSolutionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1079, 594);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(1024, 567);
+            this.Controls.Add(this.warningLabel);
             this.Controls.Add(this.backButtonPictureBox);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.labelGradientY);
@@ -419,5 +438,6 @@
         private System.Windows.Forms.Label labelGradientY;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox backButtonPictureBox;
+        private System.Windows.Forms.Label warningLabel;
     }
 }
