@@ -21,6 +21,7 @@ namespace TurchinaTPRLab
         private SolutionView solutionView;
         private LossesMatrixView lossesMatrixView;
         private RegretMatrixView regretMatrixView;
+        Model model;
 
         private int scaleX = 20;
         private int scaleY = 20;
@@ -53,11 +54,19 @@ namespace TurchinaTPRLab
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     string file = openFileDialog1.FileName;
-                    groupBox1.Enabled = true;
-                    solveWithCreterionButton.Enabled = true;
-                    warningLabel.Visible = false;
-                    pictureBox1.Visible = true;
                     controller.loadModel(file);
+                    model = controller.getModel();
+                    if (model.colums > 2)
+                    {
+                        MessageBox.Show("Не правильная размерность матрицы. Для работы в этом режиме загрузите матрицу размерностью n x 2");
+                    }
+                    else
+                    {
+                        groupBox1.Enabled = true;
+                        solveWithCreterionButton.Enabled = true;
+                        warningLabel.Visible = false;
+                        pictureBox1.Visible = true;
+                    }
                 }
             });
 
