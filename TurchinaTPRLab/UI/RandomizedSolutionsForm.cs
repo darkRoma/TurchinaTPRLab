@@ -134,9 +134,10 @@ namespace TurchinaTPRLab
             }
             else if (hurwitzCriterionRadioButton.Checked)
             {
-                criterion = factory.ElementAt(6);
+                MessageBox.Show("Приносим свои извинения. Раздел находится в стадии разработки.");
+                /*criterion = factory.ElementAt(6);
                 solution = criterion.makeDecision(model);
-                ShowSolution(model);                
+                ShowSolution(model);*/                
             }
             else if (neymanPearsonCriterionRadioButton.Checked)
             {
@@ -278,17 +279,19 @@ namespace TurchinaTPRLab
         }
 
         private void DrawingAxis(PaintEventArgs e)
-        {
-            e.Graphics.DrawLine(System.Drawing.Pens.Black, new System.Drawing.Point(0, pictureBox1.Height - 1), new System.Drawing.Point(pictureBox1.Width, pictureBox1.Height - 1));
-            for (int i = 0; i < 10000; i++)
+        {            
+            for (int i = 1; i < 10000; i++)
             {
-                e.Graphics.DrawLine(System.Drawing.Pens.Gray, new System.Drawing.Point(scaleX * i, pictureBox1.Height - 1), new System.Drawing.Point(scaleX * i, 0));
-            }
-            e.Graphics.DrawLine(System.Drawing.Pens.Black, new System.Drawing.Point(0, 0), new System.Drawing.Point(0, pictureBox1.Height));
-            for (int i = 0; i < (int)pictureBox1.Height/scaleY + 1; i++)
+                if (i < 20) e.Graphics.DrawString(i.ToString(), labelGradientX.Font, new SolidBrush(Color.Red), convertToScreenPointF(new PointF(0, (float)(i+0.5))));
+                e.Graphics.DrawLine(System.Drawing.Pens.LightGray, new System.Drawing.Point(scaleX * i, pictureBox1.Height - 1), new System.Drawing.Point(scaleX * i, 0));
+            }            
+            for (int i = 1; i < (int)pictureBox1.Width/scaleY + 1; i++)
             {
-                e.Graphics.DrawLine(System.Drawing.Pens.Gray, new System.Drawing.Point(0, pictureBox1.Height - scaleY*i), new System.Drawing.Point(pictureBox1.Width, pictureBox1.Height - scaleY*i));
+                if (i < 21) e.Graphics.DrawString(i.ToString(), labelGradientX.Font, new SolidBrush(Color.Red), convertToScreenPointF(new PointF(i, (float)0.6)));
+                e.Graphics.DrawLine(System.Drawing.Pens.LightGray, new System.Drawing.Point(0, pictureBox1.Height - scaleY*i), new System.Drawing.Point(pictureBox1.Width, pictureBox1.Height - scaleY*i));
             }
+            e.Graphics.DrawLine(new Pen(Color.Black, 3), new System.Drawing.Point(0, pictureBox1.Height - 1), new System.Drawing.Point(pictureBox1.Width, pictureBox1.Height - 1));
+            e.Graphics.DrawLine(new Pen(Color.Black, 3), new System.Drawing.Point(0, 0), new System.Drawing.Point(0, pictureBox1.Height));
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)

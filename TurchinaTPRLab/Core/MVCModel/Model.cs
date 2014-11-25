@@ -17,7 +17,7 @@ namespace DecisionTheory.Core.MVCModel
         private double gradientX;
         private double gradientY;
         public int colums;
-        
+        private double liambda;
 
         /// <summary>
         /// Constructor that sets decisions count and states count fields and creating a data matrix
@@ -30,7 +30,23 @@ namespace DecisionTheory.Core.MVCModel
             lossesRate = 0;
             controledStateNumber = 0;
             colums = statesCount;
-        }       
+        }
+
+        public double Liambda
+        {
+            get { return liambda; }
+            set
+            {
+                if ((value >= 0) || (value <= 1))
+                {
+                    liambda = value;
+                }
+                else
+                {
+                    throw new DataException();
+                }                
+            }
+        }
 
         public double GradientX
         {

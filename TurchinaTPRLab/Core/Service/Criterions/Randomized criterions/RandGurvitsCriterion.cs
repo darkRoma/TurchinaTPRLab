@@ -18,6 +18,28 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
 
         protected override Solution test(Model model)
         {
+            /*if (model.Liambda == 0)
+            {
+                var factory = CriterionFactory.getFactory();
+                var minmax = factory.getInstance<RandMinMaxCriterion>();
+                return minmax.makeDecision(model);
+            }
+            else if (model.Liambda > 0 || model.Liambda < 0.5)
+            {
+ 
+            }
+            else if (model.Liambda == 0.5)
+            {
+ 
+            }
+            else if (model.Liambda > 0.5 || model.Liambda < 1)
+            {
+
+            }
+            else
+            {
+                
+            }*/
             var factory = CriterionFactory.getFactory();
             var minmax = factory.getInstance<RandMinMaxCriterion>();
             return minmax.makeDecision(model);

@@ -63,9 +63,100 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
         {
             double[] result = new double[size];
             result[indexEquivalent[numberOfResultPoint]] = x;
-            result[indexEquivalent[nextNumberOfResultPoint]] = 1 - x;
+            if (numberOfResultPoint != nextNumberOfResultPoint)
+            {
+                result[indexEquivalent[nextNumberOfResultPoint]] = 1 - x;
+            }
 
             return result;
+        }
+
+        public static int IsHullLine(double[,] hull)
+        {
+            bool IsDifferentX = true;
+            bool IsDifferentY = true;
+            bool IsXDifferY = true;
+            for (int i = 0; i < hull.Length / 2; i++)
+            {
+                if (hull[0, 0] == hull[i, 0])
+                {
+                    IsDifferentX = false;
+                }
+                else
+                {
+                    IsDifferentX = true;
+                    break;
+                }
+            }
+            for (int i = 0; i < hull.Length / 2; i++)
+            {
+                if (hull[0, 1] == hull[i, 1])
+                {
+                    IsDifferentY = false;
+                }
+                else
+                {
+                    IsDifferentY = true;
+                    break;
+                }
+            }
+            for (int i = 0; i < hull.Length / 2; i++)
+            {
+                if (hull[i, 0] == hull[i, 1])
+                {
+                    IsXDifferY = false;
+                }
+                else
+                {
+                    IsXDifferY = true;
+                    break;
+                }
+            }
+            if (!IsDifferentX)
+            {
+                return 1;
+            }
+            if (!IsDifferentY)
+            {
+                return 2;
+            }
+            if (!IsXDifferY)
+            {
+                return 3;
+            }
+            return 0;
+        }
+
+        public static int FindNumberMinX(double[,] hull)
+        {
+            double minX = hull[0, 0];
+            int number = 0;
+            for (int i = 1; i < hull.Length / 2; i++)
+            {
+                if (hull[i, 0] < minX)
+                {
+                    minX = hull[i, 0];
+                    number = i;
+                }
+            }
+
+            return number;
+        }
+
+        public static int FindNumberMinY(double[,] hull)
+        {
+            double minY = hull[0, 1];
+            int number = 0;
+            for (int i = 1; i < hull.Length / 2; i++)
+            {
+                if (hull[i, 1] < minY)
+                {
+                    minY = hull[i, 1];
+                    number = i;
+                }
+            }
+
+            return number;
         }
     }
 }

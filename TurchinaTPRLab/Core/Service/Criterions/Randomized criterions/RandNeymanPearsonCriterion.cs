@@ -19,58 +19,136 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
        protected override Solution test(Model model)
        {
            double[,] lossArray = model.getLossesArray();
-           double[,] convexHull = ConvexHull.JarvisMethod(lossArray);
-           int[] indexEquivalent = ConvexHull.IndexEquivalentBetweenHullAndLossArray(convexHull, lossArray);
            int sizeLossArray = lossArray.Length / 2;
            double lossesRate = model.LossestRate;
            int controledStateNumber = model.ControledStateNumber;
-
-           int convexHullSize = convexHull.Length / 2;
-           int numberOfMinXPoint = Helper.NumberOfMinXPoint(convexHull);
            double[] result = new double[sizeLossArray];
-           int count = convexHullSize - numberOfMinXPoint - 1; // number of points in the southwestern border
-           int numberOfResultPoint = numberOfMinXPoint;
            double x = 0;
            double tempX = 0;
            bool isFound = false;
 
-           if (count != 0)
-           {
-               for (int i = 1; i <= count; i++)
-               {
-                   tempX = Helper.PointOfIntersection(convexHull[numberOfResultPoint, 0], convexHull[numberOfResultPoint + 1, 0], convexHull[numberOfResultPoint, 1], convexHull[numberOfResultPoint + 1, 1]);
+           double[,] convexHull=ConvexHull.JarvisMethod(lossArray);
 
-                   if (tempX > convexHull[numberOfResultPoint, 0] && tempX < convexHull[numberOfResultPoint + 1, 0])
+           if (DoesExistResult(convexHull, controledStateNumber, lossesRate))
+           {
+               int[] indexEquivalent = ConvexHull.IndexEquivalentBetweenHullAndLossArray(convexHull, lossArray);
+               int isLine = Helper.IsHullLine(convexHull);
+              
+
+               int convexHullSize = convexHull.Length / 2;
+               int numberOfMinXPoint = Helper.NumberOfMinXPoint(convexHull);
+               
+               int count = convexHullSize - numberOfMinXPoint - 1; // number of points in the southwestern border
+               int numberOfResultPoint = numberOfMinXPoint;
+               
+
+               if (isLine != 0)
+               { 
+                   convexHull = UpdateHull(convexHull, controledStateNumber, lossesRate);
+
+                   if (isLine == 1 || isLine == 3)
                    {
-                       isFound = true;
-                       break;
+                       result = Helper.CountResult(indexEquivalent, Helper.FindNumberMinY(convexHull), 0, 1.0, sizeLossArray);
+                       return new Solution(result, 0.0);
                    }
                    else
                    {
-                       numberOfResultPoint++;
+
+                       result = Helper.CountResult(indexEquivalent, Helper.FindNumberMinX(convexHull), 0, 1.0, sizeLossArray);
+                       return new Solution(result, 0.0);
                    }
                }
 
-               if (isFound)
+               if (count != 0)
                {
-                   x = Helper.X(convexHull[numberOfResultPoint, 0], convexHull[numberOfResultPoint + 1, 0], convexHull[numberOfResultPoint, 1], convexHull[numberOfResultPoint + 1, 1], lossesRate, controledStateNumber);
-                   result = Helper.CountResult(indexEquivalent, numberOfResultPoint, numberOfResultPoint + 1, x, sizeLossArray);
+                   for (int i = 1; i <= count; i++)
+                   {
+                       tempX = Helper.PointOfIntersection(convexHull[numberOfResultPoint, 0], convexHull[numberOfResultPoint + 1, 0], convexHull[numberOfResultPoint, 1], convexHull[numberOfResultPoint + 1, 1]);
+
+                       if (tempX > convexHull[numberOfResultPoint, 0] && tempX < convexHull[numberOfResultPoint + 1, 0])
+                       {
+                           isFound = true;
+                           break;
+                       }
+                       else
+                       {
+                           numberOfResultPoint++;
+                       }
+                   }
+
+                   if (isFound)
+                   {
+                       x = Helper.X(convexHull[numberOfResultPoint, 0], convexHull[numberOfResultPoint + 1, 0], convexHull[numberOfResultPoint, 1], convexHull[numberOfResultPoint + 1, 1], lossesRate, controledStateNumber);
+                       result = Helper.CountResult(indexEquivalent, numberOfResultPoint, numberOfResultPoint + 1, x, sizeLossArray);
+                   }
+                   else
+                   {
+                       x = Helper.X(convexHull[numberOfResultPoint, 0], convexHull[0, 0], convexHull[numberOfResultPoint, 1], convexHull[0, 1], lossesRate, controledStateNumber);
+                       result = Helper.CountResult(indexEquivalent, numberOfResultPoint, 0, x, sizeLossArray);
+                   }
+
+                   return new Solution(result, 0.0);
                }
                else
                {
-                  x = Helper.X(convexHull[numberOfResultPoint, 0], convexHull[0, 0], convexHull[numberOfResultPoint, 1], convexHull[0, 1], lossesRate, controledStateNumber);
+                   x = Helper.X(convexHull[numberOfResultPoint, 0], convexHull[0, 0], convexHull[numberOfResultPoint, 1], convexHull[0, 1], lossesRate, controledStateNumber);
                    result = Helper.CountResult(indexEquivalent, numberOfResultPoint, 0, x, sizeLossArray);
-               }
 
-               return new Solution(result);
+                   return new Solution(result, 0.0);
+               }
            }
            else
            {
-               x = Helper.X(convexHull[numberOfResultPoint, 0], convexHull[0, 0], convexHull[numberOfResultPoint, 1], convexHull[0, 1], lossesRate, controledStateNumber);
-               result = Helper.CountResult(indexEquivalent, numberOfResultPoint, 0, x, sizeLossArray);
-
-               return new Solution(result);
+               return new Solution(result, 0.0);
            }
+       }
+
+       bool DoesExistResult(double[,] hull, int numberContrState, double rate)
+       {
+           bool doesExistsResult = true;
+           if (numberContrState == 1)
+           {
+               for (int i = 0; i < hull.Length / 2; i++)
+               {
+                   if (hull[i, 0] <= rate)
+                   {
+                       doesExistsResult = true;
+                       return doesExistsResult;
+                   }
+                   else
+                   {
+                       doesExistsResult = false;
+                   }
+               }
+           }
+
+           return doesExistsResult;
+       }
+       double[,] UpdateHull(double[,] hull, int numberContrState, double rate)
+       {
+           double[,] newHull = hull;
+           if (numberContrState == 1)
+           {
+               for (int i = 0; i < newHull.Length/2; i++)
+               {
+                   if (newHull[i, 0] > rate)
+                   {
+                       newHull[i, 0] = rate;
+                   }
+               }
+           }
+
+           if (numberContrState == 2)
+           {
+               for (int i = 0; i < newHull.Length/2; i++)
+               {
+                   if (newHull[i, 1] > rate)
+                   {
+                       newHull[i, 1] = rate;
+                   }
+               }
+           }
+           return newHull;
        }
     }
 }

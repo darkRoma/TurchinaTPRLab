@@ -10,7 +10,7 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
     class RandMinMaxCriterion : Criterion
     {
         private const string TOKEN = "минимаксный критерий (ранд. решения)";
-        
+
         /// <summary>
         /// Constructor that sets default name of the criterion
         /// </summary>
@@ -26,7 +26,7 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
             double[,] lossArray = model.getLossesArray();
             double[,] convexHull = ConvexHull.JarvisMethod(lossArray);
             int[] indexEquivalent = ConvexHull.IndexEquivalentBetweenHullAndLossArray(convexHull, lossArray);
-            int sizeLossArray = lossArray.Length/2;
+            int sizeLossArray = lossArray.Length / 2;
             double loss = 0;
 
             int convexHullSize = convexHull.Length / 2;
@@ -37,13 +37,30 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
             double x = 0;
             double tempX = 0;
             bool isFound = false;
+            int IsLine = Helper.IsHullLine(convexHull);
+
+            if (IsLine != 0)
+            {
+                if (IsLine == 1 || IsLine == 3)
+                {
+                    result = Helper.CountResult(indexEquivalent, Helper.FindNumberMinY(convexHull), 0, 1.0, sizeLossArray);
+                    return new Solution(result, 0.0);
+                }
+                if(IsLine == 2)
+                {
+
+                    result = Helper.CountResult(indexEquivalent, Helper.FindNumberMinX(convexHull), 0, 1.0, sizeLossArray);
+                    return new Solution(result, 0.0);
+                }
+
+            }
 
             if (count != 0)
             {
                 for (int i = 1; i <= count; i++)
                 {
-                    tempX = Helper.PointOfIntersection(convexHull[numberOfResultPoint, 0], convexHull[numberOfResultPoint + 1, 0], convexHull [numberOfResultPoint, 1], convexHull[numberOfResultPoint + 1, 1]);
-                   
+                    tempX = Helper.PointOfIntersection(convexHull[numberOfResultPoint, 0], convexHull[numberOfResultPoint + 1, 0], convexHull[numberOfResultPoint, 1], convexHull[numberOfResultPoint + 1, 1]);
+
                     if (tempX > convexHull[numberOfResultPoint, 0] && tempX < convexHull[numberOfResultPoint + 1, 0])
                     {
                         isFound = true;
@@ -57,7 +74,7 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
 
                 if (isFound)
                 {
-                    x = Helper.X(convexHull[numberOfResultPoint, 0], convexHull[numberOfResultPoint + 1, 0], convexHull[numberOfResultPoint, 1],                              convexHull[numberOfResultPoint + 1, 1]);
+                    x = Helper.X(convexHull[numberOfResultPoint, 0], convexHull[numberOfResultPoint + 1, 0], convexHull[numberOfResultPoint, 1], convexHull[numberOfResultPoint + 1, 1]);
                     result = Helper.CountResult(indexEquivalent, numberOfResultPoint, numberOfResultPoint + 1, x, sizeLossArray);
                     loss = CountLoss(x, convexHull[numberOfResultPoint, 0], convexHull[numberOfResultPoint + 1, 0]);
                 }
@@ -75,7 +92,7 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
                 x = Helper.X(convexHull[numberOfResultPoint, 0], convexHull[0, 0], convexHull[numberOfResultPoint, 1], convexHull[0, 1]);
                 result = Helper.CountResult(indexEquivalent, numberOfResultPoint, 0, x, sizeLossArray);
                 loss = CountLoss(x, convexHull[numberOfResultPoint, 0], convexHull[0, 0]);
-               
+
                 return new Solution(result, loss);
             }
         }
