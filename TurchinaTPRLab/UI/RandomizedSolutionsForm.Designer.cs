@@ -55,9 +55,6 @@
             this.labelGradientX = new System.Windows.Forms.Label();
             this.labelGradientY = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.drawGradient = new System.Windows.Forms.Button();
-            this.buttonScaleUp = new System.Windows.Forms.Button();
-            this.buttonScaleDown = new System.Windows.Forms.Button();
             this.backButtonPictureBox = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.neymanPearsonCriterionPictureBox)).BeginInit();
@@ -320,9 +317,9 @@
             this.labelGradientX.AutoSize = true;
             this.labelGradientX.Location = new System.Drawing.Point(366, 174);
             this.labelGradientX.Name = "labelGradientX";
-            this.labelGradientX.Size = new System.Drawing.Size(14, 13);
+            this.labelGradientX.Size = new System.Drawing.Size(20, 13);
             this.labelGradientX.TabIndex = 18;
-            this.labelGradientX.Text = "X";
+            this.labelGradientX.Text = "P1";
             this.labelGradientX.Visible = false;
             // 
             // labelGradientY
@@ -330,9 +327,9 @@
             this.labelGradientY.AutoSize = true;
             this.labelGradientY.Location = new System.Drawing.Point(437, 175);
             this.labelGradientY.Name = "labelGradientY";
-            this.labelGradientY.Size = new System.Drawing.Size(14, 13);
+            this.labelGradientY.Size = new System.Drawing.Size(20, 13);
             this.labelGradientY.TabIndex = 19;
-            this.labelGradientY.Text = "Y";
+            this.labelGradientY.Text = "P2";
             this.labelGradientY.Visible = false;
             // 
             // pictureBox1
@@ -343,37 +340,6 @@
             this.pictureBox1.TabIndex = 20;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
-            // 
-            // drawGradient
-            // 
-            this.drawGradient.Location = new System.Drawing.Point(518, 166);
-            this.drawGradient.Name = "drawGradient";
-            this.drawGradient.Size = new System.Drawing.Size(106, 29);
-            this.drawGradient.TabIndex = 21;
-            this.drawGradient.Text = "Нарисовать";
-            this.drawGradient.UseVisualStyleBackColor = true;
-            this.drawGradient.Visible = false;
-            this.drawGradient.Click += new System.EventHandler(this.drawGradient_Click);
-            // 
-            // buttonScaleUp
-            // 
-            this.buttonScaleUp.Location = new System.Drawing.Point(518, 333);
-            this.buttonScaleUp.Name = "buttonScaleUp";
-            this.buttonScaleUp.Size = new System.Drawing.Size(46, 39);
-            this.buttonScaleUp.TabIndex = 22;
-            this.buttonScaleUp.Text = "+";
-            this.buttonScaleUp.UseVisualStyleBackColor = true;
-            this.buttonScaleUp.Click += new System.EventHandler(this.buttonScaleUp_Click);
-            // 
-            // buttonScaleDown
-            // 
-            this.buttonScaleDown.Location = new System.Drawing.Point(578, 333);
-            this.buttonScaleDown.Name = "buttonScaleDown";
-            this.buttonScaleDown.Size = new System.Drawing.Size(46, 39);
-            this.buttonScaleDown.TabIndex = 23;
-            this.buttonScaleDown.Text = "-";
-            this.buttonScaleDown.UseVisualStyleBackColor = true;
-            this.buttonScaleDown.Click += new System.EventHandler(this.buttonScaleDown_Click);
             // 
             // backButtonPictureBox
             // 
@@ -392,9 +358,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1079, 594);
             this.Controls.Add(this.backButtonPictureBox);
-            this.Controls.Add(this.buttonScaleDown);
-            this.Controls.Add(this.buttonScaleUp);
-            this.Controls.Add(this.drawGradient);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.labelGradientY);
             this.Controls.Add(this.labelGradientX);
@@ -455,9 +418,6 @@
         private System.Windows.Forms.Label labelGradientX;
         private System.Windows.Forms.Label labelGradientY;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button drawGradient;
-        private System.Windows.Forms.Button buttonScaleUp;
-        private System.Windows.Forms.Button buttonScaleDown;
         private System.Windows.Forms.PictureBox backButtonPictureBox;
     }
 }
