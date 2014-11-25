@@ -147,6 +147,14 @@ namespace TurchinaTPRLab
                 IsShowLosses = false;
                 solution = criterion.makeDecision(model);
                 ShowSolution(model);
+                if (model.ControledStateNumber == 1)
+                {
+                    graphics.FillRectangle(new SolidBrush(Color.AliceBlue), (float)model.LossestRate * scaleX, 0, pictureBox1.Width - (float)model.ControledStateNumber * scaleX, pictureBox1.Height - 2);
+                }
+                else
+                {
+                    graphics.FillRectangle(new SolidBrush(Color.AliceBlue), 0, 0, pictureBox1.Width, pictureBox1.Height - (float)model.LossestRate * scaleY);
+                }
             }
             else if (bayesianCriterionRadioButton.Checked)
             {
