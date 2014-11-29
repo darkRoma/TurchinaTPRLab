@@ -1,4 +1,4 @@
-﻿using DecisionTheory.Core.MVCModel;
+using DecisionTheory.Core.MVCModel;
 using DecisionTheory.Core.Service.Criterions;
 using System;
 using System.Collections.Generic;
@@ -39,6 +39,7 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
                int numberOfMinXPoint = Helper.NumberOfMinXPoint(convexHull);
                
                int count = convexHullSize - numberOfMinXPoint - 1; // number of points in the southwestern border
+               bool isFirstPointInSolution = (count == 0) ? true : false;
                int numberOfResultPoint = numberOfMinXPoint;
                
 
@@ -58,44 +59,49 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
                        return new Solution(result, 0.0);
                    }
                }
-
-               if (count != 0)
+               while (count > 0)
                {
-                   for (int i = 1; i <= count; i++)
+                   if (controledStateNumber == 1)
                    {
-                       tempX = Helper.PointOfIntersection(convexHull[numberOfResultPoint, 0], convexHull[numberOfResultPoint + 1, 0], convexHull[numberOfResultPoint, 1], convexHull[numberOfResultPoint + 1, 1]);
-
-                       if (tempX > convexHull[numberOfResultPoint, 0] && tempX < convexHull[numberOfResultPoint + 1, 0])
+                       if (convexHull[numberOfResultPoint + 1, 0] <= lossesRate)
                        {
-                           isFound = true;
-                           break;
+                           x = Helper.X(convexHull[numberOfResultPoint, 0], convexHull[numberOfResultPoint + 1, 0], convexHull[numberOfResultPoint, 1], convexHull[numberOfResultPoint + 1, 1], lossesRate, controledStateNumber);
+                           result = Helper.CountResult(indexEquivalent, numberOfResultPoint, numberOfResultPoint + 1, x, sizeLossArray);
+                           isFirstPointInSolution = false;
                        }
                        else
                        {
                            numberOfResultPoint++;
+                           isFirstPointInSolution = true;
+                       }
+                   }
+                   if (controledStateNumber == 2)
+                   {
+                       if (convexHull[numberOfResultPoint + 1, 1] <= lossesRate)
+                       {
+                           x = Helper.X(convexHull[numberOfResultPoint, 0], convexHull[numberOfResultPoint + 1, 0], convexHull[numberOfResultPoint, 1], convexHull[numberOfResultPoint + 1, 1], lossesRate, controledStateNumber);
+                           result = Helper.CountResult(indexEquivalent, numberOfResultPoint, numberOfResultPoint + 1, x, sizeLossArray);
+                           isFirstPointInSolution = false;
+                       }
+                       else
+                       {
+                           numberOfResultPoint++;
+                           isFirstPointInSolution = true;
                        }
                    }
 
-                   if (isFound)
-                   {
-                       x = Helper.X(convexHull[numberOfResultPoint, 0], convexHull[numberOfResultPoint + 1, 0], convexHull[numberOfResultPoint, 1], convexHull[numberOfResultPoint + 1, 1], lossesRate, controledStateNumber);
-                       result = Helper.CountResult(indexEquivalent, numberOfResultPoint, numberOfResultPoint + 1, x, sizeLossArray);
-                   }
-                   else
-                   {
-                       x = Helper.X(convexHull[numberOfResultPoint, 0], convexHull[0, 0], convexHull[numberOfResultPoint, 1], convexHull[0, 1], lossesRate, controledStateNumber);
-                       result = Helper.CountResult(indexEquivalent, numberOfResultPoint, 0, x, sizeLossArray);
-                   }
-
-                   return new Solution(result, 0.0);
+                   count--;
                }
-               else
+
+
+               if (isFirstPointInSolution)
                {
                    x = Helper.X(convexHull[numberOfResultPoint, 0], convexHull[0, 0], convexHull[numberOfResultPoint, 1], convexHull[0, 1], lossesRate, controledStateNumber);
                    result = Helper.CountResult(indexEquivalent, numberOfResultPoint, 0, x, sizeLossArray);
-
-                   return new Solution(result, 0.0);
                }
+
+               return new Solution(result, 0.0);
+           
            }
            else
            {
