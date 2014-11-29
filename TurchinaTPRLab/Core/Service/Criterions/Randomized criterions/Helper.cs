@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,22 +50,40 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
 
         public static double X(double x1, double x2, double y1, double y2, double Rate, double controledStateNumber)
         {
+
+            double result=0;
             if (controledStateNumber == 1)
-            { return (Rate - x2) / (x1 - x2); }
-
+            {
+               
+                    result= (Rate - x2) / (x1 - x2);
+                
+            }
             if (controledStateNumber == 2)
-            { return (Rate - y2) / (y1 - y2); }
+            {
+                
+               
+                    result= (Rate - y2) / (y1 - y2);
+                
+            }
 
-            return 0;
+            if (result > 1 || result<0)
+            {
+                throw new SystemException("Возможно некорректно задано пороговое значение потерь для данного состояния.");
+                return 0;
+            }
+            else
+            {
+                return result;
+            }
         }
 
         public static double[] CountResult(int[] indexEquivalent, int numberOfResultPoint, int nextNumberOfResultPoint, double x, int size)
         {
             double[] result = new double[size];
-            result[indexEquivalent[numberOfResultPoint]] = x;
+            result[indexEquivalent[numberOfResultPoint]] = Math.Round(x,2);
             if (numberOfResultPoint != nextNumberOfResultPoint)
             {
-                result[indexEquivalent[nextNumberOfResultPoint]] = 1 - x;
+                result[indexEquivalent[nextNumberOfResultPoint]] = Math.Round(1 - x,2);
             }
 
             return result;
