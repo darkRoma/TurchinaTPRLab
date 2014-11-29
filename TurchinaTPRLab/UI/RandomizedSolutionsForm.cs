@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -220,12 +220,14 @@ namespace TurchinaTPRLab
 
         private Model ShowSolution(Model model)
         {
-            string solutionToDisplay = "";
             double[] solutionVector = solution.getSolution();
-            foreach (var x in solutionVector)
+            string solutionToDisplay = "(" + solutionVector[0].ToString() ;
+
+            for (int x=1; x<solutionVector.Length; x++)
             {
-                solutionToDisplay += x.ToString() + " ";
+                solutionToDisplay += "; " + solutionVector[x].ToString();
             }
+            solutionToDisplay += ")";
             if (IsShowLosses)
             {
                 MessageBox.Show("Решение: " + solutionToDisplay + " Потери: " + solution.getLoss().ToString());
