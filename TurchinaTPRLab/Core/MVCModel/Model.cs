@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using DecisionTheory.Core.Error;
 using DecisionTheory.Core.Service;
@@ -78,7 +78,7 @@ namespace DecisionTheory.Core.MVCModel
 
             set
             {
-                if (value >= 0)
+                if (value > 0)
                 { lossesRate = value; }
                 else
                 {
@@ -242,7 +242,7 @@ namespace DecisionTheory.Core.MVCModel
         }
 
         /// <summary>
-        /// Для Насти
+        /// 
         /// </summary>
         /// <returns>возвращает матрицу потерь из модели.</returns>
         public double[,] getLossesArray()
