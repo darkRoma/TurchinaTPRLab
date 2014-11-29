@@ -33,7 +33,7 @@ namespace TurchinaTPRLab
         /// Constructor, that initializes this form component
         /// </summary>
         public RandomizedSolutionsForm()
-        {
+        {            
             InitializeComponent();
             this.backButtonPictureBox.BackColor = Color.Transparent;
             warningLabel.BackColor = Color.Transparent;
@@ -129,8 +129,9 @@ namespace TurchinaTPRLab
         }
 
         private void solveWithCreterionButton_Click(object sender, EventArgs e)
-        {            
-            pictureBox1.Refresh();            
+        {
+            pictureBox1.Refresh();
+            DrawAxisNumbers();
             var factory = CriterionFactory.getFactory();
             int factoriesCount = factory.Count();
             Model model = controller.getModel();                        
@@ -156,19 +157,26 @@ namespace TurchinaTPRLab
             }
             else if (neymanPearsonCriterionRadioButton.Checked)
             {
-                model.ControledStateNumber = Convert.ToInt32(textBoxNumControlState.Text);
-                model.LossestRate = Convert.ToDouble(textBoxLossesRate.Text);
-                criterion = factory.ElementAt(7);
-                IsShowLosses = false;
-                solution = criterion.makeDecision(model);
-                ShowSolution(model);
-                if (model.ControledStateNumber == 1)
+                if (textBoxNumControlState.Text == "" || textBoxLossesRate.Text == "")
                 {
-                    graphics.FillRectangle(new SolidBrush(Color.AliceBlue), (float)model.LossestRate * scaleX, 0, pictureBox1.Width - (float)model.ControledStateNumber * scaleX, pictureBox1.Height - 2);
+                    MessageBox.Show("Вы не ввели нужные данные!!!");
                 }
                 else
                 {
-                    graphics.FillRectangle(new SolidBrush(Color.AliceBlue), 0, 0, pictureBox1.Width, pictureBox1.Height - (float)model.LossestRate * scaleY);
+                    model.ControledStateNumber = Convert.ToInt32(textBoxNumControlState.Text);
+                    model.LossestRate = Convert.ToDouble(textBoxLossesRate.Text);
+                    criterion = factory.ElementAt(7);
+                    IsShowLosses = false;
+                    solution = criterion.makeDecision(model);
+                    ShowSolution(model);
+                    if (model.ControledStateNumber == 1)
+                    {
+                        graphics.FillRectangle(new SolidBrush(Color.AliceBlue), (float)model.LossestRate * scaleX, 0, pictureBox1.Width - (float)model.ControledStateNumber * scaleX, pictureBox1.Height - 2);
+                    }
+                    else
+                    {
+                        graphics.FillRectangle(new SolidBrush(Color.AliceBlue), 0, 0, pictureBox1.Width, pictureBox1.Height - (float)model.LossestRate * scaleY);
+                    }
                 }
             }
             else if (bayesianCriterionRadioButton.Checked)
@@ -303,9 +311,22 @@ namespace TurchinaTPRLab
             return new System.Drawing.PointF((float)((point.X + param1) * scaleX), (float)(pictureBox1.Height - 1 - (param2 + point.Y) * scaleY));
         }
 
+        private Graphics DrawAxisNumbers()
+        {
+            for (int i = 1; i < 10000; i++)
+            {
+                if (i < 20) graphics.DrawString(i.ToString(), labelGradientX.Font, new SolidBrush(Color.Red), convertToScreenPointF(new PointF(0, (float)(i + 0.5))));                
+            }
+            for (int i = 1; i < (int)pictureBox1.Width / scaleY + 1; i++)
+            {
+                if (i < 21) graphics.DrawString(i.ToString(), labelGradientX.Font, new SolidBrush(Color.Red), convertToScreenPointF(new PointF(i, (float)0.6)));                
+            }
+            return graphics;
+        }
+
         private void DrawingAxis(PaintEventArgs e)
         {            
-            for (int i = 1; i < 10000; i++)
+            /*for (int i = 1; i < 10000; i++)
             {
                 if (i < 20) e.Graphics.DrawString(i.ToString(), labelGradientX.Font, new SolidBrush(Color.Red), convertToScreenPointF(new PointF(0, (float)(i+0.5))));
                 e.Graphics.DrawLine(System.Drawing.Pens.LightGray, new System.Drawing.Point(scaleX * i, pictureBox1.Height - 1), new System.Drawing.Point(scaleX * i, 0));
@@ -314,7 +335,7 @@ namespace TurchinaTPRLab
             {
                 if (i < 21) e.Graphics.DrawString(i.ToString(), labelGradientX.Font, new SolidBrush(Color.Red), convertToScreenPointF(new PointF(i, (float)0.6)));
                 e.Graphics.DrawLine(System.Drawing.Pens.LightGray, new System.Drawing.Point(0, pictureBox1.Height - scaleY*i), new System.Drawing.Point(pictureBox1.Width, pictureBox1.Height - scaleY*i));
-            }
+            }*/
             e.Graphics.DrawLine(new Pen(Color.Black, 3), new System.Drawing.Point(0, pictureBox1.Height - 1), new System.Drawing.Point(pictureBox1.Width, pictureBox1.Height - 1));
             e.Graphics.DrawLine(new Pen(Color.Black, 3), new System.Drawing.Point(0, 0), new System.Drawing.Point(0, pictureBox1.Height));
         }
@@ -376,13 +397,13 @@ namespace TurchinaTPRLab
             }
             if (point.X == 0)
             {
-                graphics.DrawLine(new Pen(Color.Blue, 1),
+                graphics.DrawLine(new Pen(Color.Blue, 2),
                     convertToScreenPointF(new PointF(0, (float)linearMembrane[imin, 1])),
                     convertToScreenPointF(new PointF(1000, (float)linearMembrane[imin, 1])));
             }
             else if (point.Y == 0)
             {
-                graphics.DrawLine(new Pen(Color.Blue, 1),
+                graphics.DrawLine(new Pen(Color.Blue, 2),
                     convertToScreenPointF(new PointF((float)linearMembrane[imin, 0], 0)),
                     convertToScreenPointF(new PointF((float)linearMembrane[imin, 0], 1000)));
             }
@@ -482,12 +503,17 @@ namespace TurchinaTPRLab
                         break;
                     }
                 }
-                PointF point1 = new PointF((float)tempArray[tempNumber, 0], (float)tempArray[tempNumber, 1]);
-                graphics.DrawLine(new Pen(Color.Blue, 2),
-                    convertToScreenForSavagePointF(new PointF(0, point1.Y),pointAxis.X, pointAxis.Y), 
-                    convertToScreenForSavagePointF(point1, pointAxis.X, pointAxis.Y));
-                graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenForSavagePointF(new PointF(point1.X, 0), pointAxis.X, pointAxis.Y),
-                    convertToScreenForSavagePointF(point1, pointAxis.X, pointAxis.Y));
+
+                PointF point1 = new PointF();
+                if (tempNumber <= linearMembrane.Length / 2 - 1)
+                {
+                    point1 = new PointF((float)tempArray[tempNumber, 0], (float)tempArray[tempNumber, 1]);
+                    graphics.DrawLine(new Pen(Color.Blue, 2),
+                            convertToScreenForSavagePointF(new PointF(0, point1.Y), pointAxis.X, pointAxis.Y),
+                            convertToScreenForSavagePointF(point1, pointAxis.X, pointAxis.Y));
+                    graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenForSavagePointF(new PointF(point1.X, 0), pointAxis.X, pointAxis.Y),
+                        convertToScreenForSavagePointF(point1, pointAxis.X, pointAxis.Y));
+                }
             }
             else
             {
@@ -563,9 +589,17 @@ namespace TurchinaTPRLab
                         break;
                     }
                 }
-                PointF point1 = new PointF((float)tempArray[tempNumber, 0], (float)tempArray[tempNumber, 1]);
+                PointF point1 = new PointF();
+                if (tempNumber > linearMembrane.Length / 2 - 1)
+                {
+                    point1 = new PointF((float)linearMembrane[0, 0], (float)linearMembrane[0, 1]);
+                }
+                else
+                {
+                    point1 = new PointF((float)tempArray[tempNumber, 0], (float)tempArray[tempNumber, 1]);                    
+                }
                 graphics.DrawLine(new Pen(Color.Blue, 2),
-                    convertToScreenPointF(new PointF(0, point1.Y)), convertToScreenPointF(point1));
+                        convertToScreenPointF(new PointF(0, point1.Y)), convertToScreenPointF(point1));
                 graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenPointF(new PointF(point1.X, 0)),
                     convertToScreenPointF(point1));
             }
@@ -589,8 +623,6 @@ namespace TurchinaTPRLab
                     }
                 }
 
-
-
                 double k = (tempArray[number1, 1] - tempArray[number2, 1]) /
                     (tempArray[number1, 0] - tempArray[number2, 0]);
                 double b = tempArray[number2, 1] - tempArray[number2, 0] *
@@ -603,6 +635,33 @@ namespace TurchinaTPRLab
                 graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenPointF(new PointF(point2.X, 0)),
                     convertToScreenPointF(point2));
             }
+        }
+
+        private void buttonDownScale_Click(object sender, EventArgs e)
+        {
+            scaleY = (int)(scaleY * 1.5);
+            scaleY = (int)(scaleX * 1.5);
+            pictureBox1.Refresh();
+            DrawingGraphic();
+            DrawingSet();
+            DrawAxisNumbers();
+            if (miniMaxCriterionRadioButton.Checked) DrawingWedge(5);
+            if (savageCriterionRadioButton.Checked) DrawingWedgeForSavage(0, DrawingAxisForSavage());
+            if (bayesianCriterionRadioButton.Checked) DrawingGradient();
+            //if (neymanPearsonCriterionRadioButton.Checked) Dra
+        }
+
+        private void buttonUpScale_Click(object sender, EventArgs e)
+        {            
+            scaleY = (int) (scaleY / 1.5);
+            scaleY = (int) (scaleX / 1.5);
+            pictureBox1.Refresh();
+            DrawingGraphic();
+            DrawingSet();
+            DrawAxisNumbers();
+            if (miniMaxCriterionRadioButton.Checked) DrawingWedge(5);
+            if (savageCriterionRadioButton.Checked) DrawingWedgeForSavage(0, DrawingAxisForSavage());
+            if (bayesianCriterionRadioButton.Checked) DrawingGradient();
         }
 
     }

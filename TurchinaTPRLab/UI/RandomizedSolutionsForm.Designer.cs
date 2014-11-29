@@ -57,6 +57,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.backButtonPictureBox = new System.Windows.Forms.PictureBox();
             this.warningLabel = new System.Windows.Forms.Label();
+            this.buttonDownScale = new System.Windows.Forms.Button();
+            this.buttonUpScale = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.neymanPearsonCriterionPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hurwitzCriterionPictureBox)).BeginInit();
@@ -365,9 +367,29 @@
             this.warningLabel.Size = new System.Drawing.Size(506, 232);
             this.warningLabel.TabIndex = 28;
             this.warningLabel.Text = "Для начала работы загрузите матрицу потерь (нажмите правой кнопкой мыши на таблиц" +
-    "е, вызвав соответствующее контекстное меню)";
+                "е, вызвав соответствующее контекстное меню)";
             this.warningLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.warningLabel.UseCompatibleTextRendering = true;
+            // 
+            // buttonDownScale
+            // 
+            this.buttonDownScale.Location = new System.Drawing.Point(494, 324);
+            this.buttonDownScale.Name = "buttonDownScale";
+            this.buttonDownScale.Size = new System.Drawing.Size(43, 42);
+            this.buttonDownScale.TabIndex = 29;
+            this.buttonDownScale.Text = "-";
+            this.buttonDownScale.UseVisualStyleBackColor = true;
+            this.buttonDownScale.Click += new System.EventHandler(this.buttonDownScale_Click);
+            // 
+            // buttonUpScale
+            // 
+            this.buttonUpScale.Location = new System.Drawing.Point(543, 324);
+            this.buttonUpScale.Name = "buttonUpScale";
+            this.buttonUpScale.Size = new System.Drawing.Size(43, 42);
+            this.buttonUpScale.TabIndex = 30;
+            this.buttonUpScale.Text = "+";
+            this.buttonUpScale.UseVisualStyleBackColor = true;
+            this.buttonUpScale.Click += new System.EventHandler(this.buttonUpScale_Click);
             // 
             // RandomizedSolutionsForm
             // 
@@ -375,6 +397,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1024, 567);
+            this.Controls.Add(this.buttonUpScale);
+            this.Controls.Add(this.buttonDownScale);
             this.Controls.Add(this.warningLabel);
             this.Controls.Add(this.backButtonPictureBox);
             this.Controls.Add(this.pictureBox1);
@@ -439,5 +463,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox backButtonPictureBox;
         private System.Windows.Forms.Label warningLabel;
+        private System.Windows.Forms.Button buttonDownScale;
+        private System.Windows.Forms.Button buttonUpScale;
     }
 }
