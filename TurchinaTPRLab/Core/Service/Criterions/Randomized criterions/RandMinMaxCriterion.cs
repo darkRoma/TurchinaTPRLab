@@ -1,4 +1,4 @@
-﻿using DecisionTheory.Core.MVCModel;
+using DecisionTheory.Core.MVCModel;
 using DecisionTheory.Core.Service.Criterions;
 using System;
 using System.Collections.Generic;
@@ -43,13 +43,13 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
             {
                 if (IsLine == 1 || IsLine == 3)
                 {
-                    result = Helper.CountResult(indexEquivalent, Helper.FindNumberMinY(convexHull), 0, 1.0, sizeLossArray);
+                    result = Helper.CountResult(indexEquivalent, numberOfMinXPoint, 0, 1.0, sizeLossArray);
                     return new Solution(result, 0.0);
                 }
                 if(IsLine == 2)
                 {
 
-                    result = Helper.CountResult(indexEquivalent, Helper.FindNumberMinX(convexHull), 0, 1.0, sizeLossArray);
+                    result = Helper.CountResult(indexEquivalent, numberOfMinXPoint, 0, 1.0, sizeLossArray);
                     return new Solution(result, 0.0);
                 }
 
@@ -99,7 +99,10 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
 
         static double CountLoss(double x, double a, double b)
         {
-            return a * x + (1 - x) * b;
+            if (x == 0)
+            { return 0; }
+            else
+            { return Math.Round(a * x + (1 - x) * b, 2); }
         }
 
     }
