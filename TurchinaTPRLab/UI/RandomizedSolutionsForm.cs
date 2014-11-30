@@ -23,8 +23,8 @@ namespace TurchinaTPRLab
         private RegretMatrixView regretMatrixView;
         Model model;
 
-        private int scaleX = 20;
-        private int scaleY = 20;
+        private double scaleX = 20;
+        private double scaleY = 20;
         private double[,] linearMembrane;
         private double[,] array;
         private bool IsShowLosses = false;
@@ -171,11 +171,11 @@ namespace TurchinaTPRLab
                     ShowSolution(model);
                     if (model.ControledStateNumber == 1)
                     {
-                        graphics.FillRectangle(new SolidBrush(Color.AliceBlue), (float)model.LossestRate * scaleX, 0, pictureBox1.Width - (float)model.ControledStateNumber * scaleX, pictureBox1.Height - 2);
+                        graphics.FillRectangle(new SolidBrush(Color.AliceBlue), (float)(model.LossestRate * scaleX), 0, pictureBox1.Width - (float)(model.ControledStateNumber * scaleX), pictureBox1.Height - 2);
                     }
                     else
                     {
-                        graphics.FillRectangle(new SolidBrush(Color.AliceBlue), 0, 0, pictureBox1.Width, pictureBox1.Height - (float)model.LossestRate * scaleY);
+                        graphics.FillRectangle(new SolidBrush(Color.AliceBlue), 0, 0, pictureBox1.Width, pictureBox1.Height - (float)(model.LossestRate * scaleY));
                     }
                 }
             }
@@ -231,7 +231,7 @@ namespace TurchinaTPRLab
             double[] solutionVector = solution.getSolution();
             string solutionToDisplay = "(" + solutionVector[0].ToString() ;
 
-            for (int x=1; x<solutionVector.Length; x++)
+            for (int x = 1; x < solutionVector.Length; x++)
             {
                 solutionToDisplay += "; " + solutionVector[x].ToString();
             }
@@ -313,29 +313,19 @@ namespace TurchinaTPRLab
 
         private Graphics DrawAxisNumbers()
         {
-            for (int i = 1; i < 10000; i++)
+            for (int i = 1; i < (int)pictureBox1.Height / scaleX + 1; i++)
             {
-                if (i < 20) graphics.DrawString(i.ToString(), labelGradientX.Font, new SolidBrush(Color.Red), convertToScreenPointF(new PointF(0, (float)(i + 0.5))));                
+                graphics.DrawString(i.ToString(), labelGradientX.Font, new SolidBrush(Color.Red), new PointF(0, pictureBox1.Height - (float)(i * scaleY) - 5));                
             }
             for (int i = 1; i < (int)pictureBox1.Width / scaleY + 1; i++)
             {
-                if (i < 21) graphics.DrawString(i.ToString(), labelGradientX.Font, new SolidBrush(Color.Red), convertToScreenPointF(new PointF(i, (float)0.6)));                
+                graphics.DrawString(i.ToString(), labelGradientX.Font, new SolidBrush(Color.Red), new PointF((float)(i * scaleX), pictureBox1.Height - 13));                
             }
             return graphics;
         }
 
         private void DrawingAxis(PaintEventArgs e)
-        {            
-            /*for (int i = 1; i < 10000; i++)
-            {
-                if (i < 20) e.Graphics.DrawString(i.ToString(), labelGradientX.Font, new SolidBrush(Color.Red), convertToScreenPointF(new PointF(0, (float)(i+0.5))));
-                e.Graphics.DrawLine(System.Drawing.Pens.LightGray, new System.Drawing.Point(scaleX * i, pictureBox1.Height - 1), new System.Drawing.Point(scaleX * i, 0));
-            }            
-            for (int i = 1; i < (int)pictureBox1.Width/scaleY + 1; i++)
-            {
-                if (i < 21) e.Graphics.DrawString(i.ToString(), labelGradientX.Font, new SolidBrush(Color.Red), convertToScreenPointF(new PointF(i, (float)0.6)));
-                e.Graphics.DrawLine(System.Drawing.Pens.LightGray, new System.Drawing.Point(0, pictureBox1.Height - scaleY*i), new System.Drawing.Point(pictureBox1.Width, pictureBox1.Height - scaleY*i));
-            }*/
+        {  
             e.Graphics.DrawLine(new Pen(Color.Black, 3), new System.Drawing.Point(0, pictureBox1.Height - 1), new System.Drawing.Point(pictureBox1.Width, pictureBox1.Height - 1));
             e.Graphics.DrawLine(new Pen(Color.Black, 3), new System.Drawing.Point(0, 0), new System.Drawing.Point(0, pictureBox1.Height));
         }
@@ -450,8 +440,6 @@ namespace TurchinaTPRLab
             var factory = CriterionFactory.getFactory();
             var criterion = factory.ElementAt(number);
             Model model = controller.getModel();
-            
-            
 
             var rows = model.getDecisionsCount();
             var cols = model.getStatesCount();
@@ -547,7 +535,8 @@ namespace TurchinaTPRLab
                 graphics.DrawLine(new Pen(Color.Blue, 2),
                     convertToScreenForSavagePointF(new PointF(0, point2.Y), pointAxis.X, pointAxis.Y), 
                     convertToScreenForSavagePointF(point2, pointAxis.X, pointAxis.Y));
-                graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenForSavagePointF(new PointF(point2.X, 0), pointAxis.X, pointAxis.Y),
+                graphics.DrawLine(new Pen(Color.Blue, 2), 
+                    convertToScreenForSavagePointF(new PointF(point2.X, 0), pointAxis.X, pointAxis.Y),
                     convertToScreenForSavagePointF(point2, pointAxis.X, pointAxis.Y));
             }
         }
@@ -639,28 +628,28 @@ namespace TurchinaTPRLab
 
         private void buttonDownScale_Click(object sender, EventArgs e)
         {
-            scaleY = (int)(scaleY * 1.5);
-            scaleY = (int)(scaleX * 1.5);
+            scaleY = scaleY / 1.5;
+            scaleX = scaleX / 1.5;
             pictureBox1.Refresh();
             DrawingGraphic();
             DrawingSet();
             DrawAxisNumbers();
             if (miniMaxCriterionRadioButton.Checked) DrawingWedge(5);
-            if (savageCriterionRadioButton.Checked) DrawingWedgeForSavage(0, DrawingAxisForSavage());
+            if (savageCriterionRadioButton.Checked) DrawingWedgeForSavage(9, DrawingAxisForSavage());
             if (bayesianCriterionRadioButton.Checked) DrawingGradient();
             //if (neymanPearsonCriterionRadioButton.Checked) Dra
         }
 
         private void buttonUpScale_Click(object sender, EventArgs e)
         {            
-            scaleY = (int) (scaleY / 1.5);
-            scaleY = (int) (scaleX / 1.5);
+            scaleY = scaleY * 1.5;
+            scaleX = scaleX * 1.5;
             pictureBox1.Refresh();
             DrawingGraphic();
             DrawingSet();
             DrawAxisNumbers();
             if (miniMaxCriterionRadioButton.Checked) DrawingWedge(5);
-            if (savageCriterionRadioButton.Checked) DrawingWedgeForSavage(0, DrawingAxisForSavage());
+            if (savageCriterionRadioButton.Checked) DrawingWedgeForSavage(9, DrawingAxisForSavage());
             if (bayesianCriterionRadioButton.Checked) DrawingGradient();
         }
 
