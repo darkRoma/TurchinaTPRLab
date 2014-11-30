@@ -169,14 +169,7 @@ namespace TurchinaTPRLab
                     IsShowLosses = false;
                     solution = criterion.makeDecision(model);
                     ShowSolution(model);
-                    if (model.ControledStateNumber == 1)
-                    {
-                        graphics.FillRectangle(new SolidBrush(Color.AliceBlue), (float)(model.LossestRate * scaleX), 0, pictureBox1.Width - (float)(model.ControledStateNumber * scaleX), pictureBox1.Height - 2);
-                    }
-                    else
-                    {
-                        graphics.FillRectangle(new SolidBrush(Color.AliceBlue), 0, 0, pictureBox1.Width, pictureBox1.Height - (float)(model.LossestRate * scaleY));
-                    }
+                    DrawingNeimanPearson(model.LossestRate, model.ControledStateNumber);
                 }
             }
             else if (bayesianCriterionRadioButton.Checked)
@@ -224,6 +217,18 @@ namespace TurchinaTPRLab
                 solution = criterion.makeDecision(model);
                 ShowSolution(model);
             }            
+        }
+
+        private void DrawingNeimanPearson(double rate, int controlState)
+        {
+            if (controlState == 1)
+            {
+                graphics.DrawLine(new Pen(Color.Aqua, 2), convertToScreenPointF(new PointF((float)rate, 0)), convertToScreenPointF(new PointF((float)rate, pictureBox1.Height)));
+            }
+            else
+            {
+                graphics.DrawLine(new Pen(Color.Aqua, 2), convertToScreenPointF(new PointF(0, (float)rate)), convertToScreenPointF(new PointF(pictureBox1.Width, (float)rate)));
+            }
         }
 
         private Model ShowSolution(Model model)
@@ -637,7 +642,7 @@ namespace TurchinaTPRLab
             if (miniMaxCriterionRadioButton.Checked) DrawingWedge(5);
             if (savageCriterionRadioButton.Checked) DrawingWedgeForSavage(9, DrawingAxisForSavage());
             if (bayesianCriterionRadioButton.Checked) DrawingGradient();
-            //if (neymanPearsonCriterionRadioButton.Checked) Dra
+            if (neymanPearsonCriterionRadioButton.Checked) DrawingNeimanPearson(model.LossestRate, model.ControledStateNumber);
         }
 
         private void buttonUpScale_Click(object sender, EventArgs e)
@@ -651,6 +656,7 @@ namespace TurchinaTPRLab
             if (miniMaxCriterionRadioButton.Checked) DrawingWedge(5);
             if (savageCriterionRadioButton.Checked) DrawingWedgeForSavage(9, DrawingAxisForSavage());
             if (bayesianCriterionRadioButton.Checked) DrawingGradient();
+            if (neymanPearsonCriterionRadioButton.Checked) DrawingNeimanPearson(model.LossestRate, model.ControledStateNumber);
         }
 
     }
