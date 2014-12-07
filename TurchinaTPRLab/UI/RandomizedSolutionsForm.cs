@@ -495,8 +495,8 @@ namespace TurchinaTPRLab
                 }
             }
             solution = criterion.makeDecision(regret);
-            double[,] tempArray = new double[linearMembrane.Length / 2, 2];
-            for (int i = 0; i < linearMembrane.Length / 2; i++)
+            double[,] tempArray = new double[model.rows, 2];
+            for (int i = 0; i < model.rows; i++)
             {
                 for (int j = 0; j < 2; j++)
                 {
@@ -592,8 +592,8 @@ namespace TurchinaTPRLab
             }
 
 
-            double[,] tempArray = new double[linearMembrane.Length/2, 2];
-            for (int i = 0; i < linearMembrane.Length/2; i++)
+            double[,] tempArray = new double[model.rows, 2];
+            for (int i = 0; i < model.rows; i++)
             {
                 for (int j = 0; j < 2; j++)
                 {
