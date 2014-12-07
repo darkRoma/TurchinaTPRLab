@@ -10,6 +10,7 @@ using DecisionTheory.Core.MVCController;
 using DecisionTheory.Core.MVCView.Table;
 using DecisionTheory.Core.MVCModel;
 using DecisionTheory.Core.Service.Criterions;
+using GurwitsRandomCriterion;
 
 namespace TurchinaTPRLab
 {
@@ -150,10 +151,38 @@ namespace TurchinaTPRLab
             }
             else if (hurwitzCriterionRadioButton.Checked)
             {
-                MessageBox.Show("Приносим свои извинения. Раздел находится в стадии разработки.");
-                /*criterion = factory.ElementAt(6);
-                solution = criterion.makeDecision(model);
-                ShowSolution(model);*/                
+                double [] solutionResult=new double[array.Length / 2];;
+                var solve = Gurwits.getResult(array, Convert.ToDouble(textBoxOptimismFactor.Text));
+                double lossesGur =0;
+                if (solve.j >= 0 && solve.i >= 0)
+                {
+                    solutionResult[solve.i] = solve.x;
+                    solutionResult[solve.j] = 1-solve.x;
+                    lossesGur = solve.x * array[ solve.i, 0] + (1 - solve.x) * array[ solve.j, 0];
+                }
+                if (solve.j >= 0 && solve.i < 0)
+                {
+                    solutionResult[solve.j] = solve.x;
+                    lossesGur = 0;
+                }
+                if (solve.j < 0 && solve.i >= 0)
+                {
+                    solutionResult[solve.i] = solve.x;
+                    lossesGur = 0;
+                }
+
+                
+                string solutionToDisplay = "(" + solutionResult[0].ToString();
+
+                for (int x = 1; x < solutionResult.Length; x++)
+                {
+                    solutionToDisplay += "; " + solutionResult[x].ToString();
+                }
+                solutionToDisplay += ")";
+
+                MessageBox.Show("Решение: " + solutionToDisplay + " Потери: " + Math.Round(lossesGur,2).ToString());
+                
+                
             }
             else if (neymanPearsonCriterionRadioButton.Checked)
             {

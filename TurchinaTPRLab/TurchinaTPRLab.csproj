@@ -72,6 +72,7 @@
     <Compile Include="Core\Service\Criterions\MinMaxCriterion.cs" />
     <Compile Include="Core\Service\Criterions\NeymanPearsonCriterion.cs" />
     <Compile Include="Core\Service\Criterions\Randomized criterions\ConvexHull.cs" />
+    <Compile Include="Core\Service\Criterions\Randomized criterions\GurwitsRandom.cs" />
     <Compile Include="Core\Service\Criterions\Randomized criterions\Helper.cs" />
     <Compile Include="Core\Service\Criterions\Randomized criterions\Point.cs" />
     <Compile Include="Core\Service\Criterions\Randomized criterions\RandBayesCriterion.cs" />
