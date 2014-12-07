@@ -151,38 +151,53 @@ namespace TurchinaTPRLab
             }
             else if (hurwitzCriterionRadioButton.Checked)
             {
-                double [] solutionResult=new double[array.Length / 2];;
-                var solve = Gurwits.getResult(array, Convert.ToDouble(textBoxOptimismFactor.Text));
-                double lossesGur =0;
-                if (solve.j >= 0 && solve.i >= 0)
+                if (textBoxOptimismFactor.Text == "")
                 {
-                    solutionResult[solve.i] = solve.x;
-                    solutionResult[solve.j] = 1-solve.x;
-                    lossesGur = solve.x * array[ solve.i, 0] + (1 - solve.x) * array[ solve.j, 0];
+                    MessageBox.Show("Вы не ввели коэффициент оптимизма!!!");
                 }
-                if (solve.j >= 0 && solve.i < 0)
+                else
                 {
-                    solutionResult[solve.j] = solve.x;
-                    lossesGur = 0;
-                }
-                if (solve.j < 0 && solve.i >= 0)
-                {
-                    solutionResult[solve.i] = solve.x;
-                    lossesGur = 0;
-                }
+                    double[] solutionResult = new double[array.Length / 2];
+                    double gurwitsRate = Convert.ToDouble(textBoxOptimismFactor.Text);
+                    var solve = Gurwits.getResult(array, Convert.ToDouble(textBoxOptimismFactor.Text));
+                    double lossesGur = 0;
+                    if (solve.j >= 0 && solve.i >= 0)
+                    {
+                        solutionResult[solve.i] = solve.x;
+                        solutionResult[solve.j] = 1 - solve.x;
+                        lossesGur = solve.x * array[solve.i, 0] + (1 - solve.x) * array[solve.j, 0];
+                    }
+                    if (solve.j >= 0 && solve.i < 0)
+                    {
+                        solutionResult[solve.j] = solve.x;
+                        lossesGur = 0;
+                    }
+                    if (solve.j < 0 && solve.i >= 0)
+                    {
+                        solutionResult[solve.i] = solve.x;
+                        lossesGur = 0;
+                    }
 
-                
-                string solutionToDisplay = "(" + solutionResult[0].ToString();
+                    string solutionToDisplay = "(" + solutionResult[0].ToString();
 
-                for (int x = 1; x < solutionResult.Length; x++)
-                {
-                    solutionToDisplay += "; " + solutionResult[x].ToString();
+                    for (int x = 1; x < solutionResult.Length; x++)
+                    {
+                        solutionToDisplay += "; " + solutionResult[x].ToString();
+                    }
+
+                    solutionToDisplay += ")";
+
+                    MessageBox.Show("Решение: " + solutionToDisplay + " Потери: " + Math.Round(lossesGur, 2).ToString());
+                    if (gurwitsRate == 0)
+                    {
+                        criterion = factory.ElementAt(5);
+                        DrawingWedge(5);
+                    }
+                    if (gurwitsRate > 0 || gurwitsRate < 0.5)
+                    {
+ 
+                    }
                 }
-                solutionToDisplay += ")";
-
-                MessageBox.Show("Решение: " + solutionToDisplay + " Потери: " + Math.Round(lossesGur,2).ToString());
-                
-                
             }
             else if (neymanPearsonCriterionRadioButton.Checked)
             {
