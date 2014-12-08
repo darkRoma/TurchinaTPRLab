@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using TurchinaTPRLab.UI;
 
 namespace TurchinaTPRLab
 {
@@ -37,6 +38,12 @@ namespace TurchinaTPRLab
             NonRandomizedSolutionsForm nonRandomizedSolutionsForm = new NonRandomizedSolutionsForm();
             this.Hide();
             nonRandomizedSolutionsForm.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            GuideForm guideForm = new GuideForm();
+            guideForm.Show();
         }
     }
 }

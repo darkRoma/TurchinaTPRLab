@@ -48,6 +48,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.backButtonPictureBox = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.guidePictureBox = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.neymanPearsonCriterionPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hurwitzCriterionPictureBox)).BeginInit();
@@ -55,6 +56,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.savageCriterionPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.miniMaxCriterionPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backButtonPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.guidePictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -71,7 +73,7 @@
             this.groupBox1.Controls.Add(this.miniMaxCriterionRadioButton);
             this.groupBox1.Enabled = false;
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 68);
+            this.groupBox1.Location = new System.Drawing.Point(12, 75);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(324, 203);
             this.groupBox1.TabIndex = 1;
@@ -203,7 +205,7 @@
             // solveWithCreterionButton
             // 
             this.solveWithCreterionButton.Enabled = false;
-            this.solveWithCreterionButton.Location = new System.Drawing.Point(86, 277);
+            this.solveWithCreterionButton.Location = new System.Drawing.Point(86, 284);
             this.solveWithCreterionButton.Name = "solveWithCreterionButton";
             this.solveWithCreterionButton.Size = new System.Drawing.Size(75, 23);
             this.solveWithCreterionButton.TabIndex = 2;
@@ -225,7 +227,7 @@
             this.layout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.layout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.layout1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.layout1.Location = new System.Drawing.Point(62, 327);
+            this.layout1.Location = new System.Drawing.Point(62, 334);
             this.layout1.Name = "layout1";
             this.layout1.RowCount = 1;
             this.layout1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -234,7 +236,7 @@
             // 
             // lyambdaTextBox
             // 
-            this.lyambdaTextBox.Location = new System.Drawing.Point(440, 202);
+            this.lyambdaTextBox.Location = new System.Drawing.Point(440, 209);
             this.lyambdaTextBox.Name = "lyambdaTextBox";
             this.lyambdaTextBox.Size = new System.Drawing.Size(100, 20);
             this.lyambdaTextBox.TabIndex = 4;
@@ -243,7 +245,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(342, 205);
+            this.label1.Location = new System.Drawing.Point(342, 212);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 26;
@@ -265,7 +267,7 @@
             // 
             this.label2.Font = new System.Drawing.Font("Monotype Corsiva", 21.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.ForeColor = System.Drawing.Color.Coral;
-            this.label2.Location = new System.Drawing.Point(420, 58);
+            this.label2.Location = new System.Drawing.Point(420, 65);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(506, 232);
             this.label2.TabIndex = 27;
@@ -274,12 +276,24 @@
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label2.UseCompatibleTextRendering = true;
             // 
+            // guidePictureBox
+            // 
+            this.guidePictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.guidePictureBox.Image = ((System.Drawing.Image)(resources.GetObject("guidePictureBox.Image")));
+            this.guidePictureBox.Location = new System.Drawing.Point(103, 3);
+            this.guidePictureBox.Name = "guidePictureBox";
+            this.guidePictureBox.Size = new System.Drawing.Size(66, 69);
+            this.guidePictureBox.TabIndex = 28;
+            this.guidePictureBox.TabStop = false;
+            this.guidePictureBox.Click += new System.EventHandler(this.guidePictureBox_Click);
+            // 
             // NonRandomizedSolutionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(967, 538);
+            this.Controls.Add(this.guidePictureBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.backButtonPictureBox);
@@ -298,6 +312,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.savageCriterionPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.miniMaxCriterionPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backButtonPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.guidePictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,6 +339,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox backButtonPictureBox;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox guidePictureBox;
 
 
     }

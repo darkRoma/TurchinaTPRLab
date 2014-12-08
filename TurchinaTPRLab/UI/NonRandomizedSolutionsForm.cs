@@ -10,6 +10,7 @@ using DecisionTheory.Core.MVCController;
 using DecisionTheory.Core.MVCView.Table;
 using DecisionTheory.Core.MVCModel;
 using DecisionTheory.Core.Service.Criterions;
+using TurchinaTPRLab.UI;
 
 namespace TurchinaTPRLab
 {
@@ -186,6 +187,12 @@ namespace TurchinaTPRLab
                 }
             }
 
+        }
+
+        private void guidePictureBox_Click(object sender, EventArgs e)
+        {
+            GuideForm guideForm = new GuideForm();
+            guideForm.Show();
         }
 
     }

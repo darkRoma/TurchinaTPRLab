@@ -33,6 +33,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -91,6 +95,12 @@
     <Compile Include="UI\BayesianCriterionInfoForm.Designer.cs">
       <DependentUpon>BayesianCriterionInfoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\GuideForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\GuideForm.Designer.cs">
+      <DependentUpon>GuideForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\HurwitzCriterionInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +148,9 @@
     <EmbeddedResource Include="UI\BayesianCriterionInfoForm.resx">
       <DependentUpon>BayesianCriterionInfoForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\GuideForm.resx">
+      <DependentUpon>GuideForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\HurwitzCriterionInfoForm.resx">
       <DependentUpon>HurwitzCriterionInfoForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,6 +190,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="old_openofficeorg_math.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

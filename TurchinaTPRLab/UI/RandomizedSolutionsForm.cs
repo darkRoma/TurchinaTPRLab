@@ -11,6 +11,7 @@ using DecisionTheory.Core.MVCView.Table;
 using DecisionTheory.Core.MVCModel;
 using DecisionTheory.Core.Service.Criterions;
 using GurwitsRandomCriterion;
+using TurchinaTPRLab.UI;
 
 namespace TurchinaTPRLab
 {
@@ -69,6 +70,8 @@ namespace TurchinaTPRLab
                         solveWithCreterionButton.Enabled = true;
                         warningLabel.Visible = false;
                         pictureBox1.Visible = true;
+                        buttonDownScale.Visible = true;
+                        buttonUpScale.Visible = true;
                     }
                 }
             });
@@ -798,6 +801,12 @@ namespace TurchinaTPRLab
             if (bayesianCriterionRadioButton.Checked) DrawingGradient();
             if (neymanPearsonCriterionRadioButton.Checked) DrawingNeimanPearson(model.LossestRate, model.ControledStateNumber);
             if (hurwitzCriterionRadioButton.Checked) DrawingWedgeForGurwits(gurwitsRate, 5, solutionResult, array);
+        }
+
+        private void guidePictureBox_Click(object sender, EventArgs e)
+        {
+            GuideForm guideForm = new GuideForm();
+            guideForm.Show();
         }
 
     }
