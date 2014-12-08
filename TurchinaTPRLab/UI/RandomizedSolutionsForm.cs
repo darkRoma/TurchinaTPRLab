@@ -755,7 +755,7 @@ namespace TurchinaTPRLab
                 }
                 else if (gurwitsRate > 0 || gurwitsRate < 0.5)
                 {
-                    float tempAxisX = tempX * (float)(0.5 + gurwitsRate);
+                    float tempAxisX = tempX * (float)(2 * gurwitsRate);
                     graphics.DrawLine(new Pen(Color.Blue, 2),
                         convertToScreenPointF(new PointF(0, point2.Y + tempAxisX)), convertToScreenPointF(point2));
                     graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenPointF(new PointF(point2.X + tempAxisX, 0)),
