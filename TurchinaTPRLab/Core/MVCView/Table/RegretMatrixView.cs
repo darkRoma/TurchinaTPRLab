@@ -9,7 +9,7 @@ namespace DecisionTheory.Core.MVCView.Table
     /// </summary>
     public class RegretMatrixView : DataMatrixView
     {
-        private const string TOKEN = "матрица сожалений";
+        private const string TOKEN = "Матрица сожалений";
 
         /// <summary>
         /// Constructor that sets parent control where this view is located and default title

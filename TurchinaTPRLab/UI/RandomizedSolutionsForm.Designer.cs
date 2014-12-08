@@ -257,7 +257,7 @@
             // textBoxOptimismFactor
             // 
             this.textBoxOptimismFactor.Location = new System.Drawing.Point(483, 213);
-            this.textBoxOptimismFactor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxOptimismFactor.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxOptimismFactor.Name = "textBoxOptimismFactor";
             this.textBoxOptimismFactor.Size = new System.Drawing.Size(76, 20);
             this.textBoxOptimismFactor.TabIndex = 11;
@@ -277,7 +277,7 @@
             // textBoxNumControlState
             // 
             this.textBoxNumControlState.Location = new System.Drawing.Point(507, 244);
-            this.textBoxNumControlState.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxNumControlState.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxNumControlState.Name = "textBoxNumControlState";
             this.textBoxNumControlState.Size = new System.Drawing.Size(76, 20);
             this.textBoxNumControlState.TabIndex = 13;
@@ -286,7 +286,7 @@
             // textBoxLossesRate
             // 
             this.textBoxLossesRate.Location = new System.Drawing.Point(507, 269);
-            this.textBoxLossesRate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxLossesRate.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxLossesRate.Name = "textBoxLossesRate";
             this.textBoxLossesRate.Size = new System.Drawing.Size(76, 20);
             this.textBoxLossesRate.TabIndex = 14;
@@ -432,6 +432,7 @@
             this.Controls.Add(this.solveWithCreterionButton);
             this.Controls.Add(this.groupBox1);
             this.Name = "RandomizedSolutionsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Рандомизированные решения";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RandomizedSolutionsForm_FormClosed);
             this.Load += new System.EventHandler(this.RandomizedSolutionsForm_Load);

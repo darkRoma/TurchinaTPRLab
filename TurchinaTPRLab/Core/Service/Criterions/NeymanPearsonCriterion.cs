@@ -8,7 +8,7 @@ namespace DecisionTheory.Core.Service.Criterions
     /// </summary>
     public class NeymanPearsonCriterion : Criterion
     {
-        private const string TOKEN = "критерий Неймана-Пирсона";
+        private const string TOKEN = "Критерий Неймана-Пирсона";
         //TODO ???
         private double limit = 3;
         private int index = 1;
@@ -30,7 +30,7 @@ namespace DecisionTheory.Core.Service.Criterions
 
             if (cols != 2)
             {
-                throw new SystemException("States count must best equals 2");
+                throw new SystemException("Количество состояний (столбцов матрицы) должно быть равным 2");
                 return null;
             }
             var j = index;

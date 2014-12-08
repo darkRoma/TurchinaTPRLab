@@ -9,7 +9,7 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
 {
     class RandNeymanPearsonCriterion : Criterion
     {
-        private const string TOKEN = "критерий Неймана-Пирсона (ранд. решения)";
+        private const string TOKEN = "Критерий Неймана-Пирсона (ранд. решения)";
 
         /// <summary>
         /// Constructor that sets default name of the criterion

@@ -9,7 +9,7 @@ namespace DecisionTheory.Core.MVCView.Table
     /// </summary>
     public class LossesMatrixView : DataMatrixView
     {
-        private const string TOKEN = "матрица потерь";
+        private const string TOKEN = "Матрица потерь";
         /// <summary>
         /// Constructor that sets parent control where this view is located and default title
         /// </summary>

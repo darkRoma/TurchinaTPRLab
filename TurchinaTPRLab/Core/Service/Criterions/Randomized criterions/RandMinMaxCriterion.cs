@@ -9,7 +9,7 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
 {
     class RandMinMaxCriterion : Criterion
     {
-        private const string TOKEN = "минимаксный критерий (ранд. решения)";
+        private const string TOKEN = "Минимаксный критерий (ранд. решения)";
 
         /// <summary>
         /// Constructor that sets default name of the criterion

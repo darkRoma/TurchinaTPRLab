@@ -36,7 +36,7 @@ namespace DecisionTheory.Core.MVCView.Table
                 });
             }
 
-            menu.Items.Add("очистить решение", null, delegate
+            menu.Items.Add("Очистить решение", null, delegate
             {
                 this.solution = null;
                 update();

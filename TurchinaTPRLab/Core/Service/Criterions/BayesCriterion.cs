@@ -9,7 +9,7 @@ namespace DecisionTheory.Core.Service.Criterions
     /// </summary>
     public class BayesCriterion : Criterion
     {
-        private const string TOKEN = "критерий Байеса";
+        private const string TOKEN = "Критерий Байеса";
         //TODO ???
 
         /// <summary>

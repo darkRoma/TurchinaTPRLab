@@ -10,7 +10,7 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
 {
     class RandSavageCriterion:Criterion
     {  
-        private const string TOKEN = "критерий Сэвиджа (ранд. решения)";
+        private const string TOKEN = "Критерий Сэвиджа (ранд. решения)";
 
         /// <summary>
         /// Constructor that sets default name of the criterion and optimism rate

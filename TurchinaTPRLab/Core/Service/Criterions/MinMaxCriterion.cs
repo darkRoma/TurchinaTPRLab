@@ -7,7 +7,7 @@ namespace DecisionTheory.Core.Service.Criterions
     /// </summary>
     public class MinMaxCriterion : Criterion
     {
-        private const string TOKEN = "минимаксный критерий";
+        private const string TOKEN = "Минимаксный критерий";
         
         /// <summary>
         /// Constructor that sets default name of the criterion

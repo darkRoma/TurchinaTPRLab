@@ -47,6 +47,7 @@
             this.ClientSize = new System.Drawing.Size(684, 462);
             this.Controls.Add(this.webBrowser1);
             this.Name = "BayesianCriterionInfoForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "BayesianCriterionInfoForm";
             this.ResumeLayout(false);
 

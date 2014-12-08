@@ -12,7 +12,6 @@ D:\Program Files\Теория принятия решений\TurchinaTPRLab\Tur
 D:\Program Files\Теория принятия решений\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.BayesianCriterionInfoForm.resources
 D:\Program Files\Теория принятия решений\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.HurwitzCriterionInfoForm.resources
 D:\Program Files\Теория принятия решений\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.SavageCriterionInfoForm.resources
-D:\Program Files\Теория принятия решений\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.csprojResolveAssemblyReference.cache
 C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.exe
 C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\bin\Debug\TurchinaTPRLab.exe
 C:\Учеба\TurchinaTPRLab\TurchinaTPRLab\bin\Debug\TurchinaTPRLab.pdb

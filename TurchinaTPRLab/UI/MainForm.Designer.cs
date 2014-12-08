@@ -81,6 +81,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(567, 7);
             this.pictureBox1.Name = "pictureBox1";
@@ -100,7 +101,11 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nonRandomizedSolutionsButton);
             this.Controls.Add(this.randomizedSolutionsButton);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(693, 587);
+            this.MinimumSize = new System.Drawing.Size(693, 587);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ТПР. Критерии Оптимальности";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

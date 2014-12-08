@@ -7,7 +7,7 @@ namespace DecisionTheory.Core.Service.Criterions
     /// </summary>
     public class SavageCriterion : Criterion
     {
-        private const string TOKEN = "критерий Сэвиджа";
+        private const string TOKEN = "Критерий Сэвиджа";
 
         /// <summary>
         /// Constructor that sets default name of the criterion and optimism rate

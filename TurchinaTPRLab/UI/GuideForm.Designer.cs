@@ -47,6 +47,7 @@
             this.ClientSize = new System.Drawing.Size(856, 635);
             this.Controls.Add(this.webBrowser1);
             this.Name = "GuideForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Руководство пользователя";
             this.ResumeLayout(false);
 

@@ -9,7 +9,7 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
 {
     class RandGurvitsCriterion : Criterion
     {
-              private const string TOKEN = "критерий Гурвица (ранд. решения)";
+              private const string TOKEN = "Критерий Гурвица (ранд. решения)";
 
         /// <summary>
         /// Constructor that sets default name of the criterion and optimism rate

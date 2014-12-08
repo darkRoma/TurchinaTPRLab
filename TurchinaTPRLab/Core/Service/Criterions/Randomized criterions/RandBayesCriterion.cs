@@ -9,7 +9,7 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
 {
     class RandBayesCriterion : Criterion
     {
-        private const string TOKEN = "критерий Байеса (ранд.решения)";
+        private const string TOKEN = "Критерий Байеса (ранд.решения)";
 
         public RandBayesCriterion() : base(TOKEN) { }
 

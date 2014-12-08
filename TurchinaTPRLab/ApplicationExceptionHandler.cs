@@ -23,7 +23,7 @@ namespace DecisionTheory.Project
             {
                 string report = cause.Message;
                 if (cause.InnerException != null)
-                    report += "\nReason: " + cause.InnerException.Message;
+                    report += "\nПричина: " + cause.InnerException.Message;
                 MessageBox.Show(report);
 
             }

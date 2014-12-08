@@ -7,7 +7,7 @@ namespace DecisionTheory.Core.Service.Criterions
     /// </summary>
     public class GurvitsCriterion : Criterion
     {
-        private const string TOKEN = "критерий Гурвица";
+        private const string TOKEN = "Критерий Гурвица";
 
         //TODO ???
         //public double rate;
