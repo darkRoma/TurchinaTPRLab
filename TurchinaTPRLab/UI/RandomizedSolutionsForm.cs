@@ -29,6 +29,8 @@ namespace TurchinaTPRLab
         private double[,] linearMembrane;
         private double[,] array;
         private bool IsShowLosses = false;
+        private double gurwitsRate = 0;
+        private double[] solutionResult;
 
         /// <summary>
         /// Constructor, that initializes this form component
@@ -157,8 +159,8 @@ namespace TurchinaTPRLab
                 }
                 else
                 {
-                    double[] solutionResult = new double[array.Length / 2];
-                    double gurwitsRate = Convert.ToDouble(textBoxOptimismFactor.Text);
+                    solutionResult = new double[array.Length / 2];
+                    gurwitsRate = Convert.ToDouble(textBoxOptimismFactor.Text);
                     var solve = Gurwits.getResult(array, Convert.ToDouble(textBoxOptimismFactor.Text));
                     double lossesGur = 0;
                     if (solve.j >= 0 && solve.i >= 0)
@@ -780,6 +782,7 @@ namespace TurchinaTPRLab
             if (savageCriterionRadioButton.Checked) DrawingWedgeForSavage(9, DrawingAxisForSavage());
             if (bayesianCriterionRadioButton.Checked) DrawingGradient();
             if (neymanPearsonCriterionRadioButton.Checked) DrawingNeimanPearson(model.LossestRate, model.ControledStateNumber);
+            if (hurwitzCriterionRadioButton.Checked) DrawingWedgeForGurwits(gurwitsRate, 5, solutionResult, array);
         }
 
         private void buttonUpScale_Click(object sender, EventArgs e)
@@ -794,6 +797,7 @@ namespace TurchinaTPRLab
             if (savageCriterionRadioButton.Checked) DrawingWedgeForSavage(9, DrawingAxisForSavage());
             if (bayesianCriterionRadioButton.Checked) DrawingGradient();
             if (neymanPearsonCriterionRadioButton.Checked) DrawingNeimanPearson(model.LossestRate, model.ControledStateNumber);
+            if (hurwitzCriterionRadioButton.Checked) DrawingWedgeForGurwits(gurwitsRate, 5, solutionResult, array);
         }
 
     }
