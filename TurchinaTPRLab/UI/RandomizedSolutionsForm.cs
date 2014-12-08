@@ -188,15 +188,7 @@ namespace TurchinaTPRLab
                     solutionToDisplay += ")";
 
                     MessageBox.Show("Решение: " + solutionToDisplay + " Потери: " + Math.Round(lossesGur, 2).ToString());
-                    if (gurwitsRate == 0)
-                    {
-                        criterion = factory.ElementAt(5);
-                        DrawingWedge(5);
-                    }
-                    if (gurwitsRate > 0 || gurwitsRate < 0.5)
-                    {
- 
-                    }
+                    DrawingWedgeForGurwits(gurwitsRate, 5, solutionResult, array);
                 }
             }
             else if (neymanPearsonCriterionRadioButton.Checked)
@@ -661,6 +653,7 @@ namespace TurchinaTPRLab
                     }
                 }
 
+                //if (radiobutton
                 double k = (tempArray[number1, 1] - tempArray[number2, 1]) /
                     (tempArray[number1, 0] - tempArray[number2, 0]);
                 double b = tempArray[number2, 1] - tempArray[number2, 0] *
@@ -672,6 +665,106 @@ namespace TurchinaTPRLab
                     convertToScreenPointF(new PointF(0, point2.Y)), convertToScreenPointF(point2));
                 graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenPointF(new PointF(point2.X, 0)),
                     convertToScreenPointF(point2));
+            }
+        }
+
+        private void DrawingWedgeForGurwits(double gurwitsRate, int number, double[] solutionVector, double[,] tempArray)
+        {   
+            int countOfPoints = 0;
+            for (int i = 0; i < solutionVector.Length; i++)
+            {
+                if (solutionVector[i] != 0)
+                {
+                    countOfPoints++;
+                }
+            }
+
+            if (countOfPoints < 2)
+            {
+                int tempNumber = 0;
+                for (int i = 0; i < solutionVector.Length; i++)
+                {
+                    if (solutionVector[i] != 0)
+                    {
+                        tempNumber = i;
+                        break;
+                    }
+                }
+                PointF point1 = new PointF();
+                if (tempNumber > linearMembrane.Length / 2 - 1)
+                {
+                    point1 = new PointF((float)linearMembrane[0, 0], (float)linearMembrane[0, 1]);
+                }
+                else
+                {
+                    point1 = new PointF((float)tempArray[tempNumber, 0], (float)tempArray[tempNumber, 1]);
+                }
+                if (gurwitsRate == 0)
+                {
+                    graphics.DrawLine(new Pen(Color.Blue, 2),
+                            convertToScreenPointF(new PointF(0, point1.Y)), convertToScreenPointF(point1));
+                    graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenPointF(new PointF(point1.X, 0)),
+                        convertToScreenPointF(point1));
+                }
+                else if (gurwitsRate == 0.5)
+                {
+                    float k = -1;
+                    float b = point1.X + point1.Y;
+                    graphics.DrawLine(new Pen(Color.Blue, 2),
+                        convertToScreenPointF(new PointF(0, b)), convertToScreenPointF(new PointF(b, 0)));
+                }
+                else if (gurwitsRate > 0.5 || gurwitsRate < 1)
+                {
+                    
+                }
+            }
+            else
+            {
+                int number1 = 0, number2 = 0;
+                for (int i = 0; i < solutionVector.Length; i++)
+                {
+                    if (solutionVector[i] != 0)
+                    {
+                        number1 = i;
+                        break;
+                    }
+                }
+                for (int i = number1 + 1; i < solutionVector.Length; i++)
+                {
+                    if (solutionVector[i] != 0)
+                    {
+                        number2 = i;
+                        break;
+                    }
+                }
+                
+                double k = (tempArray[number1, 1] - tempArray[number2, 1]) /
+                    (tempArray[number1, 0] - tempArray[number2, 0]);
+                double b = tempArray[number2, 1] - tempArray[number2, 0] *
+                    (tempArray[number1, 1] - tempArray[number2, 1]) /
+                    (tempArray[number1, 0] - tempArray[number2, 0]);
+                float tempX = (float)(b / (1 - k));
+                PointF point2 = new PointF(tempX, tempX);
+
+                if (gurwitsRate == 0)
+                {                    
+                    graphics.DrawLine(new Pen(Color.Blue, 2),
+                        convertToScreenPointF(new PointF(0, point2.Y)), convertToScreenPointF(point2));
+                    graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenPointF(new PointF(point2.X, 0)),
+                        convertToScreenPointF(point2));
+                }
+                else if (gurwitsRate > 0 || gurwitsRate < 0.5)
+                {
+                    float tempAxisX = tempX * (float)(0.5 + gurwitsRate);
+                    graphics.DrawLine(new Pen(Color.Blue, 2),
+                        convertToScreenPointF(new PointF(0, point2.Y + tempAxisX)), convertToScreenPointF(point2));
+                    graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenPointF(new PointF(point2.X + tempAxisX, 0)),
+                        convertToScreenPointF(point2));
+                }
+                else if (gurwitsRate > 0.5 || gurwitsRate < 1)
+                {
+
+                }
             }
         }
 
