@@ -206,7 +206,7 @@ namespace TurchinaTPRLab
                 {
                     model.ControledStateNumber = Convert.ToInt32(textBoxNumControlState.Text);
                     model.LossestRate = Convert.ToDouble(textBoxLossesRate.Text);
-                    criterion = factory.ElementAt(7);
+                    criterion = factory.ElementAt(6);
                     IsShowLosses = false;
                     solution = criterion.makeDecision(model);
                     ShowSolution(model);
@@ -216,7 +216,7 @@ namespace TurchinaTPRLab
             else if (bayesianCriterionRadioButton.Checked)
             {
                 IsShowLosses = false;
-                criterion = factory.ElementAt(8);
+                criterion = factory.ElementAt(7);
                 if (textBoxGradientX.Text == "" || textBoxGradientY.Text == "")
                 {
                     MessageBox.Show("Вы не ввели координаты вектора - градиента!!!");
@@ -252,7 +252,7 @@ namespace TurchinaTPRLab
             }
             else if (savageCriterionRadioButton.Checked)
             {
-                criterion = factory.ElementAt(9);
+                criterion = factory.ElementAt(8);
                 PointF pointAxis = DrawingAxisForSavage();
                 DrawingWedgeForSavage(9, pointAxis);
                 solution = criterion.makeDecision(model);
@@ -262,13 +262,20 @@ namespace TurchinaTPRLab
 
         private void DrawingNeimanPearson(double rate, int controlState)
         {
-            if (controlState == 1)
+            try
             {
-                graphics.DrawLine(new Pen(Color.Aqua, 2), convertToScreenPointF(new PointF((float)rate, 0)), convertToScreenPointF(new PointF((float)rate, pictureBox1.Height)));
+                if (controlState == 1)
+                {
+                    graphics.DrawLine(new Pen(Color.Aqua, 2), convertToScreenPointF(new PointF((float)rate, 0)), convertToScreenPointF(new PointF((float)rate, pictureBox1.Height)));
+                }
+                else
+                {
+                    graphics.DrawLine(new Pen(Color.Aqua, 2), convertToScreenPointF(new PointF(0, (float)rate)), convertToScreenPointF(new PointF(pictureBox1.Width, (float)rate)));
+                }
             }
-            else
+            catch (Exception ex)
             {
-                graphics.DrawLine(new Pen(Color.Aqua, 2), convertToScreenPointF(new PointF(0, (float)rate)), convertToScreenPointF(new PointF(pictureBox1.Width, (float)rate)));
+                MessageBox.Show("Drawing failed. "+ex.Message);
             }
         }
 
@@ -378,9 +385,16 @@ namespace TurchinaTPRLab
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            DrawingAxis(e);
-            graphics = pictureBox1.CreateGraphics();
-            pictureBox1.BackColor = Color.White;
+            try
+            {
+                DrawingAxis(e);
+                graphics = pictureBox1.CreateGraphics();
+                pictureBox1.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Drawing failed. " + ex.Message);
+            }
         }
 
         private Graphics DrawingGraphic()
@@ -410,51 +424,58 @@ namespace TurchinaTPRLab
 
         private Graphics DrawingGradient()
         {
-
-            PointF point = new PointF((float)Convert.ToDouble(textBoxGradientX.Text), (float)Convert.ToDouble(textBoxGradientY.Text));
-            Pen bluePen = new Pen(Color.Blue, 4);
-            graphics.DrawLine(bluePen, new Point(0, pictureBox1.Height - 1), convertToScreenPointF(point));
-            //isGradient = true;
-            double[] tempArray = new double[linearMembrane.Length / 2];
-            for (int i = 0; i < tempArray.Length; i++)
+            try
             {
-                tempArray[i] = linearMembrane[i, 0] * point.X + linearMembrane[i, 1] * point.Y;
-            }
-
-            double min = tempArray[0];
-            int imin = 0;
-            for (int i = 1; i < tempArray.Length; i++)
-            {
-                if (tempArray[i] <= min)
+                PointF point = new PointF((float)Convert.ToDouble(textBoxGradientX.Text), (float)Convert.ToDouble(textBoxGradientY.Text));
+                Pen bluePen = new Pen(Color.Blue, 4);
+                graphics.DrawLine(bluePen, new Point(0, pictureBox1.Height - 1), convertToScreenPointF(point));
+                //isGradient = true;
+                double[] tempArray = new double[linearMembrane.Length / 2];
+                for (int i = 0; i < tempArray.Length; i++)
                 {
-                    min = tempArray[i];
-                    imin = i;
+                    tempArray[i] = linearMembrane[i, 0] * point.X + linearMembrane[i, 1] * point.Y;
                 }
-            }
-            if (point.X == 0)
-            {
-                graphics.DrawLine(new Pen(Color.Blue, 2),
-                    convertToScreenPointF(new PointF(0, (float)linearMembrane[imin, 1])),
-                    convertToScreenPointF(new PointF(1000, (float)linearMembrane[imin, 1])));
-            }
-            else if (point.Y == 0)
-            {
-                graphics.DrawLine(new Pen(Color.Blue, 2),
-                    convertToScreenPointF(new PointF((float)linearMembrane[imin, 0], 0)),
-                    convertToScreenPointF(new PointF((float)linearMembrane[imin, 0], 1000)));
-            }
-            else
-            {
-                double k = -Convert.ToDouble(textBoxGradientX.Text) / (Convert.ToDouble(textBoxGradientY.Text));
 
-                PointF pointLine = new PointF((float)linearMembrane[imin, 0], (float)linearMembrane[imin, 1]);
-                double b = pointLine.Y - k * pointLine.X;
+                double min = tempArray[0];
+                int imin = 0;
+                for (int i = 1; i < tempArray.Length; i++)
+                {
+                    if (tempArray[i] <= min)
+                    {
+                        min = tempArray[i];
+                        imin = i;
+                    }
+                }
+                if (point.X == 0)
+                {
+                    graphics.DrawLine(new Pen(Color.Blue, 2),
+                        convertToScreenPointF(new PointF(0, (float)linearMembrane[imin, 1])),
+                        convertToScreenPointF(new PointF(1000, (float)linearMembrane[imin, 1])));
+                }
+                else if (point.Y == 0)
+                {
+                    graphics.DrawLine(new Pen(Color.Blue, 2),
+                        convertToScreenPointF(new PointF((float)linearMembrane[imin, 0], 0)),
+                        convertToScreenPointF(new PointF((float)linearMembrane[imin, 0], 1000)));
+                }
+                else
+                {
+                    double k = -Convert.ToDouble(textBoxGradientX.Text) / (Convert.ToDouble(textBoxGradientY.Text));
 
-                graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenPointF(new PointF(0, (float)b)),
-                    convertToScreenPointF(new PointF((float)(-b / k), 0)));
+                    PointF pointLine = new PointF((float)linearMembrane[imin, 0], (float)linearMembrane[imin, 1]);
+                    double b = pointLine.Y - k * pointLine.X;
+
+                    graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenPointF(new PointF(0, (float)b)),
+                        convertToScreenPointF(new PointF((float)(-b / k), 0)));
+                }
+
+                return graphics;
             }
-
-            return graphics;
+            catch (Exception ex)
+            {
+                MessageBox.Show("Drawing failed. " + ex.Message);
+                return graphics;
+            }
         }
 
         private Graphics DrawingSet()
@@ -483,324 +504,359 @@ namespace TurchinaTPRLab
 
         private void DrawingWedgeForSavage(int number, PointF pointAxis)
         {
-            var factory = CriterionFactory.getFactory();
-            var criterion = factory.ElementAt(number);
-            Model model = controller.getModel();
-
-            var rows = model.getDecisionsCount();
-            var cols = model.getStatesCount();
-
-            var regret = (Model)model.Clone();
-            for (int j = 0; j < cols; ++j)
+            try
             {
-                int imin = 0;
-                for (int i = 0; i < rows; ++i)
-                    if (regret.getData(imin, j) > regret.getData(i, j))
-                        imin = i;
+                var factory = CriterionFactory.getFactory();
+                var criterion = factory.ElementAt(number);
+                Model model = controller.getModel();
 
-                var min = regret.getData(imin, j);
+                var rows = model.getDecisionsCount();
+                var cols = model.getStatesCount();
 
-                for (int i = 0; i < rows; ++i)
+                var regret = (Model)model.Clone();
+                for (int j = 0; j < cols; ++j)
                 {
-                    var value = regret.getData(i, j) - min;
-                    regret.setData(i, j, value);
-                }
-            }
-            solution = criterion.makeDecision(regret);
-            double[,] tempArray = new double[model.rows, 2];
-            for (int i = 0; i < model.rows; i++)
-            {
-                for (int j = 0; j < 2; j++)
-                {
-                    tempArray[i, j] = regret.getData(i, j);
-                }
-            }
-            double[] solutionVector = solution.getSolution();
+                    int imin = 0;
+                    for (int i = 0; i < rows; ++i)
+                        if (regret.getData(imin, j) > regret.getData(i, j))
+                            imin = i;
 
-            int countOfPoints = 0;
-            for (int i = 0; i < solutionVector.Length; i++)
-            {
-                if (solutionVector[i] != 0)
-                {
-                    countOfPoints++;
-                }
-            }
+                    var min = regret.getData(imin, j);
 
-            if (countOfPoints < 2)
-            {
-                int tempNumber = 0;
+                    for (int i = 0; i < rows; ++i)
+                    {
+                        var value = regret.getData(i, j) - min;
+                        regret.setData(i, j, value);
+                    }
+                }
+                solution = criterion.makeDecision(regret);
+                double[,] tempArray = new double[model.rows, 2];
+                for (int i = 0; i < model.rows; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        tempArray[i, j] = regret.getData(i, j);
+                    }
+                }
+                double[] solutionVector = solution.getSolution();
+
+                int countOfPoints = 0;
                 for (int i = 0; i < solutionVector.Length; i++)
                 {
                     if (solutionVector[i] != 0)
                     {
-                        tempNumber = i;
-                        break;
+                        countOfPoints++;
                     }
                 }
 
-                PointF point1 = new PointF();
-                if (tempNumber <= linearMembrane.Length / 2 - 1)
+                if (countOfPoints < 2)
                 {
-                    point1 = new PointF((float)tempArray[tempNumber, 0], (float)tempArray[tempNumber, 1]);
-                    graphics.DrawLine(new Pen(Color.Blue, 2),
-                            convertToScreenForSavagePointF(new PointF(0, point1.Y), pointAxis.X, pointAxis.Y),
+                    int tempNumber = 0;
+                    for (int i = 0; i < solutionVector.Length; i++)
+                    {
+                        if (solutionVector[i] != 0)
+                        {
+                            tempNumber = i;
+                            break;
+                        }
+                    }
+
+                    PointF point1 = new PointF();
+                    if (tempNumber <= linearMembrane.Length / 2 - 1)
+                    {
+                        point1 = new PointF((float)tempArray[tempNumber, 0], (float)tempArray[tempNumber, 1]);
+                        graphics.DrawLine(new Pen(Color.Blue, 2),
+                                convertToScreenForSavagePointF(new PointF(0, point1.Y), pointAxis.X, pointAxis.Y),
+                                convertToScreenForSavagePointF(point1, pointAxis.X, pointAxis.Y));
+                        graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenForSavagePointF(new PointF(point1.X, 0), pointAxis.X, pointAxis.Y),
                             convertToScreenForSavagePointF(point1, pointAxis.X, pointAxis.Y));
-                    graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenForSavagePointF(new PointF(point1.X, 0), pointAxis.X, pointAxis.Y),
-                        convertToScreenForSavagePointF(point1, pointAxis.X, pointAxis.Y));
+                    }
+                }
+                else
+                {
+                    int number1 = 0, number2 = 0;
+                    for (int i = 0; i < solutionVector.Length; i++)
+                    {
+                        if (solutionVector[i] != 0)
+                        {
+                            number1 = i;
+                            break;
+                        }
+                    }
+                    for (int i = number1 + 1; i < solutionVector.Length; i++)
+                    {
+                        if (solutionVector[i] != 0)
+                        {
+                            number2 = i;
+                            break;
+                        }
+                    }
+
+
+
+                    double k = (tempArray[number1, 1] - tempArray[number2, 1]) /
+                        (tempArray[number1, 0] - tempArray[number2, 0]);
+                    double b = tempArray[number2, 1] - tempArray[number2, 0] *
+                        (tempArray[number1, 1] - tempArray[number2, 1]) /
+                        (tempArray[number1, 0] - tempArray[number2, 0]);
+                    float tempX = (float)(b / (1 - k));
+                    PointF point2 = new PointF(tempX, tempX);
+                    graphics.DrawLine(new Pen(Color.Blue, 2),
+                        convertToScreenForSavagePointF(new PointF(0, point2.Y), pointAxis.X, pointAxis.Y),
+                        convertToScreenForSavagePointF(point2, pointAxis.X, pointAxis.Y));
+                    graphics.DrawLine(new Pen(Color.Blue, 2),
+                        convertToScreenForSavagePointF(new PointF(point2.X, 0), pointAxis.X, pointAxis.Y),
+                        convertToScreenForSavagePointF(point2, pointAxis.X, pointAxis.Y));
                 }
             }
-            else
+            catch (Exception ex)
             {
-                int number1 = 0, number2 = 0;
-                for (int i = 0; i < solutionVector.Length; i++)
-                {
-                    if (solutionVector[i] != 0)
-                    {
-                        number1 = i;
-                        break;
-                    }
-                }
-                for (int i = number1 + 1; i < solutionVector.Length; i++)
-                {
-                    if (solutionVector[i] != 0)
-                    {
-                        number2 = i;
-                        break;
-                    }
-                }
-
-
-
-                double k = (tempArray[number1, 1] - tempArray[number2, 1]) /
-                    (tempArray[number1, 0] - tempArray[number2, 0]);
-                double b = tempArray[number2, 1] - tempArray[number2, 0] *
-                    (tempArray[number1, 1] - tempArray[number2, 1]) /
-                    (tempArray[number1, 0] - tempArray[number2, 0]);
-                float tempX = (float)(b / (1 - k));
-                PointF point2 = new PointF(tempX, tempX);
-                graphics.DrawLine(new Pen(Color.Blue, 2),
-                    convertToScreenForSavagePointF(new PointF(0, point2.Y), pointAxis.X, pointAxis.Y), 
-                    convertToScreenForSavagePointF(point2, pointAxis.X, pointAxis.Y));
-                graphics.DrawLine(new Pen(Color.Blue, 2), 
-                    convertToScreenForSavagePointF(new PointF(point2.X, 0), pointAxis.X, pointAxis.Y),
-                    convertToScreenForSavagePointF(point2, pointAxis.X, pointAxis.Y));
+                MessageBox.Show("Drawing failed. " + ex.Message);
             }
         }
 
         private void DrawingWedge(int number)
         {
-            var factory = CriterionFactory.getFactory();
-            var criterion = factory.ElementAt(number);
-            Model model = controller.getModel();
-            solution = criterion.makeDecision(model);
-            double[] solutionVector = solution.getSolution();
-            int countOfPoints = 0;            
-            for (int i = 0; i < solutionVector.Length; i++)
+            try
             {
-                if (solutionVector[i] != 0)
-                {
-                    countOfPoints++;
-                }
-            }
-
-
-            double[,] tempArray = new double[model.rows, 2];
-            for (int i = 0; i < model.rows; i++)
-            {
-                for (int j = 0; j < 2; j++)
-                {
-                    tempArray[i, j] = model.getData(i, j);
-                }
-            }
-
-            if (countOfPoints < 2)
-            {
-                int tempNumber = 0;
+                var factory = CriterionFactory.getFactory();
+                var criterion = factory.ElementAt(number);
+                Model model = controller.getModel();
+                solution = criterion.makeDecision(model);
+                double[] solutionVector = solution.getSolution();
+                int countOfPoints = 0;
                 for (int i = 0; i < solutionVector.Length; i++)
                 {
                     if (solutionVector[i] != 0)
                     {
-                        tempNumber = i;
-                        break;
-                    }
-                }
-                PointF point1 = new PointF();
-                if (tempNumber > linearMembrane.Length / 2 - 1)
-                {
-                    point1 = new PointF((float)linearMembrane[0, 0], (float)linearMembrane[0, 1]);
-                }
-                else
-                {
-                    point1 = new PointF((float)tempArray[tempNumber, 0], (float)tempArray[tempNumber, 1]);                    
-                }
-                graphics.DrawLine(new Pen(Color.Blue, 2),
-                        convertToScreenPointF(new PointF(0, point1.Y)), convertToScreenPointF(point1));
-                graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenPointF(new PointF(point1.X, 0)),
-                    convertToScreenPointF(point1));
-            }
-            else
-            {
-                int number1 = 0, number2 = 0;
-                for (int i = 0; i < solutionVector.Length; i++)
-                {
-                    if (solutionVector[i] != 0)
-                    {
-                        number1 = i;
-                        break;
-                    }
-                }
-                for (int i = number1 + 1; i < solutionVector.Length; i++)
-                {
-                    if (solutionVector[i] != 0)
-                    {
-                        number2 = i;
-                        break;
+                        countOfPoints++;
                     }
                 }
 
-                //if (radiobutton
-                double k = (tempArray[number1, 1] - tempArray[number2, 1]) /
-                    (tempArray[number1, 0] - tempArray[number2, 0]);
-                double b = tempArray[number2, 1] - tempArray[number2, 0] *
-                    (tempArray[number1, 1] - tempArray[number2, 1]) /
-                    (tempArray[number1, 0] - tempArray[number2, 0]);
-                float tempX = (float)(b / (1 - k));
-                PointF point2 = new PointF(tempX, tempX);
-                graphics.DrawLine(new Pen(Color.Blue, 2),
-                    convertToScreenPointF(new PointF(0, point2.Y)), convertToScreenPointF(point2));
-                graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenPointF(new PointF(point2.X, 0)),
-                    convertToScreenPointF(point2));
-            }
-        }
 
-        private void DrawingWedgeForGurwits(double gurwitsRate, int number, double[] solutionVector, double[,] tempArray)
-        {   
-            int countOfPoints = 0;
-            for (int i = 0; i < solutionVector.Length; i++)
-            {
-                if (solutionVector[i] != 0)
+                double[,] tempArray = new double[model.rows, 2];
+                for (int i = 0; i < model.rows; i++)
                 {
-                    countOfPoints++;
-                }
-            }
-
-            if (countOfPoints < 2)
-            {
-                int tempNumber = 0;
-                for (int i = 0; i < solutionVector.Length; i++)
-                {
-                    if (solutionVector[i] != 0)
+                    for (int j = 0; j < 2; j++)
                     {
-                        tempNumber = i;
-                        break;
+                        tempArray[i, j] = model.getData(i, j);
                     }
                 }
-                PointF point1 = new PointF();
-                if (tempNumber > linearMembrane.Length / 2 - 1)
+
+                if (countOfPoints < 2)
                 {
-                    point1 = new PointF((float)linearMembrane[0, 0], (float)linearMembrane[0, 1]);
-                }
-                else
-                {
-                    point1 = new PointF((float)tempArray[tempNumber, 0], (float)tempArray[tempNumber, 1]);
-                }
-                if (gurwitsRate == 0)
-                {
+                    int tempNumber = 0;
+                    for (int i = 0; i < solutionVector.Length; i++)
+                    {
+                        if (solutionVector[i] != 0)
+                        {
+                            tempNumber = i;
+                            break;
+                        }
+                    }
+                    PointF point1 = new PointF();
+                    if (tempNumber > linearMembrane.Length / 2 - 1)
+                    {
+                        point1 = new PointF((float)linearMembrane[0, 0], (float)linearMembrane[0, 1]);
+                    }
+                    else
+                    {
+                        point1 = new PointF((float)tempArray[tempNumber, 0], (float)tempArray[tempNumber, 1]);
+                    }
                     graphics.DrawLine(new Pen(Color.Blue, 2),
                             convertToScreenPointF(new PointF(0, point1.Y)), convertToScreenPointF(point1));
                     graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenPointF(new PointF(point1.X, 0)),
                         convertToScreenPointF(point1));
                 }
-                else if (gurwitsRate == 0.5)
+                else
                 {
-                    float k = -1;
-                    float b = point1.X + point1.Y;
-                    graphics.DrawLine(new Pen(Color.Blue, 2),
-                        convertToScreenPointF(new PointF(0, b)), convertToScreenPointF(new PointF(b, 0)));
-                }
-                else if (gurwitsRate > 0.5 || gurwitsRate < 1)
-                {
-                    
-                }
-            }
-            else
-            {
-                int number1 = 0, number2 = 0;
-                for (int i = 0; i < solutionVector.Length; i++)
-                {
-                    if (solutionVector[i] != 0)
+                    int number1 = 0, number2 = 0;
+                    for (int i = 0; i < solutionVector.Length; i++)
                     {
-                        number1 = i;
-                        break;
+                        if (solutionVector[i] != 0)
+                        {
+                            number1 = i;
+                            break;
+                        }
                     }
-                }
-                for (int i = number1 + 1; i < solutionVector.Length; i++)
-                {
-                    if (solutionVector[i] != 0)
+                    for (int i = number1 + 1; i < solutionVector.Length; i++)
                     {
-                        number2 = i;
-                        break;
+                        if (solutionVector[i] != 0)
+                        {
+                            number2 = i;
+                            break;
+                        }
                     }
-                }
-                
-                double k = (tempArray[number1, 1] - tempArray[number2, 1]) /
-                    (tempArray[number1, 0] - tempArray[number2, 0]);
-                double b = tempArray[number2, 1] - tempArray[number2, 0] *
-                    (tempArray[number1, 1] - tempArray[number2, 1]) /
-                    (tempArray[number1, 0] - tempArray[number2, 0]);
-                float tempX = (float)(b / (1 - k));
-                PointF point2 = new PointF(tempX, tempX);
 
-                if (gurwitsRate == 0)
-                {                    
+                    //if (radiobutton
+                    double k = (tempArray[number1, 1] - tempArray[number2, 1]) /
+                        (tempArray[number1, 0] - tempArray[number2, 0]);
+                    double b = tempArray[number2, 1] - tempArray[number2, 0] *
+                        (tempArray[number1, 1] - tempArray[number2, 1]) /
+                        (tempArray[number1, 0] - tempArray[number2, 0]);
+                    float tempX = (float)(b / (1 - k));
+                    PointF point2 = new PointF(tempX, tempX);
                     graphics.DrawLine(new Pen(Color.Blue, 2),
                         convertToScreenPointF(new PointF(0, point2.Y)), convertToScreenPointF(point2));
                     graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenPointF(new PointF(point2.X, 0)),
                         convertToScreenPointF(point2));
                 }
-                else if (gurwitsRate > 0 || gurwitsRate < 0.5)
-                {
-                    float tempAxisX = tempX * (float)(2 * gurwitsRate);
-                    graphics.DrawLine(new Pen(Color.Blue, 2),
-                        convertToScreenPointF(new PointF(0, point2.Y + tempAxisX)), convertToScreenPointF(point2));
-                    graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenPointF(new PointF(point2.X + tempAxisX, 0)),
-                        convertToScreenPointF(point2));
-                }
-                else if (gurwitsRate > 0.5 || gurwitsRate < 1)
-                {
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Drawing failed. " + ex.Message);
+            }
+        }
 
+        private void DrawingWedgeForGurwits(double gurwitsRate, int number, double[] solutionVector, double[,] tempArray)
+        {
+            try
+            {
+                int countOfPoints = 0;
+                for (int i = 0; i < solutionVector.Length; i++)
+                {
+                    if (solutionVector[i] != 0)
+                    {
+                        countOfPoints++;
+                    }
                 }
+
+                if (countOfPoints < 2)
+                {
+                    int tempNumber = 0;
+                    for (int i = 0; i < solutionVector.Length; i++)
+                    {
+                        if (solutionVector[i] != 0)
+                        {
+                            tempNumber = i;
+                            break;
+                        }
+                    }
+                    PointF point1 = new PointF();
+                    if (tempNumber > linearMembrane.Length / 2 - 1)
+                    {
+                        point1 = new PointF((float)linearMembrane[0, 0], (float)linearMembrane[0, 1]);
+                    }
+                    else
+                    {
+                        point1 = new PointF((float)tempArray[tempNumber, 0], (float)tempArray[tempNumber, 1]);
+                    }
+                    if (gurwitsRate == 0)
+                    {
+                        graphics.DrawLine(new Pen(Color.Blue, 2),
+                                convertToScreenPointF(new PointF(0, point1.Y)), convertToScreenPointF(point1));
+                        graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenPointF(new PointF(point1.X, 0)),
+                            convertToScreenPointF(point1));
+                    }
+                    else if (gurwitsRate == 0.5)
+                    {
+                        float k = -1;
+                        float b = point1.X + point1.Y;
+                        graphics.DrawLine(new Pen(Color.Blue, 2),
+                            convertToScreenPointF(new PointF(0, b)), convertToScreenPointF(new PointF(b, 0)));
+                    }
+                    else if (gurwitsRate > 0.5 || gurwitsRate < 1)
+                    {
+
+                    }
+                }
+                else
+                {
+                    int number1 = 0, number2 = 0;
+                    for (int i = 0; i < solutionVector.Length; i++)
+                    {
+                        if (solutionVector[i] != 0)
+                        {
+                            number1 = i;
+                            break;
+                        }
+                    }
+                    for (int i = number1 + 1; i < solutionVector.Length; i++)
+                    {
+                        if (solutionVector[i] != 0)
+                        {
+                            number2 = i;
+                            break;
+                        }
+                    }
+
+                    double k = (tempArray[number1, 1] - tempArray[number2, 1]) /
+                        (tempArray[number1, 0] - tempArray[number2, 0]);
+                    double b = tempArray[number2, 1] - tempArray[number2, 0] *
+                        (tempArray[number1, 1] - tempArray[number2, 1]) /
+                        (tempArray[number1, 0] - tempArray[number2, 0]);
+                    float tempX = (float)(b / (1 - k));
+                    PointF point2 = new PointF(tempX, tempX);
+
+                    if (gurwitsRate == 0)
+                    {
+                        graphics.DrawLine(new Pen(Color.Blue, 2),
+                            convertToScreenPointF(new PointF(0, point2.Y)), convertToScreenPointF(point2));
+                        graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenPointF(new PointF(point2.X, 0)),
+                            convertToScreenPointF(point2));
+                    }
+                    else if (gurwitsRate > 0 || gurwitsRate < 0.5)
+                    {
+                        float tempAxisX = tempX * (float)(2 * gurwitsRate);
+                        graphics.DrawLine(new Pen(Color.Blue, 2),
+                            convertToScreenPointF(new PointF(0, point2.Y + tempAxisX)), convertToScreenPointF(point2));
+                        graphics.DrawLine(new Pen(Color.Blue, 2), convertToScreenPointF(new PointF(point2.X + tempAxisX, 0)),
+                            convertToScreenPointF(point2));
+                    }
+                    else if (gurwitsRate > 0.5 || gurwitsRate < 1)
+                    {
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Drawing failed. " + ex.Message);
             }
         }
 
         private void buttonDownScale_Click(object sender, EventArgs e)
         {
-            scaleY = scaleY / 1.5;
-            scaleX = scaleX / 1.5;
-            pictureBox1.Refresh();
-            DrawingGraphic();
-            DrawingSet();
-            DrawAxisNumbers();
-            if (miniMaxCriterionRadioButton.Checked) DrawingWedge(5);
-            if (savageCriterionRadioButton.Checked) DrawingWedgeForSavage(9, DrawingAxisForSavage());
-            if (bayesianCriterionRadioButton.Checked) DrawingGradient();
-            if (neymanPearsonCriterionRadioButton.Checked) DrawingNeimanPearson(model.LossestRate, model.ControledStateNumber);
-            if (hurwitzCriterionRadioButton.Checked) DrawingWedgeForGurwits(gurwitsRate, 5, solutionResult, array);
+            try
+            {
+                scaleY = scaleY / 1.5;
+                scaleX = scaleX / 1.5;
+                pictureBox1.Refresh();
+                DrawingGraphic();
+                DrawingSet();
+                DrawAxisNumbers();
+                if (miniMaxCriterionRadioButton.Checked) DrawingWedge(5);
+                if (savageCriterionRadioButton.Checked) DrawingWedgeForSavage(9, DrawingAxisForSavage());
+                if (bayesianCriterionRadioButton.Checked) DrawingGradient();
+                if (neymanPearsonCriterionRadioButton.Checked) DrawingNeimanPearson(model.LossestRate, model.ControledStateNumber);
+                if (hurwitzCriterionRadioButton.Checked) DrawingWedgeForGurwits(gurwitsRate, 5, solutionResult, array);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Drawing failed. " + ex.Message);
+            }
         }
 
         private void buttonUpScale_Click(object sender, EventArgs e)
-        {            
-            scaleY = scaleY * 1.5;
-            scaleX = scaleX * 1.5;
-            pictureBox1.Refresh();
-            DrawingGraphic();
-            DrawingSet();
-            DrawAxisNumbers();
-            if (miniMaxCriterionRadioButton.Checked) DrawingWedge(5);
-            if (savageCriterionRadioButton.Checked) DrawingWedgeForSavage(9, DrawingAxisForSavage());
-            if (bayesianCriterionRadioButton.Checked) DrawingGradient();
-            if (neymanPearsonCriterionRadioButton.Checked) DrawingNeimanPearson(model.LossestRate, model.ControledStateNumber);
-            if (hurwitzCriterionRadioButton.Checked) DrawingWedgeForGurwits(gurwitsRate, 5, solutionResult, array);
+        {
+            try
+            {
+                scaleY = scaleY * 1.5;
+                scaleX = scaleX * 1.5;
+                pictureBox1.Refresh();
+                DrawingGraphic();
+                DrawingSet();
+                DrawAxisNumbers();
+                if (miniMaxCriterionRadioButton.Checked) DrawingWedge(5);
+                if (savageCriterionRadioButton.Checked) DrawingWedgeForSavage(9, DrawingAxisForSavage());
+                if (bayesianCriterionRadioButton.Checked) DrawingGradient();
+                if (neymanPearsonCriterionRadioButton.Checked) DrawingNeimanPearson(model.LossestRate, model.ControledStateNumber);
+                if (hurwitzCriterionRadioButton.Checked) DrawingWedgeForGurwits(gurwitsRate, 5, solutionResult, array);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Drawing failed. " + ex.Message);
+            }
         }
 
         private void guidePictureBox_Click(object sender, EventArgs e)

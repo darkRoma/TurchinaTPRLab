@@ -49,7 +49,7 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
                 if(IsLine == 2)
                 {
 
-                    result = Helper.CountResult(indexEquivalent, numberOfMinXPoint, 0, 1.0, sizeLossArray);
+                    result = Helper.CountResult(indexEquivalent, numberOfMinXPoint, indexEquivalent.Length -1, 0.5, sizeLossArray);
                     return new Solution(result, 0.0);
                 }
 
@@ -61,7 +61,7 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
                 {
                     tempX = Helper.PointOfIntersection(convexHull[numberOfResultPoint, 0], convexHull[numberOfResultPoint + 1, 0], convexHull[numberOfResultPoint, 1], convexHull[numberOfResultPoint + 1, 1]);
 
-                    if (tempX > convexHull[numberOfResultPoint, 0] && tempX < convexHull[numberOfResultPoint + 1, 0])
+                    if (tempX >= convexHull[numberOfResultPoint, 0] && tempX <= convexHull[numberOfResultPoint + 1, 0])
                     {
                         isFound = true;
                         break;
@@ -74,7 +74,14 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
 
                 if (isFound)
                 {
-                    x = Helper.X(convexHull[numberOfResultPoint, 0], convexHull[numberOfResultPoint + 1, 0], convexHull[numberOfResultPoint, 1], convexHull[numberOfResultPoint + 1, 1]);
+                    if (convexHull[numberOfResultPoint, 1] == convexHull[numberOfResultPoint + 1, 1])
+                    {
+                        x = 0.5;
+                    }
+                    else
+                    {
+                        x = Helper.X(convexHull[numberOfResultPoint, 0], convexHull[numberOfResultPoint + 1, 0], convexHull[numberOfResultPoint, 1], convexHull[numberOfResultPoint + 1, 1]);
+                    }
                     result = Helper.CountResult(indexEquivalent, numberOfResultPoint, numberOfResultPoint + 1, x, sizeLossArray);
                     loss = CountLoss(x, convexHull[numberOfResultPoint, 0], convexHull[numberOfResultPoint + 1, 0]);
                 }

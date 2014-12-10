@@ -43,3 +43,4 @@ C:\Users\User\Documents\GitHub\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\Turch
 C:\Users\User\Documents\GitHub\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.SavageCriterionInfoForm.resources
 C:\Users\User\Documents\GitHub\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.csproj.GenerateResource.Cache
 D:\Program Files\Теория принятия решений\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.UI.GuideForm.resources
+C:\Users\User\Documents\GitHub\TurchinaTPRLab\TurchinaTPRLab\obj\x86\Debug\TurchinaTPRLab.UI.GuideForm.resources

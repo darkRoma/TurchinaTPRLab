@@ -41,7 +41,16 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
                int count = convexHullSize - numberOfMinXPoint - 1; // number of points in the southwestern border
                bool isFirstPointInSolution = (count == 0) ? true : false;
                int numberOfResultPoint = numberOfMinXPoint;
-               
+
+
+               if (IsAllControledPointsSuits(convexHull, controledStateNumber, lossesRate))
+               {
+                   int resultPoints = FindMinUncontroledPoints(convexHull, controledStateNumber);
+
+
+                   result = Helper.CountResult(indexEquivalent, resultPoints, 0, 1, sizeLossArray);
+                   return new Solution(result, 0.0);
+               }
 
                if (isLine != 0)
                { 
@@ -59,6 +68,7 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
                        return new Solution(result, 0.0);
                    }
                }
+
                while (count > 0)
                {
                    if (controledStateNumber == 1)
@@ -109,6 +119,81 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
            }
        }
 
+
+       int  FindMinUncontroledPoints(double[,] hull, int numberContrState)
+       {
+           int  minUncontroledPoints = 0;
+
+           if (numberContrState == 1)
+           { 
+             for(int i = 1; i< hull.Length/2; i++)
+             {
+                 if (hull[i, 1] < hull[minUncontroledPoints, 1])
+                 {
+                     minUncontroledPoints =i;
+                 }
+                 if (hull[i, 1] == hull[minUncontroledPoints, 1] && hull[i, 0] < hull[minUncontroledPoints, 0])
+                 {
+                     minUncontroledPoints = i;
+                 }
+             }
+           }
+
+           if (numberContrState == 2)
+           {
+               for (int i = 1; i < hull.Length / 2; i++)
+               {
+                   if (hull[i, 0] < hull[minUncontroledPoints, 0])
+                   {
+                       minUncontroledPoints = i;
+                   }
+                   if (hull[i, 0] == hull[minUncontroledPoints, 0] && hull[i, 1] < hull[minUncontroledPoints, 1])
+                   {
+                       minUncontroledPoints = i;
+                   }
+               }
+           }
+
+           return minUncontroledPoints;
+       }
+       bool IsAllControledPointsSuits(double[,] hull, int numberContrState, double rate)
+       {
+           bool IsAllControledPointsSuitsResult = false;
+
+           if (numberContrState == 1)
+           {
+               for (int i = 0; i < hull.Length / 2; i++)
+               {
+                   if (hull[i, 0] < rate)
+                   {
+                       IsAllControledPointsSuitsResult = true;
+                   }
+                   else
+                   {
+                       IsAllControledPointsSuitsResult = false;
+                       break;
+                   }
+               }
+           }
+
+           if (numberContrState == 2)
+           {
+               for (int i = 0; i < hull.Length / 2; i++)
+               {
+                   if (hull[i, 1] < rate)
+                   {
+                       IsAllControledPointsSuitsResult = true;
+                   }
+                   else
+                   {
+                       IsAllControledPointsSuitsResult = false;
+                       break;
+                   }
+               }
+           }
+
+           return IsAllControledPointsSuitsResult;
+       }
        bool DoesExistResult(double[,] hull, int numberContrState, double rate)
        {
            bool doesExistsResult = true;
@@ -117,6 +202,22 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
                for (int i = 0; i < hull.Length / 2; i++)
                {
                    if (hull[i, 0] <= rate)
+                   {
+                       doesExistsResult = true;
+                       return doesExistsResult;
+                   }
+                   else
+                   {
+                       doesExistsResult = false;
+                   }
+               }
+           }
+
+           if (numberContrState == 2)
+           {
+               for (int i = 0; i < hull.Length / 2; i++)
+               {
+                   if (hull[i, 1] <= rate)
                    {
                        doesExistsResult = true;
                        return doesExistsResult;

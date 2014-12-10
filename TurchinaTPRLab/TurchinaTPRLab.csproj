@@ -80,7 +80,6 @@
     <Compile Include="Core\Service\Criterions\Randomized criterions\Helper.cs" />
     <Compile Include="Core\Service\Criterions\Randomized criterions\Point.cs" />
     <Compile Include="Core\Service\Criterions\Randomized criterions\RandBayesCriterion.cs" />
-    <Compile Include="Core\Service\Criterions\Randomized criterions\RandGurvitsCriterion.cs" />
     <Compile Include="Core\Service\Criterions\Randomized criterions\RandMinMaxCriterion.cs" />
     <Compile Include="Core\Service\Criterions\Randomized criterions\RandNeymanPearsonCriterion.cs" />
     <Compile Include="Core\Service\Criterions\Randomized criterions\RandSavageCriterion.cs" />

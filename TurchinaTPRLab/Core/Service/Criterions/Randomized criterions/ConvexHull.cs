@@ -15,65 +15,89 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
             double[,] resultTemp = new double[lossArray.Length, 2];
             int pointCount = 0;
             bool isDifferent = true;
+            bool isAllElemsEquals = false;
 
             for (int i = 1; i < lossArraySize; i++)
             {
-                if (lossArray[i, 1] < lossArray[numbrFirstElem, 1])
+                if (lossArray[i, 0] == lossArray[i - 1, 0] && lossArray[i, 0] == lossArray[i - 1, 1] && lossArray[i, 0] == lossArray[i, 1])
                 {
-                    numbrFirstElem = i;
-
+                    isAllElemsEquals = true;
                 }
                 else
-                    if (lossArray[i, 1] == lossArray[numbrFirstElem, 1] &&
-                      lossArray[i, 0] < lossArray[numbrFirstElem, 0])
-                    {
-
-                        numbrFirstElem = i;
-                    }
+                {
+                    isAllElemsEquals = false;
+                    break;
+                }
+            
             }
 
-            resultTemp[0, 0] = lossArray[numbrFirstElem, 0];
-            resultTemp[0, 1] = lossArray[numbrFirstElem, 1];
-            pointCount = 1;
-
-            int first = numbrFirstElem;
-            int cur = numbrFirstElem;
-
-            do
+            if (isAllElemsEquals)
             {
-                int next = (cur + 1) % (lossArraySize);
-                for (int i = 0; i < lossArraySize; i++)
+                resultTemp[0, 0] = lossArray[0, 0];
+                resultTemp[0, 1] = lossArray[0, 0];
+                pointCount = 1;
+            }
+            else
+            {
+                for (int i = 1; i < lossArraySize; i++)
                 {
-                    double sign = OrientTriangl(cur, next, i, lossArray);
-                    if (sign < 0)
+                    if (lossArray[i, 1] < lossArray[numbrFirstElem, 1])
                     {
-                        next = i;
+                        numbrFirstElem = i;
+
                     }
-                    else if (sign == 0.0)
+                    else
+                        if (lossArray[i, 1] == lossArray[numbrFirstElem, 1] &&
+                          lossArray[i, 0] < lossArray[numbrFirstElem, 0])
+                        {
+
+                            numbrFirstElem = i;
+                        }
+                }
+
+                resultTemp[0, 0] = lossArray[numbrFirstElem, 0];
+                resultTemp[0, 1] = lossArray[numbrFirstElem, 1];
+                pointCount = 1;
+
+                int first = numbrFirstElem;
+                int cur = numbrFirstElem;
+
+                do
+                {
+                    int next = (cur + 1) % (lossArraySize);
+                    for (int i = 0; i < lossArraySize; i++)
                     {
-                        if (isInside(cur, next, i, lossArray))
+                        double sign = OrientTriangl(cur, next, i, lossArray);
+                        if (sign < 0)
                         {
                             next = i;
                         }
+                        else if (sign == 0.0)
+                        {
+                            if (isInside(cur, next, i, lossArray))
+                            {
+                                next = i;
+                            }
+                        }
                     }
-                }
-                cur = next;
-                for (int i = 0; i < lossArraySize; i++)
-                {
-                    if (resultTemp[i, 0] == lossArray[next, 0] && resultTemp[i, 1] == lossArray[next, 1])
+                    cur = next;
+                    for (int i = 0; i < lossArraySize; i++)
                     {
-                        isDifferent = false;
-                    }
+                        if (resultTemp[i, 0] == lossArray[next, 0] && resultTemp[i, 1] == lossArray[next, 1])
+                        {
+                            isDifferent = false;
+                        }
 
+                    }
+                    if (isDifferent)
+                    {
+                        resultTemp[pointCount, 0] = lossArray[next, 0];
+                        resultTemp[pointCount, 1] = lossArray[next, 1];
+                        pointCount++;
+                    }
                 }
-                if (isDifferent)
-                {
-                    resultTemp[pointCount, 0] = lossArray[next, 0];
-                    resultTemp[pointCount, 1] = lossArray[next, 1];
-                    pointCount++;
-                }
+                while (cur != first);
             }
-            while (cur != first);
 
             result = new double[pointCount, 2];
 

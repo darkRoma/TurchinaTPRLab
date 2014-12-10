@@ -45,41 +45,90 @@ namespace TurchinaTPRLab.Core.Service.Criterions.Randomized_criterions
 
         public static double X(double x1, double x2, double y1, double y2)
         {
-            return (y2 - x2) / (x1 - x2 - y1 + y2);
+            if (x1 - x2 - y1 + y2 == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return Math.Abs((y2 - x2) / (x1 - x2 - y1 + y2));
+            }
         }
 
-        public static double X(double x1, double x2, double y1, double y2, double Rate, double controledStateNumber)
+        public static double X(double x1, double x2, double y1, double y2, double Rate, int controledStateNumber)
         {
 
             double result=0;
             if (controledStateNumber == 1)
             {
-               
-                    result= (Rate - x2) / (x1 - x2);
+                if (x1 - x2 != 0)
+                {
+                    result = Math.Abs((Rate - x2) / (x1 - x2));
+                }
+                else
+                {
+                    if (y1 <= y2)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+
+                if (result > 1)
+                { 
+                 if(y1 <= y2)
+                 {
+                     return 1;
+                 }
+                 else
+                 {
+                     return 0;
+                 }
+                }
                 
             }
             if (controledStateNumber == 2)
             {
-                
-               
-                    result= (Rate - y2) / (y1 - y2);
-                
-            }
 
-            if (result > 1 || result<0)
-            {
-                throw new SystemException("Возможно некорректно задано пороговое значение потерь для данного состояния.");
-                return 0;
+                if (y1 - y2 != 0)
+                {
+                    result = Math.Abs((Rate - y2) / (y1 - y2));
+                }
+                else
+                {
+                    if (x1 <= x2)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+
+                if (result > 1)
+                {
+                    if (x1 <= x2)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
             }
-            else
-            {
+          
                 return result;
-            }
+          
         }
 
-        public static double[] CountResult(int[] indexEquivalent, int numberOfResultPoint, int nextNumberOfResultPoint, double x, int size)
+        public static double[] CountResult(int[] indexEquivalent, int numberOfResultPoint, int nextNumberOfResultPoint, double x, int sizeLossArray)
         {
-            double[] result = new double[size];
+            double[] result = new double[sizeLossArray];
             result[indexEquivalent[numberOfResultPoint]] = Math.Round(x,2);
             if (numberOfResultPoint != nextNumberOfResultPoint)
             {
